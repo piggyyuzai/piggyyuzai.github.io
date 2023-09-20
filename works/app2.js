@@ -4,16 +4,13 @@ function init() {
   // TODO maybe gris could be improved further
   
   const imgData = [
-    { h: 500, w: 500, img: 'mochimochiusagi.gif' },
-    { h: 634, w: 450, img: 'popcorn_bunny.png' },
-    { h: 1320, w: 1000, img: 'cocoala.jpg' },
-    { h: 500, w: 500, img: 'smile.gif' },
-    { h: 660, w: 450, img: 'rhino_banana.jpg' },
-    { h: 634, w: 450, img: 'icecream.jpg' },
-    { h: 500, w: 500, img: 'boxing_bunny.gif' },
-    { h: 562, w: 800, img: 'pizza_squirrel.jpg' },
-    { h: 1414, w: 1000, img: 'animals.jpg' },
-    { h: 750, w: 500, img: 'bunny_icecream2.jpg' }
+    { h: 500, w: 200, img: 'grass.jpg' },
+    { h: 500, w: 200, img: 'kirby.jpg' },
+    { h: 500, w: 200, img: 'kuromi.jpg' },
+    { h: 500, w: 200, img: 'nalati.jpg' },
+    { h: 500, w: 200, img: 'tianshan.jpg' },
+    { h: 250, w: 200, img: 'pinksky.jpg' },
+    { h: 500, w: 200, img: 'littleprince.jpg' },
   ]
 
   const elements = {
