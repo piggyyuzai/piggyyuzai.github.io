@@ -44,6 +44,44 @@ function init() {
 
   const imagesOne = [
     {
+      file: "welcome.gif",
+      width: 250,
+      height: 250,
+      speed: 35,
+      zIndex: 2,
+    },
+    {
+      file: "klee1.gif",
+      width: 100,
+      height: 100,
+      speed: 30,
+      zIndex: 3,
+    },
+    {
+      file: "card_cn.jpg",
+      width: 250,
+      height: 100,
+      speed: 12,
+      zIndex: 1,
+    },
+    {
+      file: "1.gif",
+      width: 150,
+      height: 150,
+      speed: 28,
+      zIndex: 2,
+    },
+    {
+      file: "5.gif",
+      width: 200,
+      height: 200,
+      speed: 20,
+      zIndex: 3,
+    },
+  ];
+
+  const imagesTwo = [
+    {
       file: "catblob.png",
       width: 250,
       height: 250,
@@ -87,18 +125,14 @@ function init() {
     },
   ];
 
-  const imagesTwo = [
-    {
-      file: "entry.gif",
-      width: 250 * (800 / 665),
-      height: 250,
-      speed: 24,
-      zIndex: 2,
-    },
-    {
+  const imagesThree = [
 
-    }
   ];
+
+  const imagesFour = [
+
+  ];
+
 
 
   // ./assets/catblob.png
@@ -169,9 +203,9 @@ function init() {
 
   setTimeout(() => {
     triggerSlide(imagesOne, imageSlides[0], 1);
-    triggerSlide(imagesFour, imageSlides[1], 2);
+    triggerSlide(imagesTwo, imageSlides[1], 2);
     triggerSlide(imagesThree, imageSlides[2], 3);
-    triggerSlide(imagesTwo, imageSlides[3], 4);
+    triggerSlide(imagesFour, imageSlides[3], 4);
   }, 2500);
 }
 
