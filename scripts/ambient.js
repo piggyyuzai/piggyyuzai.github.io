@@ -47,7 +47,7 @@ function init() {
       file: "welcome.gif",
       width: 250,
       height: 250,
-      speed: 35,
+      speed: 20,
       zIndex: 2,
     },
     {
@@ -68,14 +68,14 @@ function init() {
       file: "1.gif",
       width: 150,
       height: 150,
-      speed: 28,
+      speed: 24,
       zIndex: 2,
     },
     {
       file: "5.gif",
       width: 200,
       height: 200,
-      speed: 20,
+      speed: 16,
       zIndex: 3,
     },
   ];
