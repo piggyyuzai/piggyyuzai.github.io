@@ -568,7 +568,7 @@ li > a {
 }
 
 li > a:hover {
-  color: white;
+  color: rgb(1, 0, 68);
 }
 
 .animation_wrapper {
