@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>contact</title>
+  <style>
+    form.contact {
+      position: relative;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;  /*子元素垂直排列，从上到下*/
+      padding: 120px 20px 100px 20px;
+      width: calc(100% - 20px);
+      max-width: 500px;
+    }
+
+    .contact_title {
+      display: block;
+      font-size: 20px;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 0 20px 0;
+      color: white;
+    }
+
+    .contact_label {
+      width: 100%;
+      margin: 0 0 5px 0;
+      color: white;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 0px;
+      padding: 7px 10px;
+      font-family: 'Quicksand', sans-serif;
+      margin: 0 0 10px 0;
+    }
+
+    textarea { height: 150px; }
+
+    .button_container {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin: 15px 0 0 0;
+    }
+
+    .button_container button {
+      padding: 7px 10px;
+      border: 0px;
+      background-color: rgb(106, 241, 235);
+      font-family: 'Quicksand', sans-serif;
+      cursor: pointer;
+    }
+
+    .button_container button:hover { background-color: white; }  /*按钮*/
+
+    input:focus,
+    textarea:focus,
+    button:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgb(106, 241, 235);  /*选中阴影*/
+    }
+
+    ::placeholder { color: rgb(118, 203, 252); }  /*占位符颜色*/
+
+  </style>
+</head>
+
+<body style="background-color:rgb(7, 46, 117)" >
+<form class="contact" action="https://formspree.io/f/mwkdwlwq" method="post" onsubmit="return validateForm()">
+  <label class="contact_title">
+    let's talk
+  </label>
+  <label class="contact_label" for="name">name:</label>
+  <input type="text" id="name" name="name" placeholder="your name...">
+
+  <label class="contact_label" for="email">email address:</label>
+  <input type="text" id="email" name="email" placeholder="your email address...">
+
+  <label class="contact_label" for="subject">subject:</label>
+  <input type="text" id="subject" name="subject" placeholder="subject...">
+
+  <label class="contact_label" for="message">message:</label>
+  <textarea id="message" name="message" placeholder="questions, feedback, commissions, etc etc..."></textarea>
+  <div class="button_container">
+    <button type="submit">
+      submit
+    </button>
+  </div>
+</form>
+
+<script>
+  function validateForm() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var subject = document.getElementById("subject").value;
+    var message = document.getElementById("message").value;
+
+    if (name === "" || email === "" || subject === "" || message === "") {
+      alert("请填写所有输入框。");
+      return false; // 阻止表单提交
+    }
+    return true; // 允许表单提交
+  }
+</script>
+</body>
+</html>
