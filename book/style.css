@@ -7,19 +7,11 @@ img {
   max-width: 100%;
 }
 body {
-/*   background:  linear-gradient(
-      rgba(255, 250, 250, 0.75), 
-      rgba(255, 250, 250, 0.75)), url(https://image.freepik.com/free-vector/forest-herbs-blue-background_8365-70.jpg); */
-/*     background:     linear-gradient(
-      rgba(255, 250, 250, 0.75), 
-      rgba(255, 250, 250, 0.75)
-    ), url(https://i.pinimg.com/736x/3c/c0/54/3cc0541a55ce0550f78246bed0a96380--vintage-floral-backgrounds-vintage-wallpapers.jpg); */
     background:  linear-gradient(
-      rgba(255, 255, 255, 0.9), 
-      rgba(255, 255, 255, 0.9)), url(./30b3a9b27032a6b9c1d7a69d2400fb9e.jpg);
+      rgba(255, 255, 255, 0.75),
+      rgba(255, 255, 255, 0.75)), url(./forest-herbs-blue-background_8365-70.jpg);
   font-family: 'Stalemate', cursive;
 }
-
 
 .container {
   overflow: hidden;
@@ -53,7 +45,6 @@ body {
   position: relative;
 }
 
-
 .pages-content {
     text-align: center;
       position: absolute;
@@ -68,16 +59,14 @@ body {
 }
 
 .content-inner {
-      text-align: center;
+    text-align: center;
     display: table-cell;
     vertical-align: middle;
 }
 
-
 .book-wrapper {
    user-select: none;
 }
-
 
 .page-num-1 .pages-background {
     background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(./Vintage-Floral-Texture-Background.png);
