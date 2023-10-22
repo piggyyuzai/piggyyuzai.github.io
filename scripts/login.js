@@ -11,7 +11,7 @@ window.onload = function() {
 
     // 进行验证
     if (username === 'piggyyuzai' && password === 'piggyyuzai') {
-        window.location.href = './penguin/penguin.html'; // 验证通过，跳转到index.html页面
+        window.location.href = './book/index.html'; // 验证通过，跳转到index.html页面
     }
     else {
         alert('账号或密码错误'); // 验证失败，弹出提示框
