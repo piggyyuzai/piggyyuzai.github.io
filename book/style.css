@@ -9,7 +9,7 @@ img {
 body {
     background:  linear-gradient(
       rgba(255, 255, 255, 0.75),
-      rgba(255, 255, 255, 0.75)), url(./forest-herbs-blue-background_8365-70.jpg);
+      rgba(255, 255, 255, 0.75)), url(./image/background.jpg);
   font-family: 'Stalemate', cursive;
 }
 
@@ -40,7 +40,7 @@ body {
 
 }
 .pages [class^="page-num-"] {
-	background-image: url("./paper_texture_v5_by_bashcorpo.jpg");
+	background-image: url("./image/paper.jpg");
    background-size: auto 100%;
   position: relative;
 }
@@ -69,7 +69,7 @@ body {
 }
 
 .page-num-1 .pages-background {
-    background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(./Vintage-Floral-Texture-Background.png);
+    background: linear-gradient( rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), url(./image/page1.png);
     background-size: cover;
     opacity: 0.2;
     width: 100%;
