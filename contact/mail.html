@@ -19,7 +19,6 @@
       width: calc(100% - 20px);
       max-width: 500px;
     }
-
     .contact_title {
       display: block;
       font-size: 20px;
@@ -28,7 +27,6 @@
       margin: 0 0 20px 0;
       color: white;
     }
-
     .contact_label {
       width: 90%;
       margin: 0 0 5px 0;
@@ -43,7 +41,6 @@
       font-family: 'Quicksand', sans-serif;
       margin: 0 0 10px 0;
     }
-
     textarea { height: 150px; }
 
     .button_container {
@@ -52,7 +49,6 @@
       justify-content: flex-end;
       margin: 15px 0 0 0;
     }
-
     .button_container button {
       padding: 7px 10px;
       border: 0px;
@@ -60,7 +56,6 @@
       font-family: 'Quicksand', sans-serif;
       cursor: pointer;
     }
-
     .button_container button:hover { background-color: white; }  /*按钮*/
 
     input:focus,
@@ -69,7 +64,6 @@
       outline: none;
       box-shadow: 0 0 0 4px rgb(106, 241, 235);  /*选中阴影*/
     }
-
     ::placeholder { color: rgb(118, 203, 252); }  /*占位符颜色*/
 
   </style>
@@ -77,9 +71,8 @@
 
 <body style="background-color:rgb(7,46,117)" >
 <form class="contact" action="https://formspree.io/f/mwkdwlwq" method="post" onsubmit="return validateForm()">
-  <label class="contact_title">
-    let's talk
-  </label>
+  <label class="contact_title">let's talk</label>
+
   <label class="contact_label" for="name">name:</label>
   <input type="text" id="name" name="name" placeholder="your name...">
 
@@ -92,9 +85,7 @@
   <label class="contact_label" for="message">message:</label>
   <textarea id="message" name="message" placeholder="questions, feedback, commissions, etc etc..."></textarea>
   <div class="button_container">
-    <button type="submit">
-      submit
-    </button>
+    <button type="submit">submit</button>
   </div>
 </form>
 

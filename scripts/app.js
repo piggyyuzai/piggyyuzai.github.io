@@ -12,11 +12,10 @@ function init() {
     "CSS",
     "JavaScript",
     "Git",
-    "Node.js",
     "Python",
-    "Npm",
     "VS Code",
     "AxureRP"
+    //npm,nodejs,yarn,sass,react,django,express,mongodb
   ];
 
   const design = ["Illustrator", "Photoshop"];
