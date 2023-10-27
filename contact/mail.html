@@ -5,70 +5,8 @@
     <!--保证手机端显示正常    初始，缩小，放大，不允许用户手动缩放页面-->
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimun-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <title>contact</title>
-  <style>
-    body {background-color: rgb(231, 251, 253);}
-
-    form.contact {
-      position: relative;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;  /*子元素垂直排列，从上到下*/
-      padding: 120px 20px 100px 20px;
-      width: calc(100% - 20px);
-      max-width: 500px;
-    }
-    .contact_title {
-      display: block;
-      font-size: 20px;
-      width: 90%;
-      max-width: 500px;
-      margin: 0 0 20px 0;
-      color: white;
-    }
-    .contact_label {
-      width: 90%;
-      margin: 0 0 5px 0;
-      color: white;
-    }
-
-    input,
-    textarea {
-      width: 90%;
-      border: 0px;
-      padding: 7px 10px;
-      font-family: 'Quicksand', sans-serif;
-      margin: 0 0 10px 0;
-    }
-    textarea { height: 150px; }
-
-    .button_container {
-      width: 90%;
-      display: flex;
-      justify-content: flex-end;
-      margin: 15px 0 0 0;
-    }
-    .button_container button {
-      padding: 7px 10px;
-      border: 0px;
-      background-color: rgb(106, 241, 235);
-      font-family: 'Quicksand', sans-serif;
-      cursor: pointer;
-    }
-    .button_container button:hover { background-color: white; }  /*按钮*/
-
-    input:focus,
-    textarea:focus,
-    button:focus {
-      outline: none;
-      box-shadow: 0 0 0 4px rgb(106, 241, 235);  /*选中阴影*/
-    }
-    ::placeholder { color: rgb(118, 203, 252); }  /*占位符颜色*/
-
-  </style>
+    <link rel="stylesheet" href="./mail.css" />
 </head>
-
 <body style="background-color:rgb(7,46,117)" >
 <form class="contact" action="https://formspree.io/f/mwkdwlwq" method="post" onsubmit="return validateForm()">
   <label class="contact_title">let's talk</label>
