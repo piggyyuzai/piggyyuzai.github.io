@@ -13,12 +13,11 @@ function init() {
     "JavaScript",
     "Git",
     "Python",
-    "VS Code",
-    "AxureRP"
+    "VS Code"
     //npm,nodejs,yarn,sass,react,django,express,mongodb
   ];
 
-  const design = ["Illustrator", "Photoshop"];
+  const design = ["Illustrator", "Photoshop","AxureRP"];
 
   const languages = ["Chinese (native)", "English"];
 
