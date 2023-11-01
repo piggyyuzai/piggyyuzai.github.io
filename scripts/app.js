@@ -183,7 +183,7 @@ function init() {
 
   const hoverTextEffect = () => {
     title.innerHTML = "";
-    triggerShuffle(title, "my name is piggyyuzai", 4);//鼠标经过刷新
+    triggerShuffle(title, "Hello here is piggyyuzai", 4);//鼠标经过刷新
   };
 
   pageTop.addEventListener("click", () => navigateTo(0));
@@ -254,7 +254,7 @@ function init() {
     setTimeout(() => {
       bunnyWrapper.classList.add("delete");
       wrapper.classList.add("absolute");
-      triggerShuffle(title, "my name is piggyyuzai", 4);
+      triggerShuffle(title, "Hello here is piggyyuzai", 4);
       triggerShuffle(intro, "web developer", 4);
 
       navLink.forEach((_link, i) => {
