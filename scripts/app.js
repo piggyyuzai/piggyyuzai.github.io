@@ -13,7 +13,8 @@ function init() {
     "JavaScript",
     "Git",
     "Python",
-    "VS Code"
+    "VS Code",
+    "微信小程序"
     //npm,nodejs,yarn,sass,react,django,express,mongodb
   ];
 
