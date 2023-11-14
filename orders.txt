@@ -1,6 +1,0 @@
-{  
-  orders:[
-          {number:1,name:'百業興旺新年礼盒',thumb:'/image/s4.jpg',count:4,money:198,status:'待'},
-          {number:2,name:'礼遇中秋礼盒',thumb:'/image/s2.jpg',count:1,money:158,status:'待'}
-        ]
-}
