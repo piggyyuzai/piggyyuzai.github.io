@@ -14,7 +14,9 @@ function init() {
     "Git",
     "Python",
     "VS Code",
-    "微信小程序"
+    "Mini Program",
+    "Node.js",
+    "npm"
     //npm,nodejs,yarn,sass,react,django,express,mongodb
   ];
 
