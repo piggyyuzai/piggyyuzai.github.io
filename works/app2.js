@@ -1,4 +1,3 @@
-
 function init() {
 
   // TODO maybe gris could be improved further
@@ -70,11 +69,11 @@ function init() {
     leave: (t, e, a) => addEvents(t, e, a, ['mouseleave', 'touchmove'])
   }
 
-  const drag = (e, target, pos, x, y) => {
+  const drag = (e, target, pos, x, y) => {  //拖拽函数，事件对象e、目标元素target、位置对象pos、坐标x和y
     if (e.type[0] === 'm') e.preventDefault()  
-    pos.a = pos.c - x
+    pos.a = pos.c - x  //更新pos.a和pos.b的值，以便在拖动时跟踪元素的位置
     pos.b = pos.d - y
-    const newX = target.offsetLeft - pos.a
+    const newX = target.offsetLeft - pos.a  //计算元素的新位置
     const newY = target.offsetTop - pos.b
 
     if (!withinBuffer({ a:newX, b: target.offsetLeft, buffer: 1 })) {
