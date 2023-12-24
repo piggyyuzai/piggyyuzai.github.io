@@ -57,11 +57,8 @@ function init() {
       // newDiv.style.animationDelay = `${delay}s`
       newDiv.innerHTML = `
       <div class='skill_divs anim' style="animation-delay:${delay}s" >
-        <div class="image_wrapper">
-          <img src="./assets/icon/${ele
-            .replace(".", "")
-            .replace(" ", "")
-            .toLowerCase()}.svg" alt ="${ele}" />
+        <div class="image_wrapper">//移除点 移除空格 转为小写，拼成icon文件路径
+          <img src="./assets/icon/${ele.replace(".", "").replace(" ", "").toLowerCase()}.svg" alt ="${ele}" />
         </div>  
         <p>${ele}</p>
       </div>  

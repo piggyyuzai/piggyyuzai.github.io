@@ -43,86 +43,20 @@ function init() {
   // },
 
   const imagesOne = [
-    {
-      file: "welcome.gif",
-      width: 250,
-      height: 250,
-      speed: 20,
-      zIndex: 2,
-    },
-    {
-      file: "klee1.gif",
-      width: 100,
-      height: 100,
-      speed: 30,
-      zIndex: 3,
-    },
-    {
-      file: "card_cn.jpg",
-      width: 250,
-      height: 100,
-      speed: 12,
-      zIndex: 1,
-    },
-    {
-      file: "1.gif",
-      width: 150,
-      height: 150,
-      speed: 24,
-      zIndex: 2,
-    },
-    {
-      file: "5.gif",
-      width: 200,
-      height: 200,
-      speed: 16,
-      zIndex: 3,
-    },
+    {file: "welcome.gif",width: 250,height: 250,speed: 20,zIndex: 2,},
+    {file: "klee1.gif",width: 100,height: 100,speed: 30,zIndex: 3,},
+    {file: "card_cn.jpg",width: 250,height: 100,speed: 12,zIndex: 1,},
+    {file: "1.gif",width: 150,height: 150,speed: 24,zIndex: 2,},
+    {file: "5.gif",width: 200,height: 200,speed: 16,zIndex: 3,},
   ];
 
   const imagesTwo = [
-    {
-      file: "catblob.png",
-      width: 250,
-      height: 250,
-      speed: 24,
-      zIndex: 2,
-    },
-    {
-      file: "down.gif",
-      width: 50,
-      height: 50,
-      speed: 16,
-      zIndex: 3,
-    },
-    {
-      file: "invincible2.gif",
-      width: 200 * (359 / 582),
-      height: 200,
-      speed: 23,
-      zIndex: 2,
-    },
-    {
-      file: "collect_star.gif",
-      width: 150 * (647 / 346),
-      height: 150,
-      speed: 20,
-      zIndex: 2,
-    },
-    {
-      file: "game_play_3.png",
-      width: 250,
-      height: 250 * (640 / 647),
-      speed: 28,
-      zIndex: 1,
-    },
-    {
-      file: "sleep.gif",
-      width: 50,
-      height: 50,
-      speed: 12,
-      zIndex: 3,
-    },
+    {file: "catblob.png",width: 250,height: 250,speed: 24,zIndex: 2,},
+    {file: "down.gif",width: 50,height: 50,speed: 16,zIndex: 3,},
+    {file: "invincible2.gif",width: 200 * (359 / 582),height: 200,speed: 23,zIndex: 2,},
+    {file: "collect_star.gif",width: 150 * (647 / 346),height: 150,speed: 20,zIndex: 2,},
+    {file: "game_play_3.png",width: 250,height: 250 * (640 / 647),speed: 28,zIndex: 1,},
+    {file: "sleep.gif",width: 50,height: 50,speed: 12,zIndex: 3,},
   ];
 
   const imagesThree = [
@@ -139,15 +73,12 @@ function init() {
   const imageSlides = document.querySelectorAll(".project_image_wrapper");
 
   const imgNums = {
-    imgNo1: -1,
-    imgNo2: -1,
-    imgNo3: -1,
-    imgNo4: -1,
+    imgNo1: -1,imgNo2: -1,imgNo3: -1,imgNo4: -1,//存储当前显示图片索引，为-1不显示图片
   };
 
   // let imgNo = -1
   const triggerSlide = (images, target, index) => {
-    if (!target.classList.contains("animate")) {
+    if (!target.classList.contains("animate")) {//目标元素没有animate类，清空内容，重置图片索引，200ms后再次触发
       target.innerHTML = "";
       imgNums[`imgNo${index}`] = -1;
       setTimeout(() => {
@@ -156,9 +87,7 @@ function init() {
       return;
     }
 
-    imgNums[`imgNo${index}`] < images.length - 1
-      ? imgNums[`imgNo${index}`]++
-      : (imgNums[`imgNo${index}`] = 0);
+    imgNums[`imgNo${index}`] < images.length - 1 ? imgNums[`imgNo${index}`]++ : (imgNums[`imgNo${index}`] = 0);
     const counter = imgNums[`imgNo${index}`];
     const newImg = document.createElement("div");
     newImg.classList.add("slide");
