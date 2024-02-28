@@ -1136,7 +1136,7 @@
   left:0px;
   top:0px;
   width:622px;
-  height:404px;
+  height:297px;
   background:inherit;
   background-color:rgba(255, 255, 255, 0);
   border:none;
@@ -1144,15 +1144,19 @@
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
+  font-size:20px;
+  color:#000000;
 }
 #u31 {
   border-width:0px;
   position:absolute;
-  left:1065px;
-  top:1438px;
+  left:1050px;
+  top:1525px;
   width:622px;
-  height:404px;
+  height:297px;
   display:flex;
+  font-size:20px;
+  color:#000000;
 }
 #u31 .text {
   position:absolute;
@@ -1481,26 +1485,13 @@
   text-transform:none;
   visibility:hidden;
 }
-#u42_div {
+#u42_img {
   border-width:0px;
   position:absolute;
   left:0px;
   top:0px;
   width:126px;
   height:30px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 0);
-  border:none;
-  border-radius:0px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:'华文行楷', sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:40px;
-  color:#F4DDA4;
-  text-align:center;
 }
 #u42 {
   border-width:0px;
@@ -1515,12 +1506,11 @@
   font-style:normal;
   font-size:40px;
   color:#F4DDA4;
-  text-align:center;
 }
 #u42 .text {
   position:absolute;
   align-self:center;
-  padding:0px 0px 0px 0px;
+  padding:2px 2px 2px 2px;
   box-sizing:border-box;
   width:100%;
 }
@@ -1528,6 +1518,7 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+  visibility:hidden;
 }
 #u43_img {
   border-width:0px;
@@ -1736,4 +1727,39 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+#u49_img {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:184px;
+  height:65px;
+}
+#u49 {
+  border-width:0px;
+  position:absolute;
+  left:1255px;
+  top:1423px;
+  width:184px;
+  height:65px;
+  display:flex;
+  font-family:'华文行楷 Bold', '华文行楷 Regular', '华文行楷', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  font-size:60px;
+  color:#2E5D31;
+}
+#u49 .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u49_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
 }
