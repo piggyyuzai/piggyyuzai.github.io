@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piggy-Chat</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    #chat-container {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+    }
+    #message-list {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px;
+    }
+    .message {
+        margin: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        max-width: 70%;
+        word-wrap: break-word;
+    }
+    .me {
+        align-self: flex-end;
+        background-color: #DCF8C6;
+    }
+    .reply {
+        align-self: flex-start;
+        background-color: #E0E0E0;
+    }
+    #message-input {
+        display: flex;
+        padding: 10px;
+        background-color: #F5F5F5;
+    }
+    #message-input input[type="text"] {
+        flex: 1;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        margin-right: 10px;
+    }
+    #send-button {
+        padding: 5px 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="message-list"></div>
+        <div id="message-input">
+            <input type="text" id="message" placeholder="Type your message...">
+            <button id="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+<script>
+    const messageList = document.getElementById("message-list");
+    const messageInput = document.getElementById("message");
+    const sendButton = document.getElementById("send-button");
+
+    function addMessage(sender, message, isMe) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add("message");
+        if (isMe) {
+            messageDiv.classList.add("me");
+            messageDiv.innerHTML = `<strong>Me:</strong> ${message}`;
+        } else {
+            messageDiv.classList.add("reply");
+            messageDiv.innerHTML = `<strong>Reply:</strong> ${message}`;
+        }
+        messageList.appendChild(messageDiv);
+        messageList.scrollTop = messageList.scrollHeight;
+    }
+
+    function sendMessage() {
+        const messageContent = messageInput.value.trim();
+        if (messageContent !== '') {
+            addMessage("Me",messageContent,true);
+            messageInput.value = '';
+
+            axios.post('https://api.link-ai.chat/v1/chat/completions', {
+                messages: [{role: 'user', content: messageContent}]
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer Link_v0SpPeJUGHnfcScMDLdHd7HOPRs440zs3qszhBXesO-default'
+                }
+            })
+            .then(response => {
+                const replyContent = response.data.choices[0].message.content;
+                addMessage("Reply",replyContent,false);
+            })
+            .catch(error => {
+                console.error('发送失败', error);
+            });
+        }
+    }
+
+    sendButton.addEventListener("click", sendMessage);
+
+    messageInput.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
