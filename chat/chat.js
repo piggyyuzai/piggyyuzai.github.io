@@ -8,10 +8,11 @@ window.onload = function() {
         msgList.forEach(msg => {
             addMessage(msg.role, msg.content);
         });
-        addDivider('以上为历史消息');
+        addMessage('','以上为历史消息');
         // 如果是第一次发送消息，则显示当前日期和时间
         const currentDate = new Date().toLocaleString();
-        addDivider(currentDate);
+        addMessage('',currentDate);
+        addMessage('reply','你好，请问有什么可以帮助你的吗？');
     }
 };
 
@@ -23,20 +24,26 @@ function saveMessagesToLocalStorage() {
 function addMessage(role, content) {
     const chatContainer = document.getElementById('chat-container');
     const messageDiv = document.createElement('div');
-    messageDiv.classList.add('message', role);
-    messageDiv.innerHTML = `<img src="${role === 'me' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/piggy.jpg'}">
-                            ${content}`;
-                            // <strong>${role}: </strong>${content}`;
-    chatContainer.appendChild(messageDiv);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-}
 
-function addDivider(info) {
-    const chatContainer = document.getElementById('chat-container');
-    const divider = document.createElement('div');
-    divider.classList.add('message-divider');
-    divider.textContent = info;
-    chatContainer.appendChild(divider);
+    if (role === '') {
+        //提示
+        messageDiv.classList.add('message-divider');
+        messageDiv.textContent = content;
+        chatContainer.appendChild(messageDiv);
+    } else {
+        //消息
+        messageDiv.classList.add('message', role);
+        messageDiv.innerHTML = `<img src="${role === 'me' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/piggy.jpg'}">
+                                ${content}`;
+        // <strong>${role}: </strong>${content}`;
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        // 设置唯一标识符
+        const messageId = 'message-' + Date.now() + '-' + Math.random();
+        messageDiv.dataset.messageId = messageId;
+        return messageId;
+    }
 }
 
 function sendMessage() {
@@ -47,11 +54,10 @@ function sendMessage() {
         msgList.push(newMsg);
         addMessage('me', messageContent);
         messageInput.value = '';
-
         saveMessagesToLocalStorage(); // 保存消息到本地存储
 
+        const thinking = addMessage('reply', '小猪雨崽在思考哦，请稍等...');//思考提示
 
-        
         const options = {
             method: 'POST',
             headers: {
@@ -60,15 +66,12 @@ function sendMessage() {
             },
             body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: messageContent }] })
         };
-
         fetch('https://api.link-ai.chat/v1/chat/completions', options)
             .then(response => response.json())
             .then(response => {
                 const replyContent = response.choices[0].message.content;
                 const replyMsg = { role: 'reply', content: replyContent };
-
-
-
+                hideMessage(thinking); // 隐藏思考提示
                 msgList.push(replyMsg);
                 addMessage('reply', replyContent);
                 saveMessagesToLocalStorage(); // 在接收到回复后保存消息到本地存储
@@ -76,6 +79,16 @@ function sendMessage() {
             .catch(error => {
                 console.error('Error sending message:', error);
             });
+    }
+}
+
+//隐藏消息
+function hideMessage(messageId) {
+    // 根据唯一标识符找到对应的消息元素
+    const messageElement = document.querySelector(`[data-message-id="${messageId}"]`);
+    if (messageElement) {
+        // 设置消息元素的样式为隐藏
+        messageElement.style.display = 'none';
     }
 }
 
