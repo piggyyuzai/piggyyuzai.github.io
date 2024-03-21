@@ -13,7 +13,7 @@ window.onload = function() {
     // 如果是第一次发送消息，则显示当前日期和时间
     const currentDate = new Date().toLocaleString();
     addMessage('',currentDate);
-    addMessage('reply','你好，请问有什么可以帮助你的吗？');
+    addMessage('reply','你好，我是小猪雨崽，请问有什么可以帮助你的吗？');
 };
 
 // 在发送消息时保存消息列表到本地存储
