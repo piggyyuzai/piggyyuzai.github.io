@@ -12,10 +12,14 @@
 
 <body>
     <div class="chat-box">
-        <div style="display:flex;height:60px;background-color:#f5f5f5;">
-            <img src="https://piggyyuzai.github.io/piggy.jpg" style="height:40px;width:40px;margin-left:20px;margin-top:10px;border:2px solid #000000;border-radius:50%;">
-            <div style="display:flex;align-items:center;margin-left:20px;font-size:20px;font-weight:bold;">
-                小猪雨崽
+        <div class="web-tittle">
+            <img src="https://piggyyuzai.github.io/piggy.jpg">
+            <p>小猪雨崽</p>
+            <!-- 设置按钮 -->
+            <div class="settings-button" onclick="togglePopup()" style="display:flex;justify-content:center;align-items:center;flex-direction:column;margin-right:20px;margin-left:auto;margin-bottom:-5px;cursor:pointer;">
+                <div style="justify-content:center;align-items:center;"><img src="https://piggyyuzai.github.io/favicon.ico" style="margin:auto;margin-bottom:-5px;width:24px;height:24px;border:none;border-radius:0%;"></div>
+                <div style="justify-content:center;align-items:center;"><small>setting</small></div>
+                <!--或将justify-content: center; align-items: center;替换为text-align: center;-->
             </div>
         </div>
         <div class="chat-container" id="chat-container"></div>
@@ -24,8 +28,33 @@
             <button id="send-button" onclick="sendMessage()">发送</button>
         </div>
     </div>
+    <!-- 设置弹出窗口 -->
+    <div id="settings-popup" style="display:none;">
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:50%;max-width:400px;height:50%;max-height:300px;overflow:auto;background-color:#fff;border:1px solid #ccc;border-radius:5px;box-shadow: 0 0 10px rgba(0,0,0,0.1);z-index:9999;">
+            <div class="popup-content" style="padding:20px;">
+                <span class="close" onclick="togglePopup()" style="position:absolute;top:8px;right:15px;cursor:pointer;font-size:30px;">&times;</span>
+                <!-- 设置内容 -->
+                <p>设置</p>
+            </div>
+        </div>
+        <!-- 弹出窗口下方遮罩 -->
+        <div class="popup-overlay" onclick="togglePopup()" style="position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);z-index:9998;"></div>
+    </div>
 </body>
 <script>
+    // 切换弹出窗口的显示状态
+    function togglePopup() {
+        var popup = document.getElementById('settings-popup');
+        var overlay = document.querySelector('.popup-overlay');
+        if (popup.style.display === 'block') {
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+        } else {
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+        }
+    }
+    //enter发送
     messageInput.addEventListener("keypress",function (event) {
         if (event.key === "Enter") {
             sendMessage();
