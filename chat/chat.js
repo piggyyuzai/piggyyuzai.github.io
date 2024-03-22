@@ -1,5 +1,9 @@
 //消息列表
 let msgList = [];
+// Display initial messages
+msgList.forEach(msg => {
+    addMessage(msg.role, msg.content);
+});
 
 // 在页面加载时从本地存储加载历史消息
 window.onload = function() {
@@ -101,7 +105,28 @@ function hideMessage(messageId) {
     }
 }
 
-// Display initial messages
-msgList.forEach(msg => {
-    addMessage(msg.role, msg.content);
-});
+//删除历史记录
+delHistory.addEventListener('click', function () {
+    localStorage.removeItem('msgList');
+    localStorage.setItem('msgList', JSON.stringify([])); // 将msgList设置为空数组
+    location.reload(); // 刷新页面
+})
+
+// 设置窗口显示状态
+function togglePopup() {
+    var popup = document.getElementById('settings-popup');
+    var overlay = document.querySelector('.popup-overlay');
+    if (popup.style.display === 'block') {
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+    } else {
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+
+        //每次点击设置时更新历史记录长度
+        // 获取浏览器缓存中msgList的长度
+        const msgListLength = JSON.parse(localStorage.getItem('msgList')).length;
+        // 将msgList的长度直接放置在div中
+        document.getElementById('msgListLength').innerHTML = `目前有：${msgListLength} 条历史消息`;
+    }
+}

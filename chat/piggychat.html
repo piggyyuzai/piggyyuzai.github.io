@@ -30,11 +30,21 @@
     </div>
     <!-- 设置弹出窗口 -->
     <div id="settings-popup" style="display:none;">
-        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:50%;max-width:400px;height:50%;max-height:300px;overflow:auto;background-color:#fff;border:1px solid #ccc;border-radius:5px;box-shadow: 0 0 10px rgba(0,0,0,0.1);z-index:9999;">
+        <div style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:400px;height:400px;background-color:#fff;border-radius:10px;box-shadow: 0 0 10px rgba(0,0,0,0.1);z-index:9999;">
             <div class="popup-content" style="padding:20px;">
                 <span class="close" onclick="togglePopup()" style="position:absolute;top:8px;right:15px;cursor:pointer;font-size:30px;">&times;</span>
                 <!-- 设置内容 -->
-                <p>设置</p>
+                <div style="text-align:center;margin-bottom:10px;font-size:20px;font-weight:bold;">设置</div>
+                <div class="row" style="text-align: center; margin-bottom: 10px;">
+                    <div id="msgListLength" style="display: inline-block; margin-left: 10px;"></div>
+                    <button id="delHistory" style="margin-left: 10px;">清除</button>
+                </div>
+                <div class="row" style="text-align: center; margin-bottom: 10px;">
+                    <div class="text" style="display: inline-block;">测试</div>
+                    <button class="button" style="margin-left: 10px;">测试</button>
+                    <div class="text" style="display: inline-block; margin-left: 10px;">测试</div>
+                    <img src="https://piggyyuzai.github.io/favicon.ico" alt="图片2" style="display: inline-block; width: 20px; height: 20px; margin-left: 10px;">
+                </div>
             </div>
         </div>
         <!-- 弹出窗口下方遮罩 -->
@@ -42,18 +52,6 @@
     </div>
 </body>
 <script>
-    // 切换弹出窗口的显示状态
-    function togglePopup() {
-        var popup = document.getElementById('settings-popup');
-        var overlay = document.querySelector('.popup-overlay');
-        if (popup.style.display === 'block') {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-        } else {
-            popup.style.display = 'block';
-            overlay.style.display = 'block';
-        }
-    }
     //enter发送
     messageInput.addEventListener("keypress",function (event) {
         if (event.key === "Enter") {
