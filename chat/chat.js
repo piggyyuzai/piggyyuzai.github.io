@@ -1,3 +1,4 @@
+//消息列表
 let msgList = [];
 
 // 在页面加载时从本地存储加载历史消息
@@ -10,7 +11,7 @@ window.onload = function() {
         });
         addMessage('','以上为历史消息');
     }
-    // 如果是第一次发送消息，则显示当前日期和时间
+    //每次重新进入对话，则显示当前日期和时间
     const currentDate = new Date().toLocaleString();
     addMessage('',currentDate);
     addMessage('reply','你好，我是小猪雨崽，请问有什么可以帮助你的吗？');
@@ -21,10 +22,11 @@ function saveMessagesToLocalStorage() {
     localStorage.setItem('msgList', JSON.stringify(msgList));
 }
 
+//添加消息框到页面
 function addMessage(role, content) {
     const chatContainer = document.getElementById('chat-container');
     const messageDiv = document.createElement('div');
-
+    //判断是提示还是消息
     if (role === '') {
         //提示
         messageDiv.classList.add('message-divider');
@@ -35,17 +37,18 @@ function addMessage(role, content) {
         messageDiv.classList.add('message', role);
         messageDiv.innerHTML = `<img src="${role === 'me' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/piggy.jpg'}">
                                 ${content}`;
-        // <strong>${role}: </strong>${content}`;
+                                // <strong>${role}: </strong>${content}`;
         chatContainer.appendChild(messageDiv);
         chatContainer.scrollTop = chatContainer.scrollHeight;
 
-        // 设置唯一标识符
+        // 为message设置唯一标识符
         const messageId = 'message-' + Date.now() + '-' + Math.random();
         messageDiv.dataset.messageId = messageId;
         return messageId;
     }
 }
 
+//发送消息
 function sendMessage() {
     const messageInput = document.getElementById('messageInput');
     const messageContent = messageInput.value.trim();
@@ -55,9 +58,9 @@ function sendMessage() {
         addMessage('me', messageContent);
         messageInput.value = '';
         saveMessagesToLocalStorage(); // 保存消息到本地存储
-
+        //思考提示
         const thinking = addMessage('reply', '小猪雨崽在思考哦，请稍等...');//思考提示
-
+        //post
         const options = {
             method: 'POST',
             headers: {
@@ -77,7 +80,13 @@ function sendMessage() {
                 saveMessagesToLocalStorage(); // 在接收到回复后保存消息到本地存储
             })
             .catch(error => {
-                console.error('Error sending message:', error);
+                // console.error('Error sending message:', error);
+                addMessage('reply','Error sending message:'+error);
+                hideMessage(thinking); // 隐藏思考提示
+                const errMsg = { role: 'reply', content: '请不要发送违规、敏感等信息' };
+                addMessage('reply','请不要发送违规、敏感等信息');
+                msgList.push(errMsg)
+                saveMessagesToLocalStorage();
             });
     }
 }
