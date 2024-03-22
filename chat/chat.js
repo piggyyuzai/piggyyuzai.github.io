@@ -85,10 +85,10 @@ function sendMessage() {
             })
             .catch(error => {
                 // console.error('Error sending message:', error);
-                addMessage('reply','Error sending message:'+error);
+                // addMessage('reply','Error sending message:'+error);
                 hideMessage(thinking); // 隐藏思考提示
-                const errMsg = { role: 'reply', content: '请不要发送违规、敏感等信息' };
-                addMessage('reply','请不要发送违规、敏感等信息');
+                const errMsg = { role: 'reply', content: '消息发送失败或涉及违规、敏感等信息' };
+                addMessage('reply','消息发送失败或涉及违规、敏感等信息');
                 msgList.push(errMsg)
                 saveMessagesToLocalStorage();
             });
