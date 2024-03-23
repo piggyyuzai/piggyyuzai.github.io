@@ -25,7 +25,6 @@ window.onload = function() {
 function saveMessagesToLocalStorage() {
     localStorage.setItem('msgList', JSON.stringify(msgList));
 }
-
 //添加消息框到页面
 function addMessage(role, content) {
     const chatContainer = document.getElementById('chat-container');
@@ -39,7 +38,7 @@ function addMessage(role, content) {
     } else {
         //消息
         messageDiv.classList.add('message', role);
-        messageDiv.innerHTML = `<img src="${role === 'me' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/piggy.jpg'}">
+        messageDiv.innerHTML = `<img src="${role === 'me' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">
                                 ${content}`;
                                 // <strong>${role}: </strong>${content}`;
         chatContainer.appendChild(messageDiv);
@@ -124,7 +123,6 @@ function togglePopup() {
     }
 }
 
-
 //删除历史记录
 function delHistory() {
     var confirmed = confirm('确定要清除历史消息吗？');
@@ -133,4 +131,61 @@ function delHistory() {
         localStorage.setItem('msgList', JSON.stringify([])); // 将msgList设置为空数组
         location.reload(); // 刷新页面
     }
+}
+
+//聊天背景与头像
+let avatar='https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
+document.addEventListener('DOMContentLoaded', function () {
+    const imageUpload = document.getElementById('imageUpload');
+    const backgroundImage = document.getElementById('backgroundImage');
+
+    // 每次进入页面时从浏览器缓存中读取背景图片
+    const cachedBackground = localStorage.getItem('backgroundImage');
+    if (cachedBackground) {
+        backgroundImage.src = cachedBackground;
+    }
+    const cachedAvatar = localStorage.getItem('avatar');
+    if(cachedAvatar){
+        avatar=cachedAvatar;
+    }
+    // 监听文件上传变化-背景
+    imageUpload.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                // 设置背景图片
+                backgroundImage.src = reader.result;
+                // 将背景图片保存到浏览器缓存中
+                localStorage.setItem('backgroundImage', reader.result);
+            }
+        }
+    });
+    // 监听文件上传变化-头像
+    editAvatar.addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                // 设置背景图片
+                avatar = reader.result;
+                // 将背景图片保存到浏览器缓存中
+                localStorage.setItem('avatar', avatar);
+            }
+        }
+        location.reload();
+    });
+});
+//回复默认背景
+function setDefaultBackground() {
+    backgroundImage.src = '';
+    localStorage.setItem('backgroundImage','');
+    location.reload();
+}
+function setDefaultAvatar() {
+    avatar='https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
+    localStorage.setItem('avatar',avatar);
+    location.reload();
 }

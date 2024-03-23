@@ -51,7 +51,7 @@ body {
     top: 0px;
 }
 .message.me img {
-    right: -50px;
+    right: -50px;object-fit:cover;
 }
 .message.reply img {
     left: -50px;

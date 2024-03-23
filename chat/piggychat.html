@@ -48,16 +48,18 @@
                 </button>
             </div>
         </div>
-<!--        <div class="row">-->
-<!--            <div class="text" style="display: inline-block;">聊天背景</div>-->
-<!--            <input type="file" id="imageUpload" accept="image/*" class="butt">-->
-<!--            <button id="setDefaultBackground" class="butt">恢复默认背景</button>-->
-<!--        </div>-->
-        <div class="row" style="display: flex; justify-content: center; align-items: flex-start;margin-bottom:10px;">
+        <div class="row" style="display: flex; justify-content: center; align-items: flex-start;">
             <div class="text" style="display: inline-block; align-self: flex-start;margin-right:5px;">聊天背景</div>
             <div style="display: flex; flex-direction: column;">
-                <input type="file" id="imageUpload" accept="image/*" class="butt" style="width:200px;margin-bottom:5px;">
-                <button id="setDefaultBackground" class="butt" style="">恢复空白背景</button>
+                <input type="file" id="imageUpload" accept="image/*" class="butt" style="width:200px;margin-bottom:10px;">
+                <button onclick="setDefaultBackground()" class="butt" style="">恢复空白背景</button>
+            </div>
+        </div>
+        <div class="row" style="display: flex; justify-content: center; align-items: flex-start;margin-bottom:10px;">
+            <div class="text" style="display: inline-block; align-self: flex-start;margin-right:5px;">修改头像</div>
+            <div style="display: flex; flex-direction: column;">
+                <input type="file" id="editAvatar" accept="image/*" class="butt" style="width:200px;margin-bottom:10px;">
+                <button onclick="setDefaultAvatar()" class="butt" style="">恢复默认头像</button>
             </div>
         </div>
 
@@ -70,37 +72,6 @@
 </div>
 </body>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageUpload = document.getElementById('imageUpload');
-        const backgroundImage = document.getElementById('backgroundImage');
-
-        // 每次进入页面时从浏览器缓存中读取背景图片
-        const cachedBackground = localStorage.getItem('backgroundImage');
-        if (cachedBackground) {
-            backgroundImage.src = cachedBackground;
-        }
-        // 监听文件上传变化
-        imageUpload.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function () {
-                    // 设置背景图片
-                    backgroundImage.src = reader.result;
-                    // 将背景图片保存到浏览器缓存中
-                    localStorage.setItem('backgroundImage', reader.result);
-                }
-            }
-        });
-    });
-    //回复默认背景
-    setDefaultBackground.addEventListener('click', function () {
-        backgroundImage.src = '';
-        localStorage.setItem('backgroundImage','');
-        location.reload();
-    })
-
     //enter发送
     messageInput.addEventListener("keypress",function (event) {
         if (event.key === "Enter") {
