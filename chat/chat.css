@@ -50,17 +50,17 @@ body {
     position: absolute;
     top: 0;
 }
-.message.me img {
+.message.user img {
     right: -50px;object-fit:cover;
 }
-.message.reply img {
+.message.assistant img {
     left: -50px;
 }
-.message.me {
+.message.user {
     float: right;
     background-color: #DCF8C6;
 }
-.message.reply {
+.message.assistant {
     float: left;
     background-color: #EAEAEA;
 }

@@ -18,7 +18,7 @@ window.onload = function() {
     //每次重新进入对话，则显示当前日期和时间
     const currentDate = new Date().toLocaleString();
     addMessage('',currentDate);
-    addMessage('reply','你好，我是小猪雨崽，请问有什么可以帮助你的吗？');
+    addMessage('assistant','你好，我是小猪雨崽，请问有什么可以帮助你的吗？');
 };
 
 // 在发送消息时保存消息列表到本地存储
@@ -38,7 +38,7 @@ function addMessage(role, content) {
     } else {
         //消息
         messageDiv.classList.add('message', role);
-        messageDiv.innerHTML = `<img src="${role === 'me' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">
+        messageDiv.innerHTML = `<img src="${role === 'user' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">
                                 ${content}`;
                                 // <strong>${role}: </strong>${content}`;
         chatContainer.appendChild(messageDiv);
@@ -56,13 +56,11 @@ function sendMessage() {
     const messageInput = document.getElementById('messageInput');
     const messageContent = messageInput.value.trim();
     if (messageContent !== '') {
-        const newMsg = { role: 'me', content: messageContent };
-        msgList.push(newMsg);
-        addMessage('me', messageContent);
+        const newMsg = { role: 'user', content: messageContent };
+        addMessage('user', messageContent);
         messageInput.value = '';
-        saveMessagesToLocalStorage(); // 保存消息到本地存储
         //思考提示
-        const thinking = addMessage('reply', '小猪雨崽在思考哦，请稍等...');//思考提示
+        const thinking = addMessage('assistant', '小猪雨崽在思考哦，请稍等...');//思考提示
         //post
         const options = {
             method: 'POST',
@@ -71,25 +69,27 @@ function sendMessage() {
                 Authorization: 'Bearer Link_D0p6K71X31nSGnsqoBJvuNE0zSALVDeY2N00cvLKWs'
             },
             body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: messageContent }] })
+            // body: JSON.stringify({ app_code: 'XZ1s42iz', messages: msgList.slice(-10) })//取最后10项
         };
         fetch('https://api.link-ai.chat/v1/chat/completions', options)
             .then(response => response.json())
             .then(response => {
                 const replyContent = response.choices[0].message.content;
-                const replyMsg = { role: 'reply', content: replyContent };
+                const replyMsg = { role: 'assistant', content: replyContent };
                 hideMessage(thinking); // 隐藏思考提示
+                msgList.push(newMsg);//确认消息不违规，加入列表
                 msgList.push(replyMsg);
-                addMessage('reply', replyContent);
+                addMessage('assistant', replyContent);
                 saveMessagesToLocalStorage(); // 在接收到回复后保存消息到本地存储
             })
             .catch(error => {
                 // console.error('Error sending message:', error);
-                // addMessage('reply','Error sending message:'+error);
+                // addMessage('reply','Error sending message:'+errorString);
                 hideMessage(thinking); // 隐藏思考提示
-                const errMsg = { role: 'reply', content: '消息发送失败或涉及违规、敏感等信息' };
-                addMessage('reply','消息发送失败或涉及违规、敏感等信息');
-                msgList.push(errMsg)
-                saveMessagesToLocalStorage();
+                const errMsg = { role: 'assistant', content: '消息发送失败或涉及违规、敏感等信息' };
+                addMessage('assistant','消息发送失败或涉及违规、敏感等信息');
+                // msgList.push(errMsg)
+                // saveMessagesToLocalStorage();
             });
     }
 }
@@ -169,9 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const reader = new FileReader();
             reader.readAsDataURL(file);
             reader.onload = function () {
-                // 设置背景图片
                 avatar = reader.result;
-                // 将背景图片保存到浏览器缓存中
                 localStorage.setItem('avatar', avatar);
             }
         }
