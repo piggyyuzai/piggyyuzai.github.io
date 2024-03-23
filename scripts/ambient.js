@@ -43,6 +43,13 @@ function init() {
   // },
 
   const imagesOne = [
+    {file: "piggy.jpg",width: 50,height: 50,speed: 30,zIndex: 4,},
+    {file: "chat.png",width: 300,height: 200,speed: 20,zIndex: 1,},
+    {file: "hello.png",width: 120,height: 60,speed: 15,zIndex: 3,},
+    {file: "del.png",width: 65,height: 30,speed: 10,zIndex: 5,},
+  ];
+
+  const imagesTwo = [
     {file: "welcome.gif",width: 250,height: 250,speed: 20,zIndex: 2,},
     {file: "klee1.gif",width: 100,height: 100,speed: 30,zIndex: 3,},
     {file: "card_cn.jpg",width: 250,height: 100,speed: 12,zIndex: 1,},
@@ -50,17 +57,13 @@ function init() {
     {file: "5.gif",width: 200,height: 200,speed: 16,zIndex: 3,},
   ];
 
-  const imagesTwo = [
+  const imagesThree = [
     {file: "catblob.png",width: 250,height: 250,speed: 24,zIndex: 2,},
     {file: "down.gif",width: 50,height: 50,speed: 16,zIndex: 3,},
     {file: "invincible2.gif",width: 200 * (359 / 582),height: 200,speed: 23,zIndex: 2,},
     {file: "collect_star.gif",width: 150 * (647 / 346),height: 150,speed: 20,zIndex: 2,},
     {file: "game_play_3.png",width: 250,height: 250 * (640 / 647),speed: 28,zIndex: 1,},
     {file: "sleep.gif",width: 50,height: 50,speed: 12,zIndex: 3,},
-  ];
-
-  const imagesThree = [
-
   ];
 
   const imagesFour = [

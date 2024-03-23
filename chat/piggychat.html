@@ -11,52 +11,95 @@
 </head>
 
 <body>
-    <div class="chat-box">
-        <div class="web-tittle">
-            <img src="https://piggyyuzai.github.io/piggy.jpg">
-            <p>小猪雨崽</p>
-            <!-- 设置按钮 -->
-            <div class="settings-button" onclick="togglePopup()" style="display:flex;justify-content:center;align-items:center;flex-direction:column;margin-right:20px;margin-left:auto;margin-bottom:-5px;cursor:pointer;">
-                <div style="justify-content:center;align-items:center;"><img src="https://piggyyuzai.github.io/favicon.ico" style="margin:auto;margin-bottom:-5px;width:24px;height:24px;border:none;border-radius:0%;"></div>
-                <div style="justify-content:center;align-items:center;"><small>设置</small></div>
-                <!--或将justify-content: center; align-items: center;替换为text-align: center;-->
-            </div>
-        </div>
-        <div class="chat-container" id="chat-container"></div>
-        <div class="message-input">
-            <input type="text" id="messageInput" placeholder="向小猪雨崽提问...">
-            <button id="send-button" onclick="sendMessage()">发送</button>
+<!-- 聊天背景 -->
+<img src="" id="backgroundImage" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:100vh;object-fit:cover;/*自适应*/z-index:-1;">
+
+<div class="chat-box">
+    <div class="web-tittle">
+        <img src="https://piggyyuzai.github.io/piggy.jpg">
+        <p>小猪雨崽</p>
+        <!-- 设置按钮 -->
+        <div class="settings-button" onclick="togglePopup()" style="display:flex;justify-content:center;align-items:center;flex-direction:column;margin-right:20px;margin-left:auto;margin-bottom:-5px;cursor:pointer;">
+            <div style="justify-content:center;align-items:center;"><img src="https://piggyyuzai.github.io/favicon.ico" style="margin:auto;margin-bottom:-5px;width:24px;height:24px;border:none;border-radius:0%;"></div>
+            <div style="justify-content:center;align-items:center;"><small>设置</small></div>
+            <!--或将justify-content: center; align-items: center;替换为text-align: center;-->
         </div>
     </div>
-    <!-- 设置弹出窗口 -->
-    <div id="setting" style="display:none;">
-        <div class="popup-setting" style="padding:20px;">
-            <span class="close" onclick="togglePopup()">&times;</span>
-            <!-- 设置内容 -->
-            <div style="text-align:center;margin-bottom:10px;font-size:20px;font-weight:bold;">设置</div>
-            <div class="row">
-                <div style="display: flex; align-items: center; justify-content: center; margin-left: 10px;">
-                    <div id="msgListLength" style="margin-right: 10px;">历史消息长度</div>
-                    <button id="delHistory" onclick="delHistory()" style="display: flex; align-items: center;justify-content: center;background-color:white;border:1px solid #000000;box-shadow:3px 3px 0px black;">
-                        <svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M595.09 828.83c-13.71 0-24.83-11.12-24.83-24.83V643.51c0-13.71 11.12-24.83 24.83-24.83s24.83 11.12 24.83 24.83V804c0 13.71-11.12 24.83-24.83 24.83z" fill="#448AFF" p-id="5391"></path><path d="M581.75 395.93c-13.71 0-24.83-11.12-24.83-24.83V238.83h-89.83V371.1c0 13.71-11.12 24.83-24.83 24.83s-24.83-11.12-24.83-24.83V224c0-19.2 15.62-34.83 34.83-34.83h119.49c19.21 0 34.83 15.62 34.83 34.83v147.1c0 13.71-11.12 24.83-24.83 24.83z" fill="#020202" p-id="5392"></path><path d="M788.98 544.92H235.02c-24.72 0-44.83-20.11-44.83-44.83V391.6c0-24.72 20.11-44.83 44.83-44.83h207.24c13.71 0 24.83 11.12 24.83 24.83 0 13.71-11.12 24.83-24.83 24.83H239.84v98.83h544.31v-98.83h-202.4c-13.71 0-24.83-11.12-24.83-24.83 0-13.71 11.12-24.83 24.83-24.83h207.24c24.72 0 44.83 20.11 44.83 44.83v108.49c-0.01 24.72-20.12 44.83-44.84 44.83z m0-148.49z" fill="#020202" p-id="5393"></path><path d="M756.74 833.83H267.26c-24.72 0-44.83-20.11-44.83-44.83V540.09c0-24.72 20.11-44.83 44.83-44.83h489.47c24.72 0 44.83 20.11 44.83 44.83V789c0.01 24.72-20.1 44.83-44.82 44.83z m-484.65-49.66H751.9V544.92H272.09v239.25z" fill="#020202" p-id="5394"></path><path d="M408.6 828.83c-13.71 0-24.83-11.12-24.83-24.83V643.51c0-13.71 11.12-24.83 24.83-24.83s24.83 11.12 24.83 24.83V804c0 13.71-11.12 24.83-24.83 24.83z" p-id="5395"></path>
-                        </svg>
-                        清除
-                    </button>
-                </div>
-            </div>
-            <div class="row">
-                <div class="text" style="display: inline-block;">测试</div>
-                <button class="button" style="margin-left: 10px;">测试</button>
-                <div class="text" style="display: inline-block; margin-left: 10px;">测试</div>
-                <img src="https://piggyyuzai.github.io/favicon.ico" alt="图片2" style=" width: 20px; height: 20px; margin-left: 10px;">
+    <div class="chat-container" id="chat-container"></div>
+    <div class="message-input">
+        <input type="text" id="messageInput" placeholder="向小猪雨崽提问...">
+        <button id="send-button" onclick="sendMessage()">发送</button>
+    </div>
+</div>
+<!-- 设置弹出窗口 -->
+<div id="setting" style="display:none;">
+    <div class="popup-setting" style="padding:20px;">
+        <span class="close" onclick="togglePopup()">&times;</span>
+        <!-- 设置内容 -->
+        <div style="text-align:center;margin-bottom:10px;font-size:20px;font-weight:bold;">设置</div>
+        <div class="row">
+            <div style="display: flex; align-items: center; justify-content: center; margin-left: 10px;">
+                <div id="msgListLength" style="margin-right: 10px;">历史消息长度</div>
+                <button id="delHistory" onclick="delHistory()" class="butt" style="">
+                    <svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M595.09 828.83c-13.71 0-24.83-11.12-24.83-24.83V643.51c0-13.71 11.12-24.83 24.83-24.83s24.83 11.12 24.83 24.83V804c0 13.71-11.12 24.83-24.83 24.83z" fill="#448AFF" p-id="5391"></path><path d="M581.75 395.93c-13.71 0-24.83-11.12-24.83-24.83V238.83h-89.83V371.1c0 13.71-11.12 24.83-24.83 24.83s-24.83-11.12-24.83-24.83V224c0-19.2 15.62-34.83 34.83-34.83h119.49c19.21 0 34.83 15.62 34.83 34.83v147.1c0 13.71-11.12 24.83-24.83 24.83z" fill="#020202" p-id="5392"></path><path d="M788.98 544.92H235.02c-24.72 0-44.83-20.11-44.83-44.83V391.6c0-24.72 20.11-44.83 44.83-44.83h207.24c13.71 0 24.83 11.12 24.83 24.83 0 13.71-11.12 24.83-24.83 24.83H239.84v98.83h544.31v-98.83h-202.4c-13.71 0-24.83-11.12-24.83-24.83 0-13.71 11.12-24.83 24.83-24.83h207.24c24.72 0 44.83 20.11 44.83 44.83v108.49c-0.01 24.72-20.12 44.83-44.84 44.83z m0-148.49z" fill="#020202" p-id="5393"></path><path d="M756.74 833.83H267.26c-24.72 0-44.83-20.11-44.83-44.83V540.09c0-24.72 20.11-44.83 44.83-44.83h489.47c24.72 0 44.83 20.11 44.83 44.83V789c0.01 24.72-20.1 44.83-44.82 44.83z m-484.65-49.66H751.9V544.92H272.09v239.25z" fill="#020202" p-id="5394"></path><path d="M408.6 828.83c-13.71 0-24.83-11.12-24.83-24.83V643.51c0-13.71 11.12-24.83 24.83-24.83s24.83 11.12 24.83 24.83V804c0 13.71-11.12 24.83-24.83 24.83z" p-id="5395"></path>
+                    </svg>
+                    清除
+                </button>
             </div>
         </div>
-        <!-- 弹出窗口下方遮罩 -->
-        <div class="popup-overlay" onclick="togglePopup()"></div>
+<!--        <div class="row">-->
+<!--            <div class="text" style="display: inline-block;">聊天背景</div>-->
+<!--            <input type="file" id="imageUpload" accept="image/*" class="butt">-->
+<!--            <button id="setDefaultBackground" class="butt">恢复默认背景</button>-->
+<!--        </div>-->
+        <div class="row" style="display: flex; justify-content: center; align-items: flex-start;">
+            <div class="text" style="display: inline-block; align-self: flex-start;margin-right:5px;">聊天背景</div>
+            <div style="display: flex; flex-direction: column;">
+                <input type="file" id="imageUpload" accept="image/*" class="butt" style="width:200px;margin-bottom:5px;">
+                <button id="setDefaultBackground" class="butt" style="">恢复空白背景</button>
+            </div>
+        </div>
+
+
+
+        <a href="https://piggyyuzai.github.io" style="position:absolute;bottom:5px;white-space: nowrap;left:50%;transform:translateX(-50%);color:#1d9bf0;font-size:12px;"> &copy; piggyyuzai. All Rights Reserved. </a>
     </div>
+    <!-- 弹出窗口下方遮罩 -->
+    <div class="popup-overlay" onclick="togglePopup()"></div>
+</div>
 </body>
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageUpload = document.getElementById('imageUpload');
+        const backgroundImage = document.getElementById('backgroundImage');
+
+        // 每次进入页面时从浏览器缓存中读取背景图片
+        const cachedBackground = localStorage.getItem('backgroundImage');
+        if (cachedBackground) {
+            backgroundImage.src = cachedBackground;
+        }
+        // 监听文件上传变化
+        imageUpload.addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function () {
+                    // 设置背景图片
+                    backgroundImage.src = reader.result;
+                    // 将背景图片保存到浏览器缓存中
+                    localStorage.setItem('backgroundImage', reader.result);
+                }
+            }
+        });
+    });
+    //回复默认背景
+    setDefaultBackground.addEventListener('click', function () {
+        backgroundImage.src = "";
+        localStorage.setItem('backgroundImage','');
+    })
+
     //enter发送
     messageInput.addEventListener("keypress",function (event) {
         if (event.key === "Enter") {
