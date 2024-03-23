@@ -48,7 +48,7 @@ body {
     height: 40px;
     border-radius: 10px;
     position: absolute;
-    top: 0px;
+    top: 0;
 }
 .message.me img {
     right: -50px;object-fit:cover;
@@ -119,5 +119,5 @@ body {
 }
 .butt{
     height:25px;
-    display: flex; align-items: center;justify-content: center;background-color:white;border:1px solid #000000;border-radius:0;box-shadow:3px 3px 0px black;
+    display: flex; align-items: center;justify-content: center;background-color:white;border:1px solid #000000;border-radius:0;box-shadow:3px 3px 0 black;
 }
