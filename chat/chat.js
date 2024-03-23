@@ -107,7 +107,7 @@ function hideMessage(messageId) {
 
 // 设置窗口显示状态
 function togglePopup() {
-    var popup = document.getElementById('settings-popup');
+    var popup = document.getElementById('setting');
     var overlay = document.querySelector('.popup-overlay');
     if (popup.style.display === 'block') {
         popup.style.display = 'none';
@@ -121,5 +121,16 @@ function togglePopup() {
         const msgListLength = JSON.parse(localStorage.getItem('msgList')).length;
         // 将msgList的长度直接放置在div中
         document.getElementById('msgListLength').innerHTML = `目前有：${msgListLength} 条历史消息`;
+    }
+}
+
+
+//删除历史记录
+function delHistory() {
+    var confirmed = confirm('确定要清除历史消息吗？');
+    if (confirmed) {
+        localStorage.removeItem('msgList');
+        localStorage.setItem('msgList', JSON.stringify([])); // 将msgList设置为空数组
+        location.reload(); // 刷新页面
     }
 }
