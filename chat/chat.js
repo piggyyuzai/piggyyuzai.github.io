@@ -19,9 +19,9 @@ window.onload = function() {
     const currentDate = new Date().toLocaleString();
     addMessage('',currentDate);
     addMessage('assistant','你好，我是小猪雨崽，请问有什么可以帮助你的吗？' +
-        '<code style="display:block;white-space:pre;margin:5px 0;padding:10px;width: 100%;' +
-        'min-width: 100px;border-radius: 6px;box-sizing: border-box;color:#e6e6e6;background:#2a2c2d;">' +
-        'My website: <a href="https://piggyyuzai.github.io" style="color:#ff75b5">https://piggyyuzai.github.io</a></code>');
+        '<code style="display:block;white-space:pre-wrap;;margin:5px 0;padding:10px;border-radius: 6px;box-sizing: border-box;color:#e6e6e6;background:#2a2c2d;font-family: Consolas, Monaco, monospace;">' +
+        'My website: <a href="https://piggyyuzai.github.io" style="color:#ff75b5">https://piggyyuzai.github.io</a>' +
+        '</code>');
 };
 
 // 在发送消息时保存消息列表到本地存储

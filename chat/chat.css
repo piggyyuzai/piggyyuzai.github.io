@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Helvetica Neue, Helvetica, Hiragino Sans GB, "SF Pro SC", Microsoft YaHei, "PingFang SC", Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
@@ -71,7 +71,6 @@ body {
     color: gray;
 }
 .message-input {
-    margin-bottom:0;
     height:40px;
     display: flex;
     padding: 10px;
