@@ -71,6 +71,7 @@ body {
     color: gray;
 }
 .message-input {
+    margin-bottom:0;
     height:40px;
     display: flex;
     padding: 10px;
