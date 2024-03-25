@@ -43,9 +43,10 @@ function init() {
   // },
 
   const imagesOne = [
-    {file: "piggy.jpg",width: 50,height: 50,speed: 30,zIndex: 4,},
-    {file: "chat.png",width: 300,height: 200,speed: 20,zIndex: 1,},
-    {file: "hello.png",width: 120,height: 60,speed: 15,zIndex: 3,},
+    {file: "hello.png",width: 120,height: 60,speed: 24,zIndex: 3,},
+    {file: "chat.png",width: 300,height: 200,speed: 12,zIndex: 1,},
+    {file: "piggy.jpg",width: 50,height: 50,speed: 15,zIndex: 4,},
+    {file: "morning.png",width: 160,height: 40,speed: 18,zIndex: 2,},
     {file: "del.png",width: 65,height: 30,speed: 10,zIndex: 5,},
   ];
 
