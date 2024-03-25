@@ -93,7 +93,7 @@ function addMessage(role, content) {
 // }
 
 
-
+newmsgList=[];
 //发送消息
 function sendMessage() {
     const messageInput = document.getElementById('messageInput');
@@ -102,6 +102,7 @@ function sendMessage() {
         const newMsg = { role: 'user', content: messageContent };
         addMessage('user', messageContent);
         msgList.push(newMsg);//确认消息不违规，加入列表
+        newmsgList.push(newMsg);//确认消息不违规，加入列表
         messageInput.value = '';
         //思考提示
         const thinking = addMessage('assistant', '小猪雨崽在思考哦，请稍等...');//思考提示
@@ -122,6 +123,7 @@ function sendMessage() {
                 const replyMsg = { role: 'assistant', content: replyContent };
                 hideMessage(thinking); // 隐藏思考提示
                 msgList.push(replyMsg);
+                newmsgList.push(replyMsg);
                 addMessage('assistant', replyContent);
                 saveMessagesToLocalStorage(); // 在接收到回复后保存消息到本地存储
             })
