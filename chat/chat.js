@@ -19,7 +19,7 @@ window.onload = function() {
     const currentDate = new Date().toLocaleString();
     addMessage('',currentDate);
     addMessage('assistant','你好，我是小猪雨崽，请问有什么可以帮助你的吗？' +
-        '<code style="overflow-x: auto;scrollbar-width: thin;display:block;white-space:pre;margin:5px 0;padding:10px;border-radius: 6px;box-sizing: border-box;color:#e6e6e6;background:#2a2c2d;font-family: Consolas, Monaco, monospace;">' +
+        '<code style="">' +
         'My website: <a href="https://piggyyuzai.github.io" style="color:#ff75b5;">https://piggyyuzai.github.io</a>' +
         '</code>');
 };
@@ -53,6 +53,46 @@ function addMessage(role, content) {
         return messageId;
     }
 }
+
+// function addMessage(role, content) {
+//     const chatContainer = document.getElementById('chat-container');
+//     const messageDiv = document.createElement('div');
+//     // 判断是提示还是消息
+//     if (role === '') {
+//         // 提示
+//         messageDiv.classList.add('message-divider');
+//         messageDiv.textContent = content;
+//         chatContainer.appendChild(messageDiv);
+//     } else {
+//         // 消息
+//         messageDiv.classList.add('message', role);
+//
+//         let codeContent = '';
+//         let plainTextContent = content;
+//         // 使用正则表达式检查消息内容中是否包含 ``` 格式
+//         const markdownRegex = /```([\s\S]+?)```/g;
+//         const matches = content.match(markdownRegex);
+//         if (matches) {
+//             // 将 Markdown 部分包装在 <code> 标签中，并将 < 和 > 转换为 HTML 实体
+//             codeContent = matches.map(match => `<code>${match.slice(3, -3).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code>`).join('');
+//             // 从原始内容中去除 Markdown 部分
+//             plainTextContent = content.replace(markdownRegex, '');
+//         }
+//
+//         messageDiv.innerHTML = `<img src="${role === 'user' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">
+//                                 ${plainTextContent}${codeContent}`;
+//         // <strong>${role}: </strong>${content}`;
+//         chatContainer.appendChild(messageDiv);
+//         chatContainer.scrollTop = chatContainer.scrollHeight;
+//
+//         // 为 message 设置唯一标识符
+//         const messageId = 'message-' + Date.now() + '-' + Math.random();
+//         messageDiv.dataset.messageId = messageId;
+//         return messageId;
+//     }
+// }
+
+
 
 //发送消息
 function sendMessage() {
@@ -89,8 +129,8 @@ function sendMessage() {
                 // console.error('Error sending message:', error);
                 // addMessage('reply','Error sending message:'+errorString);
                 hideMessage(thinking); // 隐藏思考提示
-                const errMsg = { role: 'assistant', content: '消息发送失败或涉及违规、敏感等信息' };
                 addMessage('assistant','消息发送失败或涉及违规、敏感等信息');
+                // const errMsg = { role: 'assistant', content: '消息发送失败或涉及违规、敏感等信息' };
                 // msgList.push(errMsg)
                 // saveMessagesToLocalStorage();
             });
@@ -143,14 +183,17 @@ document.addEventListener('DOMContentLoaded', function () {
     const backgroundImage = document.getElementById('backgroundImage');
 
     // 每次进入页面时从浏览器缓存中读取背景图片
-    const cachedBackground = localStorage.getItem('backgroundImage');
-    if (cachedBackground) {
-        backgroundImage.src = cachedBackground;
-    }
-    const cachedAvatar = localStorage.getItem('avatar');
-    if(cachedAvatar){
-        avatar=cachedAvatar;
-    }
+    backgroundImage.src=localStorage.getItem('backgroundImage') || '';
+    // const cachedBackground = localStorage.getItem('backgroundImage');
+    // if (cachedBackground) {
+    //     backgroundImage.src = cachedBackground;
+    // }
+    avatar=localStorage.getItem('avatar') || 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
+    // const cachedAvatar = localStorage.getItem('avatar');
+    // if(cachedAvatar){
+    //     avatar=cachedAvatar;
+    // }
+
     // 监听文件上传变化-背景
     imageUpload.addEventListener('change', function () {
         const file = this.files[0];
@@ -179,12 +222,13 @@ document.addEventListener('DOMContentLoaded', function () {
         location.reload();
     });
 });
-//回复默认背景
+//恢复默认背景
 function setDefaultBackground() {
     backgroundImage.src = '';
     localStorage.setItem('backgroundImage','');
     location.reload();
 }
+//默认头像
 function setDefaultAvatar() {
     avatar='https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
     localStorage.setItem('avatar',avatar);

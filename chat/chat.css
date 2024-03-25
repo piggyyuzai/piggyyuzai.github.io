@@ -3,6 +3,19 @@ body {
     margin: 0;
     padding: 0;
 }
+code{
+    overflow-x: auto;
+    scrollbar-width: thin;
+    display:block;
+    white-space:pre-wrap;
+    margin:5px 0;
+    padding:10px;
+    border-radius: 6px;
+    box-sizing: border-box;
+    color:#e6e6e6;
+    background:#2a2c2d;
+    font-family: Consolas, Monaco, monospace;
+}
 .web-tittle{
     display:flex;
     height:60px;
