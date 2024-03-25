@@ -22,6 +22,7 @@ window.onload = function() {
         '<code style="">' +
         'My website: <a href="https://piggyyuzai.github.io" style="color:#ff75b5;">https://piggyyuzai.github.io</a>' +
         '</code>');
+    newmsgList=[];
 };
 
 // 在发送消息时保存消息列表到本地存储
@@ -93,7 +94,7 @@ function addMessage(role, content) {
 // }
 
 
-newmsgList=[];
+
 //发送消息
 function sendMessage() {
     const messageInput = document.getElementById('messageInput');
@@ -114,7 +115,7 @@ function sendMessage() {
                 Authorization: 'Bearer Link_D0p6K71X31nSGnsqoBJvuNE0zSALVDeY2N00cvLKWs'
             },
             //body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: messageContent }] })
-            body: JSON.stringify({ app_code: 'XZ1s42iz', messages: msgList.slice(-10) })//取最后10项，联系上下文
+            body: JSON.stringify({ app_code: 'XZ1s42iz', messages: newmsgList.slice(-10) })//取最后10项，联系上下文
         };
         fetch('https://api.link-ai.chat/v1/chat/completions', options)
             .then(response => response.json())
