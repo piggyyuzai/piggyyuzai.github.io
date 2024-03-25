@@ -101,6 +101,7 @@ function sendMessage() {
     if (messageContent !== '') {
         const newMsg = { role: 'user', content: messageContent };
         addMessage('user', messageContent);
+        msgList.push(newMsg);//确认消息不违规，加入列表
         messageInput.value = '';
         //思考提示
         const thinking = addMessage('assistant', '小猪雨崽在思考哦，请稍等...');//思考提示
@@ -120,7 +121,6 @@ function sendMessage() {
                 const replyContent = response.choices[0].message.content;
                 const replyMsg = { role: 'assistant', content: replyContent };
                 hideMessage(thinking); // 隐藏思考提示
-                msgList.push(newMsg);//确认消息不违规，加入列表
                 msgList.push(replyMsg);
                 addMessage('assistant', replyContent);
                 saveMessagesToLocalStorage(); // 在接收到回复后保存消息到本地存储
