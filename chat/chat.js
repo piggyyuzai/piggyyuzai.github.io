@@ -61,74 +61,52 @@ function saveMessagesToLocalStorage() {
 
 function addMessage(role, content) {
     const chatContainer = document.getElementById('chat-container');
+    const messageDiv = document.createElement('div');
+    //判断是提示还是消息
+    if (role === '') {
+        //提示
+        messageDiv.classList.add('message-divider');
+        messageDiv.textContent = content;
+        chatContainer.appendChild(messageDiv);
+    } else {
+        //消息
+        messageDiv.classList.add('message', role);
+        let processedContent = content.replace(/```([\s\S]+?)```/g, function(match, p1) {
+            return '<code>' + p1.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>';
+        });
+        messageDiv.innerHTML = `<img src="${role === 'user' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">
+                                ${processedContent}`;
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
 
-    // 分割 content 中的 Markdown 文本段落
-    const markdownParagraphs = content.split('\n```\n');
-
-    markdownParagraphs.forEach(paragraph => {
-        const messageDiv = document.createElement('div');
-
-        //判断是提示还是消息
-        if (role === '') {
-            //提示
-            messageDiv.classList.add('message-divider');
-            messageDiv.textContent = paragraph;
-            chatContainer.appendChild(messageDiv);
-        } else {
-            //消息
-            messageDiv.classList.add('message', role);
-            messageDiv.innerHTML = `<img src="${role === 'user' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">`;
-
-            // 检查段落中是否有 Markdown 文本
-            if (paragraph.includes('```')) {
-                // 处理 Markdown 格式文本
-                const codeBlocks = paragraph.split('```');
-                codeBlocks.forEach((block, index) => {
-                    if (index % 2 === 0) {
-                        // 偶数索引处的文本为普通文本
-                        const textNode = document.createTextNode(block);
-                        messageDiv.appendChild(textNode);
-                    } else {
-                        // 奇数索引处的文本为代码块
-                        const codeNode = document.createElement('code');
-                        codeNode.textContent = block;
-                        messageDiv.appendChild(codeNode);
-
-                        //code右上角添加复制按钮
-                        codeNode.classList.add('code-block'); // 添加新的 CSS 类
-                        const copyButton = document.createElement('button');
-                        // copyButton.textContent = '复制';
-                        copyButton.innerHTML ='<svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M394.666667 106.666667h448a74.666667 74.666667 0 0 1 74.666666 74.666666v448a74.666667 74.666667 0 0 1-74.666666 74.666667H394.666667a74.666667 74.666667 0 0 1-74.666667-74.666667V181.333333a74.666667 74.666667 0 0 1 74.666667-74.666666z m0 64a10.666667 10.666667 0 0 0-10.666667 10.666666v448a10.666667 10.666667 0 0 0 10.666667 10.666667h448a10.666667 10.666667 0 0 0 10.666666-10.666667V181.333333a10.666667 10.666667 0 0 0-10.666666-10.666666H394.666667z m245.333333 597.333333a32 32 0 0 1 64 0v74.666667a74.666667 74.666667 0 0 1-74.666667 74.666666H181.333333a74.666667 74.666667 0 0 1-74.666666-74.666666V394.666667a74.666667 74.666667 0 0 1 74.666666-74.666667h74.666667a32 32 0 0 1 0 64h-74.666667a10.666667 10.666667 0 0 0-10.666666 10.666667v448a10.666667 10.666667 0 0 0 10.666666 10.666666h448a10.666667 10.666667 0 0 0 10.666667-10.666666v-74.666667z" fill="#ffffff" p-id="4305"></path>' +
-                            '</svg>'
-                            copyButton.classList.add('copy-button'); // 添加新的 CSS 类
-                        copyButton.onclick = function() {
-                            copyToClipboard(block);
-                            function copyToClipboard(text) {
-                                const textarea = document.createElement('textarea');
-                                textarea.value = text;
-                                document.body.appendChild(textarea);
-                                textarea.select();
-                                document.execCommand('copy');
-                                document.body.removeChild(textarea);
-                            }
-                        };
-                        codeNode.appendChild(copyButton);
-                    }
-                });
-            } else {
-                // 没有 Markdown 格式文本，直接添加内容
-                messageDiv.innerHTML += paragraph;
-            }
-
-            chatContainer.appendChild(messageDiv);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-
-            // 为 message 设置唯一标识符
-            const messageId = 'message-' + Date.now() + '-' + Math.random();
-            messageDiv.dataset.messageId = messageId;
-        }
+        // 为message设置唯一标识符
+        const messageId = 'message-' + Date.now() + '-' + Math.random();
+        messageDiv.dataset.messageId = messageId;
+        return messageId;
+    }
+    //code右上角添加复制按钮
+    const codeBlocks = document.querySelectorAll('code'); // 获取所有的code元素
+    codeBlocks.forEach(codeNode => {
+        codeNode.classList.add('code-block'); // 添加新的 CSS 类
+        const copyButton = document.createElement('button');
+        copyButton.innerHTML = '<svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M394.666667 106.666667h448a74.666667 74.666667 0 0 1 74.666666 74.666666v448a74.666667 74.666667 0 0 1-74.666666 74.666667H394.666667a74.666667 74.666667 0 0 1-74.666667-74.666667V181.333333a74.666667 74.666667 0 0 1 74.666667-74.666666z m0 64a10.666667 10.666667 0 0 0-10.666667 10.666666v448a10.666667 10.666667 0 0 0 10.666667 10.666667h448a10.666667 10.666667 0 0 0 10.666666-10.666667V181.333333a10.666667 10.666667 0 0 0-10.666666-10.666666H394.666667z m245.333333 597.333333a32 32 0 0 1 64 0v74.666667a74.666667 74.666667 0 0 1-74.666667 74.666666H181.333333a74.666667 74.666667 0 0 1-74.666666-74.666666V394.666667a74.666667 74.666667 0 0 1 74.666666-74.666667h74.666667a32 32 0 0 1 0 64h-74.666667a10.666667 10.666667 0 0 0-10.666666 10.666667v448a10.666667 10.666667 0 0 0 10.666666 10.666666h448a10.666667 10.666667 0 0 0 10.666667-10.666666v-74.666667z" fill="#ffffff" p-id="4305"></path>' +
+            '</svg>';
+        copyButton.classList.add('copy-button'); // 添加新的 CSS 类
+        copyButton.onclick = function() {
+            copyToClipboard(codeNode.textContent.trim());
+        };
+        codeNode.appendChild(copyButton);
     });
+    function copyToClipboard(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+    }
 }
+
 
 
 
