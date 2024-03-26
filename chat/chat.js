@@ -5,21 +5,11 @@ msgList.forEach(msg => {
     addMessage(msg.role, msg.content);
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    var loadingText = document.getElementById('loading-text');
-    var counter = 0;
-
-    setInterval(function() {
-        counter++;
-        var dots = '.'.repeat(counter % 4); // 使用取模运算保证点的数量不超过4个
-        loadingText.textContent = '加载中' + dots; // 更新加载中文本内容
-    }, 200); // 更新频率为每500毫秒（半秒）一次
-});
 // 在页面加载时从本地存储加载历史消息
 window.onload = function() {
     //页面加载
-    var loader = document.querySelector('.loader-container');
-    loader.style.display = 'none';
+    // var loader = document.querySelector('.loader-container');
+    // loader.style.display = 'none';
 
     const savedMsgList = JSON.parse(localStorage.getItem('msgList'));
     if (savedMsgList) {
