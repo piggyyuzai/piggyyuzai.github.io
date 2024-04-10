@@ -11,63 +11,23 @@
 
 <body>
 <img src="" id="backgroundImage" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:100vh;object-fit:cover;/*自适应*/z-index:-1;">
-
+<!--<div style="z-index:999;position:fixed;bottom:30px;left:30px;height:60px;width:60px;background-color:#07379C;border-radius:50%;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;">-->
+<!--    <img src="./images/disgn/u87.png" style="width:26px;height:26px;filter:brightness(0) invert(1);">-->
+<!--    <a href="./chat-zhuliji.html" style="color:#ffffff;text-decoration:none;font-size:12px;">-->
+<!--        AI客服-->
+<!--    </a>-->
+<!--</div>-->
 <div class="chat-box">
     <div class="web-tittle">
         <img src="./images/zhuliji.jpg">
         <p>注礼记AI智能客服助手</p>
-        <!-- 设置按钮 -->
-        <div class="settings-button" onclick="togglePopup()" style="display:flex;justify-content:center;align-items:center;flex-direction:column;margin-right:20px;margin-left:auto;margin-bottom:-5px;cursor:pointer;">
-            <div style="justify-content:center;align-items:center;"><img src="https://piggyyuzai.github.io/favicon.ico" style="margin:auto;margin-bottom:-5px;width:24px;height:24px;border:none;border-radius:0%;"></div>
-            <div style="justify-content:center;align-items:center;"><small>设置</small></div>
-            <!--或将justify-content: center; align-items: center;替换为text-align: center;-->
-        </div>
     </div>
     <div class="chat-container" id="chat-container"></div>
     <div class="message-input">
         <input type="text" id="messageInput" placeholder="向注礼记AI智能客服助手提问...">
-        <button id="send-button" onclick="sendMessage()">发送</button>
+        <button id="send-button" onclick="sendMessage()" style="background-color:#07379C;">发送</button>
     </div>
-</div>
-<!-- 设置弹出窗口 -->
-<div id="setting" style="display:none;">
-    <div class="popup-setting" style="padding:20px;">
-        <span class="close" onclick="togglePopup()">&times;</span>
-        <!-- 设置内容 -->
-        <div style="text-align:center;margin-bottom:10px;font-size:20px;font-weight:bold;">设置</div>
-        <div class="row">
-            <div style="display: flex; align-items: center; justify-content: center; margin-left: 10px;">
-                <div id="msgListLength" style="margin-right: 10px;">目前有：0条历史消息</div>
-                <button id="delHistory" onclick="delHistory()" class="butt" style="">
-                    <svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M595.09 828.83c-13.71 0-24.83-11.12-24.83-24.83V643.51c0-13.71 11.12-24.83 24.83-24.83s24.83 11.12 24.83 24.83V804c0 13.71-11.12 24.83-24.83 24.83z" fill="#448AFF" p-id="5391"></path><path d="M581.75 395.93c-13.71 0-24.83-11.12-24.83-24.83V238.83h-89.83V371.1c0 13.71-11.12 24.83-24.83 24.83s-24.83-11.12-24.83-24.83V224c0-19.2 15.62-34.83 34.83-34.83h119.49c19.21 0 34.83 15.62 34.83 34.83v147.1c0 13.71-11.12 24.83-24.83 24.83z" fill="#020202" p-id="5392"></path><path d="M788.98 544.92H235.02c-24.72 0-44.83-20.11-44.83-44.83V391.6c0-24.72 20.11-44.83 44.83-44.83h207.24c13.71 0 24.83 11.12 24.83 24.83 0 13.71-11.12 24.83-24.83 24.83H239.84v98.83h544.31v-98.83h-202.4c-13.71 0-24.83-11.12-24.83-24.83 0-13.71 11.12-24.83 24.83-24.83h207.24c24.72 0 44.83 20.11 44.83 44.83v108.49c-0.01 24.72-20.12 44.83-44.84 44.83z m0-148.49z" fill="#020202" p-id="5393"></path><path d="M756.74 833.83H267.26c-24.72 0-44.83-20.11-44.83-44.83V540.09c0-24.72 20.11-44.83 44.83-44.83h489.47c24.72 0 44.83 20.11 44.83 44.83V789c0.01 24.72-20.1 44.83-44.82 44.83z m-484.65-49.66H751.9V544.92H272.09v239.25z" fill="#020202" p-id="5394"></path><path d="M408.6 828.83c-13.71 0-24.83-11.12-24.83-24.83V643.51c0-13.71 11.12-24.83 24.83-24.83s24.83 11.12 24.83 24.83V804c0 13.71-11.12 24.83-24.83 24.83z" p-id="5395"></path>
-                    </svg>
-                    清除
-                </button>
-            </div>
-        </div>
-        <div class="row" style="display: flex; justify-content: center; align-items: flex-start;">
-            <div class="text" style="display: inline-block; align-self: flex-start;margin-right:5px;">聊天背景</div>
-            <div style="display: flex; flex-direction: column;">
-                <input type="file" id="imageUpload" accept="image/*" class="butt" style="width:200px;margin-bottom:10px;">
-                <button onclick="setDefaultBackground()" class="butt" style="">恢复空白背景</button>
-            </div>
-        </div>
-        <div class="row" style="display: flex; justify-content: center; align-items: flex-start;margin-bottom:10px;">
-            <div class="text" style="display: inline-block; align-self: flex-start;margin-right:5px;">修改头像</div>
-            <div style="display: flex; flex-direction: column;">
-                <input type="file" id="editAvatar" accept="image/*" class="butt" style="width:200px;margin-bottom:10px;">
-                <button onclick="setDefaultAvatar()" class="butt" style="">恢复默认头像</button>
-            </div>
-        </div>
-        <div class="row" style="font-size:10px;margin-top:-5px;">ps:如果图片过大可能会无法设置背景和头像</div>
-
-
-
-        <a style="position:absolute;bottom:5px;white-space: nowrap;left:50%;transform:translateX(-50%);color:#1d9bf0;font-size:12px;"> &copy; 注礼记. All Rights Reserved. </a>
-    </div>
-    <!-- 弹出窗口下方遮罩 -->
-    <div class="popup-overlay" onclick="togglePopup()"></div>
+    <a style="text-align:center;font-size:12px;color:#5b5b5b;background-color:#f5f5f5;"> &copy; 注礼记. All Rights Reserved. </a>
 </div>
 </body>
 <script>
@@ -122,11 +82,9 @@
         } else {
             //消息
             messageDiv.classList.add('message', role);
-            let processedContent = content.replace(/```([\s\S]+?)```/g, function(match, p1) {
-                return '<code>' + p1.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>';
-            });
-            messageDiv.innerHTML = `<img src="${role === 'user' ? avatar : './images/zhuliji.jpg'}">
-                                ${processedContent}`;
+            messageDiv.innerHTML = `<img src="${role === 'user' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/zhuliji/images/zhuliji.jpg'}">
+                                    ${content}`;
+                                    // <strong>${role}: </strong>${content}`;
             chatContainer.appendChild(messageDiv);
             chatContainer.scrollTop = chatContainer.scrollHeight;
 
@@ -134,27 +92,6 @@
             const messageId = 'message-' + Date.now() + '-' + Math.random();
             messageDiv.dataset.messageId = messageId;
             return messageId;
-        }
-        //code右上角添加复制按钮
-        const codeBlocks = document.querySelectorAll('code'); // 获取所有的code元素
-        codeBlocks.forEach(codeNode => {
-            codeNode.classList.add('code-block'); // 添加新的 CSS 类
-            const copyButton = document.createElement('button');
-            copyButton.innerHTML = '<svg width="20" height="20" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M394.666667 106.666667h448a74.666667 74.666667 0 0 1 74.666666 74.666666v448a74.666667 74.666667 0 0 1-74.666666 74.666667H394.666667a74.666667 74.666667 0 0 1-74.666667-74.666667V181.333333a74.666667 74.666667 0 0 1 74.666667-74.666666z m0 64a10.666667 10.666667 0 0 0-10.666667 10.666666v448a10.666667 10.666667 0 0 0 10.666667 10.666667h448a10.666667 10.666667 0 0 0 10.666666-10.666667V181.333333a10.666667 10.666667 0 0 0-10.666666-10.666666H394.666667z m245.333333 597.333333a32 32 0 0 1 64 0v74.666667a74.666667 74.666667 0 0 1-74.666667 74.666666H181.333333a74.666667 74.666667 0 0 1-74.666666-74.666666V394.666667a74.666667 74.666667 0 0 1 74.666666-74.666667h74.666667a32 32 0 0 1 0 64h-74.666667a10.666667 10.666667 0 0 0-10.666666 10.666667v448a10.666667 10.666667 0 0 0 10.666666 10.666666h448a10.666667 10.666667 0 0 0 10.666667-10.666666v-74.666667z" fill="#ffffff" p-id="4305"></path>' +
-                '</svg>';
-            copyButton.classList.add('copy-button'); // 添加新的 CSS 类
-            copyButton.onclick = function() {
-                copyToClipboard(codeNode.textContent.trim());
-            };
-            codeNode.appendChild(copyButton);
-        });
-        function copyToClipboard(text) {
-            const textarea = document.createElement('textarea');
-            textarea.value = text;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
         }
     }
 
@@ -213,92 +150,6 @@
         }
     }
 
-    // 设置窗口显示状态
-    function togglePopup() {
-        var popup = document.getElementById('setting');
-        var overlay = document.querySelector('.popup-overlay');
-        if (popup.style.display === 'block') {
-            popup.style.display = 'none';
-            overlay.style.display = 'none';
-        } else {
-            popup.style.display = 'block';
-            overlay.style.display = 'block';
 
-            //每次点击设置时更新历史记录长度
-            // 获取浏览器缓存中msgList的长度
-            const msgListLength = JSON.parse(localStorage.getItem('msgList')).length;
-            // 将msgList的长度直接放置在div中
-            document.getElementById('msgListLength').innerHTML = `目前有：${msgListLength} 条历史消息`;
-        }
-    }
-
-    //删除历史记录
-    function delHistory() {
-        var confirmed = confirm('确定要清除历史消息吗？');
-        if (confirmed) {
-            localStorage.removeItem('msgList');
-            localStorage.setItem('msgList', JSON.stringify([])); // 将msgList设置为空数组
-            location.reload(); // 刷新页面
-        }
-    }
-
-    //聊天背景与头像
-    let avatar='https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
-    document.addEventListener('DOMContentLoaded', function () {
-        const imageUpload = document.getElementById('imageUpload');
-        const backgroundImage = document.getElementById('backgroundImage');
-
-        // 每次进入页面时从浏览器缓存中读取背景图片
-        backgroundImage.src=localStorage.getItem('backgroundImage') || '';
-        // const cachedBackground = localStorage.getItem('backgroundImage');
-        // if (cachedBackground) {
-        //     backgroundImage.src = cachedBackground;
-        // }
-        avatar=localStorage.getItem('avatar') || 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
-        // const cachedAvatar = localStorage.getItem('avatar');
-        // if(cachedAvatar){
-        //     avatar=cachedAvatar;
-        // }
-
-        // 监听文件上传变化-背景
-        imageUpload.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function () {
-                    // 设置背景图片
-                    backgroundImage.src = reader.result;
-                    // 将背景图片保存到浏览器缓存中
-                    localStorage.setItem('backgroundImage', reader.result);
-                }
-            }
-        });
-        // 监听文件上传变化-头像
-        editAvatar.addEventListener('change', function () {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = function () {
-                    avatar = reader.result;
-                    localStorage.setItem('avatar', avatar);
-                }
-            }
-            location.reload();
-        });
-    });
-    //恢复默认背景
-    function setDefaultBackground() {
-        backgroundImage.src = '';
-        localStorage.setItem('backgroundImage','');
-        location.reload();
-    }
-    //默认头像
-    function setDefaultAvatar() {
-        avatar='https://piggyyuzai.github.io/KleeWeb/img/welcome.gif';
-        localStorage.setItem('avatar',avatar);
-        location.reload();
-    }
 </script>
 </html>
