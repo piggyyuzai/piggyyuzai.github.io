@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloudinary 图片上传测试</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+<h1>Cloudinary 图片上传测试</h1>
+<input type="file" id="fileInput">
+<button onclick="uploadImage()">上传图片</button>
+<div id="uploadResult"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/js/vendor/jquery.ui.widget.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/js/jquery.iframe-transport.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-file-upload/10.7.0/js/jquery.fileupload.min.js"></script>
+<script>
+  function uploadImage() {
+    var fileInput = document.getElementById('fileInput');
+    var file = fileInput.files[0];
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'yjcsrmx0'); // Replace with your upload preset         khyj99kb
+    formData.append('cloud_name', 'dle2b2uqr'); // Replace with your cloud name              dcwxp0m8g
+
+    $.ajax({
+      url: 'https://api.cloudinary.com/v1_1/dle2b2uqr/image/upload', // Replace with your cloudinary URL
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(data) {
+        console.log('上传成功:', data);
+        document.getElementById('uploadResult').innerHTML = '<img src="' + data.secure_url + '" style="width:100vw;object-fit:cover;">';
+      },
+      error: function(err) {
+        console.error('上传失败:', err);
+        document.getElementById('uploadResult').innerHTML = '<p>上传失败</p>';
+      }
+    });
+  }
+</script>
+</body>
+</html>

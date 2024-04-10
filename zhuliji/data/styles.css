@@ -67,4 +67,7 @@
 }
 .icon {
 }
+.paragraph {
+  text-align:left;
+}
 textarea, select, input, button { outline: none; }
