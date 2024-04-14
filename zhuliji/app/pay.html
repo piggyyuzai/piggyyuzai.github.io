@@ -16,7 +16,7 @@
   <div class="back-button" onclick="javascript:history.back()">
     <img src="./image/back.png" alt="返回">
   </div>
-  <div>购物车</div>
+  <div>订单详情</div>
 </div>
 
 <!-- 中间内容区 -->
@@ -39,25 +39,12 @@
       </div>
     </div>
   </div>
-
-<!-- 底部选项卡 -->
-<div class="tab-bar">
-  <a href="./index.html" class="tab-item">
-    <img src="./image/11.png" alt="home">
-    <span>首页</span>
-  </a>
-  <a href="./cate.html" class="tab-item">
-    <img src="./image/21.png" alt="cate">
-    <span>分类</span>
-  </a>
-  <a href="./cart.html" class="tab-item active">
-    <img src="./image/32.png" alt="cart">
-    <span>购物车</span>
-  </a>
-  <a href="./user.html" class="tab-item">
-    <img src="./image/41.png" alt="user">
-    <span>我的</span>
-  </a>
 </div>
+
+  <div class="cart-footer" style="background-color:#f0f0f0;bottom:0;">
+    <div style="color:red;font-weight:bold;">总计：170￥</div>
+    <button onclick="alert('支付成功')" style="width:100px;height:100%;position:absolute;right:50px;background-color:#07379C;color:white;border:none;cursor:pointer;">支付</button>
+  </div>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 .slideshow-container {
     position: relative;
-    max-width: 1000px;
+    max-width: 600px;
     margin: auto;
 }
 .slideshow-container img {
@@ -29,7 +29,6 @@
     background-color: rgba(0, 0, 0, 0.6);
     color:white;
 }
-
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
@@ -39,6 +38,28 @@
     to {opacity: 1}
 }
 
+.search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:-40px;padding: 5px;
+}
+.search-text{
+    text-decoration:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    width: 100%;
+    max-width: 600px;
+    color: #aaa;
+    text-align: center;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+}
+.search img{
+    height:14px;width:14px;margin-right:5px;
+}
 
 .goods-list{
     display: flex;

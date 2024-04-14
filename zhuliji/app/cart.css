@@ -2,7 +2,7 @@
     margin-right: 10px;
 }
 .cart-list {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #e5e5e5;
     padding: 10px;
     display: flex;
     align-items: center;
@@ -42,7 +42,7 @@
     bottom: 60px;
     left: -10px;
     width: 100%;
-    padding: 10px 30px 10px 20px;
+    padding: 10px 30px 10px 30px;
     background-color: #07379C;
     color: white;
     z-index: 1000;
@@ -52,12 +52,12 @@
 
 .cart-total-price {
     position: absolute;
-    right:100px;
+    right:120px;
 }
 .cart-footer img{
     width:30px;
     height:30px;
     position: absolute;
-    right:50px;
+    right:70px;
     cursor: pointer;//变手
 }
