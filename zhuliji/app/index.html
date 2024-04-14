@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <title>注礼记</title>
+  <link rel="shortcut icon" href="./image/zhuliji.jpg">
+  <link rel="apple-touch-icon" href="./image/zhuliji.jpg">
+  <link rel="stylesheet" href="./common.css">
+  <link rel="stylesheet" href="./index.css">
+  <script src="./common.js"></script>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+<div class="top-bar">
+  <div class="back-button">
+    <img src="./image/back.png" alt="返回">
+  </div>
+  <div>注礼记</div>
+</div>
+
+<!-- 中间内容区 -->
+<div class="container">
+  <div class="slideshow-container">
+    <div class="mySlides fade">
+      <img src="./image/b1.jpg" style="width:100%">
+    </div>
+    <div class="mySlides fade">
+      <img src="./image/b2.jpg" style="width:100%">
+    </div>
+    <div class="mySlides fade">
+      <img src="./image/b3.jpg" style="width:100%">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+</div>
+
+<div class="search" style="margin-top:-40px;padding: 5px;">
+  <a href="search/search" class="search-text" style="text-decoration:none;display: flex; justify-content: center; align-items: center; height: 20px; color: #aaa; text-align: center; border: 1px solid #aaa; border-radius: 20px;">
+    <img src='./image/search.png' style="height:14px;width:14px;margin-right:5px;">
+    搜 索
+  </a>
+</div>
+
+<div class="goods-list">
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g1.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g2.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g3.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g4.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g5.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g6.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/g7.jpg"><div>韵味杭州礼盒</div><div>258￥</div></a>
+  </div>
+  <div class="goods">
+    <a href="./details/details"><img src="./image/zhuliji.jpg"><div>联系我们</div><div>专属定制</div></a>
+  </div>
+
+</div>
+<!-- 底部选项卡 -->
+<div class="tab-bar">
+  <a href="./index.html" class="tab-item active">
+    <img src="./image/12.png" alt="home">
+    <span>首页</span>
+  </a>
+  <a href="./cate.html" class="tab-item">
+    <img src="./image/21.png" alt="cate">
+    <span>分类</span>
+  </a>
+  <a href="./cart.html" class="tab-item">
+    <img src="./image/31.png" alt="cart">
+    <span>购物车</span>
+  </a>
+  <a href="./user.html" class="tab-item">
+    <img src="./image/41.png" alt="user">
+    <span>我的</span>
+  </a>
+</div>
+</body>
+<script>
+  var slideIndex = 0;
+  showSlides();
+
+  function plusSlides(n) {
+    showSlides(slideIndex += n);
+  }
+
+  function showSlides() {
+    var i;
+    var slides = document.getElementsByClassName("mySlides");
+    if (slideIndex >= slides.length) {slideIndex = 0}
+    if (slideIndex < 0) {slideIndex = slides.length - 1}
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex].style.display = "block";
+    slideIndex++;
+    setTimeout(showSlides, 2000); // 切换时间间隔为 2 秒
+  }
+</script>
+</html>
