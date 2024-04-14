@@ -56,7 +56,7 @@
     <input type="checkbox" class="total-select" onclick="selectAll(this)">
     <div>全选</div>
     <div class="cart-total-price">￥0</div>
-    <button>去支付</button>
+    <button id="goToPayButton" onclick="goToPay()">去支付</button>
   </div>
 </div>
 <!-- 底部选项卡 -->
@@ -117,7 +117,7 @@
   }
 
   function deleteList(button) {
-    let cartList = button.parentElement.parentElement;
+    let cartList = button.parentElement.parentElement.parentElement;
     cartList.remove();
     if (document.querySelectorAll('.cart-list').length === 0) {
       document.querySelector('.container').innerHTML = '<div style="text-align:center;color:#888;margin-top:20px;">购物车为空~</div>';
@@ -144,6 +144,21 @@
 
     // 更新全选按钮状态
     document.querySelector('.total-select').checked = allSelected;
+  }
+  function goToPay() {
+    // Gather selected items
+    let selectedItems = document.querySelectorAll('.cart-list input:checked');
+    if (selectedItems.length === 0) {
+      // No item is selected, display an alert or handle the scenario as needed
+      alert('请选择至少一个商品进行支付！');
+    } else {
+      // At least one item is selected, navigate to the payment page with selected items
+      // Construct the URL with selected items (you can use query parameters or other methods)
+      let selectedItemsIds = Array.from(selectedItems).map(item => item.parentElement.getAttribute('data-index'));
+      let selectedItemsUrl = './pay.html?selected=' + selectedItemsIds.join(',');
+      // Navigate to the payment page
+      window.location.href = selectedItemsUrl;
+    }
   }
 </script>
 </html>
