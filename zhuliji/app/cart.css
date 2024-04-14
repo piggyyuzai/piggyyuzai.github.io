@@ -1,5 +1,5 @@
 .container input{
-    margin:0 20px 0 10px;
+    margin-right: 10px;
 }
 .cart-list {
     border-bottom: 1px solid #ccc;
@@ -38,24 +38,26 @@
     right: 20px;
 }
 .cart-footer {
-    position: absolute;
+    position: fixed;
     bottom: 60px;
-    width: 90%;
-    padding: 10px;
-    margin-top: 20px;
+    left: -10px;
+    width: 100%;
+    padding: 10px 30px 10px 20px;
+    background-color: #07379C;
+    color: white;
+    z-index: 1000;
     display: flex;
     align-items: center;
 }
+
 .cart-total-price {
-    margin-left: auto;
+    position: absolute;
+    right:100px;
 }
-.cart-footer button{
-    width:80px;
-    height:35px;
-    margin-left: 10px;
-    background-color: #07379C;
-    color: white;
-    border: none;
-    border-radius: 5px;
+.cart-footer img{
+    width:30px;
+    height:30px;
+    position: absolute;
+    right:50px;
     cursor: pointer;//变手
 }
