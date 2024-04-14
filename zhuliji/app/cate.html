@@ -7,6 +7,7 @@
   <link rel="shortcut icon" href="./image/zhuliji.jpg">
   <link rel="apple-touch-icon" href="./image/zhuliji.jpg">
   <link rel="stylesheet" href="./common.css">
+  <link rel="stylesheet" href="./cate.css">
   <script src="./common.js"></script>
 </head>
 <body>
@@ -20,25 +21,48 @@
 
 <!-- 中间内容区 -->
 <div class="container">
-  <!-- 这里放置你的内容 -->
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <p>这是中间内容区域，可以滑动</p>
-  <img src="./image/11.png" style="width:40px;">
-  <img src="./image/11.png" style="width:40px;">
-  <img src="./image/11.png" style="width:40px;">
-  <img src="./image/11.png">
-  <img src="./image/11.png">
-  <img src="./image/11.png">
-  <img src="./image/11.png">
-  <img src="./image/11.png">
+  <div class="sidebar">
+    <a href="#" onclick="showCategory('festival')" id="festival-link">佳节</a>
+    <a href="#" onclick="showCategory('city')" id="city-link">城市</a>
+    <a href="#" onclick="showCategory('wedding')" id="wedding-link">婚礼</a>
+    <a href="#" onclick="showCategory('birthday')" id="birthday-link">生日</a>
+    <a href="#" onclick="showCategory('move')" id="move-link">乔迁</a>
+    <a href="#" onclick="showCategory('year')" id="year-link">年会</a>
+    <a href="#" onclick="showCategory('other')" id="other-link">其他</a>
+    <!-- 添加更多类别 -->
+  </div>
+
+  <div class="content">
+    <div id="festival" style="display:none;">
+      <h2>电子产品</h2>
+      <p>这里是电子产品的内容。</p>
+    </div>
+    <div id="city" style="display:none;">
+      <h2>服装</h2>
+      <p>这里是服装的内容。</p>
+    </div>
+    <div id="wedding" style="display:none;">
+      <h2>图书</h2>
+      <p>这里是图书的内容。</p>
+    </div>
+    <div id="birthday" style="display:none;">
+      <h2>图书</h2>
+      <p>这里是图书的内容。</p>
+    </div>
+    <div id="move" style="display:none;">
+      <h2>图书</h2>
+      <p>这里是图书的内容。</p>
+    </div>
+    <div id="year" style="display:none;">
+      <h2>图书</h2>
+      <p>这里是图书的内容。</p>
+    </div>
+    <div id="other" style="display:none;">
+      <h2>图书</h2>
+      <p>这里是图书的内容。</p>
+    </div>
+  </div>
+
 </div>
 
 <!-- 底部选项卡 -->
@@ -61,4 +85,29 @@
   </a>
 </div>
 </body>
+<script>
+  function showCategory(category) {
+    var categories = ['festival','city','wedding','birthday','move','year','other'];
+    for (var i = 0; i < categories.length; i++) {
+      var categoryDiv = document.getElementById(categories[i]);
+      var categoryLink = document.getElementById(categories[i] + '-link');
+      if (category === categories[i]) {
+        categoryDiv.style.display = 'block';
+        categoryLink.style.fontWeight = 'bold';
+        categoryLink.style.color = '#07379C';
+        categoryLink.style.borderLeft = '3px solid #07379C';
+      } else {
+        categoryDiv.style.display = 'none';
+        categoryLink.style.fontWeight = 'normal';
+        categoryLink.style.color = '#000';
+        categoryLink.style.borderLeft = 'none';
+      }
+    }
+  }
+
+  // 页面加载时默认选中服装类别
+  window.onload = function() {
+    showCategory('festival');
+  };
+</script>
 </html>
