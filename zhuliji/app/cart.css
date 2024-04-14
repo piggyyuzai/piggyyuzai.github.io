@@ -5,25 +5,31 @@
     align-items: center;
 }
 .cart-thumb {
-    width: 100px;
-    height: 100px;
-    margin-right: 10px;
+    width: 80px;
+    height: 80px;
+    margin-right: 30px;
 }
 .cart-pro-name {
-    flex: 1;
+    display: inline-block;
+
 }
 .cart-pro-price {
-    margin-right: 20px;
+    display: inline-block;
+    position: absolute;
+    right: 20px;
 }
 .cart-count-box {
     display: flex;
     align-items: center;
 }
 .cart-count-num {
+    display: inline-block;
     margin: 0 10px;
 }
 .cart-del {
     cursor: pointer;
+    position: absolute;
+    right: 20px;
 }
 .cart-footer {
     position: absolute;
@@ -34,71 +40,9 @@
     display: flex;
     align-items: center;
 }
-.cart-toatl-price {
+.cart-total-price {
     margin-left: auto;
 }
 .container input{
-    margin:0 10px 0;
-}
-
-
-/* CSS 样式 */
-/* 复选框容器样式 */
-.custom-checkbox {
-    display: inline-block;
-    position: relative;
-    padding-left: 25px; /* 调整左侧空白以容纳复选框和描述文本 */
-    margin-right: 15px; /* 可根据需要调整右侧空白 */
-    cursor: pointer;
-    user-select: none; /* 防止文字被选中 */
-}
-
-/* 自定义复选框样式 */
-.checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 20px;
-    width: 20px;
-    background-color: #eee; /* 未选中状态的背景色 */
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* 选中状态的复选框样式 */
-.custom-checkbox input:checked ~ .checkmark {
-    background-color: #2196F3; /* 选中状态的背景色 */
-}
-
-/* 创建复选框内的对号 */
-.checkmark:after {
-    content: "";
-    position: absolute;
-    display: none;
-}
-
-/* 选中状态下的对号样式 */
-.custom-checkbox input:checked ~ .checkmark:after {
-    display: block;
-}
-
-/* 对号的样式 */
-.checkmark:after {
-    left: 7px;
-    top: 3px;
-    width: 5px;
-    height: 10px;
-    border: solid white;
-    border-width: 0 2px 2px 0;
-    transform: rotate(45deg);
-}
-
-/* 文字描述样式 */
-.custom-checkbox input {
-    display: none; /* 隐藏原始复选框 */
-}
-
-/* 当鼠标悬停时改变复选框样式 */
-.custom-checkbox:hover .checkmark {
-    background-color: #ccc;
+    margin:0 20px 0;
 }

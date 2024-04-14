@@ -27,13 +27,13 @@
       <img class="cart-thumb" src="./image/g1.jpg">
       <div class="cart-pro-info">
         <div class="cart-pro-name">粽横四海礼盒</div>
-        <div class="cart-pro-price">98￥</div>
+        <div class="cart-pro-price">￥98</div>
         <div class="cart-count-box">
           <div class="cart-count-down" onclick="minusCount(this)">-</div>
           <div class="cart-count-num">1</div>
           <div class="cart-count-add" onclick="addCount(this)">+</div>
+          <div class="cart-del" onclick="deleteList(this)">×</div>
         </div>
-        <div class="cart-del" onclick="deleteList(this)">×</div>
       </div>
     </div>
     <div class="cart-list" data-index="1">
@@ -41,25 +41,21 @@
       <img class="cart-thumb" src="./image/g4.jpg">
       <div class="cart-pro-info">
         <div class="cart-pro-name">盲盒喜糖</div>
-        <div class="cart-pro-price">18￥</div>
+        <div class="cart-pro-price">￥18</div>
         <div class="cart-count-box">
           <div class="cart-count-down" onclick="minusCount(this)">-</div>
           <div class="cart-count-num">4</div>
           <div class="cart-count-add" onclick="addCount(this)">+</div>
+          <div class="cart-del" onclick="deleteList(this)">×</div>
         </div>
-        <div class="cart-del" onclick="deleteList(this)">×</div>
       </div>
     </div>
   </div>
-  <label class="custom-checkbox">
-    <input type="checkbox">
-    <span class="checkmark"></span>
-    文字描述
-  </label>
+
   <div class="cart-footer">
     <input type="checkbox" class="total-select" onclick="selectAll(this)">
     <div>全选</div>
-    <div class="cart-toatl-price">￥0</div>
+    <div class="cart-total-price">￥0</div>
   </div>
 </div>
 <!-- 底部选项卡 -->
@@ -135,7 +131,7 @@
     for (let i = 0; i < carts.length; i++) {
       let cart = carts[i];
       if (cart.querySelector('.cart-pro-select').checked) {
-        let price = parseFloat(cart.querySelector('.cart-pro-price').textContent);
+        let price = parseFloat(cart.querySelector('.cart-pro-price').textContent.substring(1));
         let count = parseInt(cart.querySelector('.cart-count-num').textContent);
         totalPrice += price * count;
       } else {
@@ -143,7 +139,7 @@
       }
     }
 
-    document.querySelector('.cart-toatl-price').textContent = '￥' + totalPrice.toFixed(0);
+    document.querySelector('.cart-total-price').textContent = '￥' + totalPrice.toFixed(0);
 
     // 更新全选按钮状态
     document.querySelector('.total-select').checked = allSelected;
