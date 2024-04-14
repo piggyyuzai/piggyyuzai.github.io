@@ -31,9 +31,25 @@ body {
     width: 100%;
 }
 .title{
+    display: block;
+    position: relative;
     text-align: center;
     font-weight: bolder;
     color: #07379C;
+}
+.title span:before, .title span:after {
+    content: '';
+    position: absolute;   /*定位背景横线的位置*/
+    top: 50%;
+    background: #07379C;   /*背景横线颜色*/
+    width: 40%;            /*单侧横线的长度*/
+    height: 2px;
+}
+.title span:before {
+    left: 0%;              /*调整背景横线的左右距离*/
+}
+.title span:after {
+    right: 0%;
 }
 
 .good{
@@ -45,4 +61,12 @@ body {
 .good img{
     width: 50px;
     height: 50px;
+}
+.good a{
+    font-size: 12px;
+    text-decoration:none;
+    text-align: center;
+    color:#000000;
+    width: 100px;
+    height: 100px;
 }
