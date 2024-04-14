@@ -9,33 +9,21 @@
     <link rel="stylesheet" href="./common.css">
     <script src="./common.js"></script>
 </head>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }
-    #screen-width {
-        font-size: 24px;
-        margin-top: 50px;
-    }
-</style>
 <body>
 <!-- 顶部导航栏 -->
 <div class="top-bar">
-    <div>我的</div>
+    <div class="back-button" onclick="javascript:history.back()">
+        <img src="./image/back.png" alt="返回">
+    </div>
+    <div>基础</div>
 </div>
 
-<h1>屏幕宽度</h1>
-<div id="screen-width"></div>
+<div class="container">
+    <h1>基础</h1>
+    <h1>基础</h1>
+    <h1>基础</h1>
+</div>
 
-<script>
-    // 获取屏幕宽度
-    var screenWidth = window.innerWidth;
-
-    // 将屏幕宽度显示在页面上
-    var screenWidthElement = document.getElementById('screen-width');
-    screenWidthElement.innerHTML = '屏幕宽度：' + screenWidth + ' 像素';
-</script>
 
 <!-- 底部选项卡 -->
 <div class="tab-bar">
