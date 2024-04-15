@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="./image/zhuliji.jpg">
     <link rel="apple-touch-icon" href="./image/zhuliji.jpg">
     <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./user.css">
     <script src="./common.js"></script>
 </head>
 <style>
@@ -25,17 +26,37 @@
     <div>我的</div>
 </div>
 
-<h1>屏幕宽度</h1>
-<div id="screen-width"></div>
+<div class="container">
+    <div style="background-color: #07379C;display: flex; align-items: center;padding: 20px;">
+        <img src="./image/me.jpg" style="width: 60px;height: 60px;border-radius: 30px;">
+        <div style="color: white;font-size: 20px;margin-left: 20px;">用户23465311</div>
+    </div>
+    <div style="background-color: #fafafa;">
+        <div class="info">
+            <div>我的订单</div><p>查看全部订单 &#10095;</p>
+        </div>
+        <div class="info">
+            <div>挨个尬舞爱国v饿啊</div>
+        </div>
+        <div class="info">
+            <div>我的售后</div><p>查看售后详情 &#10095;</p>
+        </div>
+        <div style="height: 10px;background-color: #e7e7e7;"></div>
+        <div class="info">
+            <img src="./image/location.png">
+            <div>我的地址</div><p>&#10095;</p>
+        </div>
+        <div class="info">
+            <img src="./image/service.png">
+            <div>定制|客服</div><p>&#10095;</p>
+        </div>
+        <div class="info">
+            <img src="./image/about.png">
+            <div>关于我们</div><p>&#10095;</p>
+        </div>
+    </div>
+</div>
 
-<script>
-    // 获取屏幕宽度
-    var screenWidth = window.innerWidth;
-
-    // 将屏幕宽度显示在页面上
-    var screenWidthElement = document.getElementById('screen-width');
-    screenWidthElement.innerHTML = '屏幕宽度：' + screenWidth + ' 像素';
-</script>
 
 <!-- 底部选项卡 -->
 <div class="tab-bar">
