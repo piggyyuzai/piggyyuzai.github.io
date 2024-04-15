@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <title>注礼记</title>
+  <link rel="shortcut icon" href="../images/zhuliji.jpg">
+  <link rel="apple-touch-icon" href="../images/zhuliji.jpg">
+  <link rel="stylesheet" href="../../chat/chat.css">
+</head>
+
+<body>
+<img src="" id="backgroundImage" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:100vh;object-fit:cover;/*自适应*/z-index:-1;">
+<div class="chat-box">
+  <div class="web-tittle" style="background-color: #07379C;color: white;height: 50px;">
+<!--    <img src="./image/back.png">-->
+    <p onclick="javascript:history.back()" style="font-size: 16px;">&#10094;</p>
+    <p style="font-size: 16px;">注礼记AI智能客服助手</p>
+  </div>
+  <div class="chat-container" id="chat-container"></div>
+  <div class="message-input">
+    <input type="text" id="messageInput" placeholder="向注礼记AI智能客服助手提问...">
+    <button id="send-button" onclick="sendMessage()" style="background-color:#07379C;">发送</button>
+  </div>
+  <a style="text-align:center;font-size:12px;color:#5b5b5b;background-color:#f5f5f5;"> &copy; 注礼记. All Rights Reserved. </a>
+</div>
+</body>
+<script>
+  //enter发送
+  messageInput.addEventListener("keypress",function (event) {
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+  })
+  addMessage('',new Date().toLocaleString());
+  //消息列表
+  let msgList = [{role:'assistant',content:'欢迎使用注礼记，我是您的AI智能客服助手，您可以向我咨询以下内容：' +
+            '\n<li>公司网址及相关信息</li><li>礼盒定制业务</li>' +
+            '<li>了解传统节日</li><li>其他</li>'},];
+  // Display initial messages
+  msgList.forEach(msg => {
+    addMessage(msg.role, msg.content);
+  });
+
+  // 在页面加载时从本地存储加载历史消息
+  window.onload = function() {
+
+  };
+
+  function addMessage(role, content) {
+    const chatContainer = document.getElementById('chat-container');
+    const messageDiv = document.createElement('div');
+    //判断是提示还是消息
+    if (role === '') {
+      //提示
+      messageDiv.classList.add('message-divider');
+      messageDiv.textContent = content;
+      chatContainer.appendChild(messageDiv);
+    } else {
+      //消息
+      messageDiv.classList.add('message', role);
+      content = content.replace(/\n/g, '<br>');
+      messageDiv.innerHTML = `<img src="${role === 'user' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/zhuliji/images/zhuliji.jpg'}">
+                                    ${content}`;
+      // <strong>${role}: </strong>${content}`;
+      chatContainer.appendChild(messageDiv);
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+
+      // 为message设置唯一标识符
+      const messageId = 'message-' + Date.now() + '-' + Math.random();
+      messageDiv.dataset.messageId = messageId;
+      return messageId;
+    }
+  }
+
+  //发送消息
+  function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
+    const messageContent = messageInput.value.trim();
+    if (messageContent !== '') {
+      const newMsg = { role: 'user', content: messageContent };
+      addMessage('user', messageContent);
+      msgList.push(newMsg);//确认消息不违规，加入列表
+      messageInput.value = '';
+      //思考提示
+      const thinking = addMessage('assistant', '注礼记AI智能客服助手在思考，请稍等...');//思考提示
+      //post
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer Link_D0p6K71X31nSGnsqoBJvuNE0zSALVDeY2N00cvLKWs'
+        },
+        //body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: messageContent }] })
+        body: JSON.stringify({ app_code: 'eEQIbrKe', messages: msgList.slice(-10) })//取最后10项，联系上下文
+      };
+      fetch('https://api.link-ai.chat/v1/chat/completions', options)
+              .then(response => response.json())
+              .then(response => {
+                const replyContent = response.choices[0].message.content;
+                const replyMsg = { role: 'assistant', content: replyContent };
+                hideMessage(thinking); // 隐藏思考提示
+                msgList.push(replyMsg);
+                addMessage('assistant', replyContent);
+              })
+              .catch(error => {
+                hideMessage(thinking); // 隐藏思考提示
+                addMessage('assistant','消息发送失败或涉及违规、敏感等信息');
+              });
+    }
+  }
+
+  //隐藏消息
+  function hideMessage(messageId) {
+    // 根据唯一标识符找到对应的消息元素
+    const messageElement = document.querySelector(`[data-message-id="${messageId}"]`);
+    if (messageElement) {
+      // 设置消息元素的样式为隐藏
+      messageElement.style.display = 'none';
+    }
+  }
+
+
+</script>
+</html>

@@ -1,0 +1,15 @@
+.top-tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f1f1f1;
+    padding: 10px 0;
+}
+
+.top-tabs a {
+    text-decoration: none;
+    color: #000;
+    padding: 5px 15px;
+    border-bottom: 2px solid transparent;
+}
+

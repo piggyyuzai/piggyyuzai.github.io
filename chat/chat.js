@@ -71,6 +71,7 @@ function addMessage(role, content) {
     } else {
         //消息
         messageDiv.classList.add('message', role);
+        content = content.replace(/\n/g, '<br>');
         let processedContent = content.replace(/```([\s\S]+?)```/g, function(match, p1) {
             return '<code>' + p1.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>';
         });

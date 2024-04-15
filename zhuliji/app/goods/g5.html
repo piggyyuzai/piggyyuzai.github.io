@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <title>注礼记</title>
+  <link rel="shortcut icon" href="../image/zhuliji.jpg">
+  <link rel="apple-touch-icon" href="../image/zhuliji.jpg">
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="./goods.css">
+  <script src="../common.js"></script>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+<div class="top-bar">
+  <div class="back-button" onclick="javascript:history.back()">
+    <img src="../image/back.png" alt="返回">
+  </div>
+  <div>商品详情</div>
+</div>
+
+<div class="container">
+  <div style="display: flex; flex-direction: column; align-items: center;margin: 20px 0 20px 0;">
+    <img src="../image/g5.jpg" style="width: 60%;">
+    <div style="width: 80%;height: 40px;background-color: #07379C;border-radius: 20px;border: none;display: flex;align-items: center;justify-content: center;margin: 10px;color: white;font-size: 14px;">
+      <div>数量</div>
+      <div style="margin: 0 10px 0 20px;">-</div>
+      <div>1351</div>
+      <div style="margin: 0 20px 0 10px;">+</div>
+      <div>加入购物车</div>
+      <img src="../image/cart1.png" style="width: 1.5em;height: 1.5em;margin-left:10px;">
+      <img src="../image/cart2.png" style="position: absolute;right:20px;top:60px;width:40px;height:40px;">
+    </div>
+    <div style="font-size: 12px;">货量充足</div>
+    <div style="font-weight: bold;margin: 5px 0 5px 0 ;">百業興旺礼盒</div>
+    <div>198￥</div>
+  </div>
+  <div class="top-tabs">
+    <a href="#" onclick="showCategory('detail')" id="detail-link">商品详情</a>
+    <a href="#" onclick="showCategory('customization')" id="customization-link">定制选配</a>
+    <a href="#" onclick="showCategory('review')" id="review-link">商品评价</a>
+  </div>
+
+  <div class="content">
+    <div id="detail">
+      <img src="./image/g51.jpg" style="width: 100%;">
+      <img src="./image/g52.jpg" style="width: 100%;">
+      <img src="./image/g53.jpg" style="width: 100%;">
+      <img src="./image/g54.jpg" style="width: 100%;">
+      <p>
+        万物复苏 百业兴旺｜原创新年文创礼盒<br>
+        带着对新一年的憧憬和希望<br>
+        我们推出了这款文创新年礼盒<br>
+        内搭产品<br>
+        ❶招财貔恘摆件/香插<br>❷漏斗陶瓷杯<br>❸香盘<br>❹澳洲檀香<br>❺新年红包🧧（在隐藏的盒盖哦）
+      </p>
+    </div>
+    <div id="customization">
+
+      <img src="../image/g1.jpg" style="width: 100%;">
+    </div>
+    <div id="review">
+
+      <img src="../image/g2.jpg" style="width: 100%;">
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script>
+  function showCategory(category) {
+    var categories = ['detail','customization','review'];
+    for (var i = 0; i < categories.length; i++) {
+      var categoryDiv = document.getElementById(categories[i]);
+      var categoryLink = document.getElementById(categories[i] + '-link');
+      if (category === categories[i]) {
+        categoryDiv.style.display = 'block';
+        categoryLink.style.fontWeight = 'bold';
+        categoryLink.style.color = '#07379C';
+        categoryLink.style.borderBottom = '3px solid #07379C';
+      } else {
+        categoryDiv.style.display = 'none';
+        categoryLink.style.fontWeight = 'normal';
+        categoryLink.style.color = '#000';
+        categoryLink.style.borderBottom = 'none';
+      }
+    }
+  }
+
+  // 页面加载时默认选中服装类别
+  window.onload = function() {
+    showCategory('detail');
+  };
+</script>
+</html>

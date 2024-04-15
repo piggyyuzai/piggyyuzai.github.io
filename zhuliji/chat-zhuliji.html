@@ -11,12 +11,6 @@
 
 <body>
 <img src="" id="backgroundImage" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:100vh;object-fit:cover;/*自适应*/z-index:-1;">
-<!--<div style="z-index:999;position:fixed;bottom:30px;left:30px;height:60px;width:60px;background-color:#07379C;border-radius:50%;cursor:pointer;display:flex;flex-direction:column;justify-content:center;align-items:center;">-->
-<!--    <img src="./images/disgn/u87.png" style="width:26px;height:26px;filter:brightness(0) invert(1);">-->
-<!--    <a href="./chat-zhuliji.html" style="color:#ffffff;text-decoration:none;font-size:12px;">-->
-<!--        AI客服-->
-<!--    </a>-->
-<!--</div>-->
 <div class="chat-box">
     <div class="web-tittle">
         <img src="./images/zhuliji.jpg">
@@ -37,8 +31,11 @@
             sendMessage();
         }
     })
+    addMessage('',new Date().toLocaleString());
     //消息列表
-    let msgList = [];
+    let msgList = [{role:'assistant',content:'欢迎使用注礼记，我是您的AI智能客服助手，您可以向我咨询以下内容：' +
+                           '\n<li>公司网址及相关信息</li><li>礼盒定制业务</li>' +
+                           '<li>了解传统节日</li><li>其他</li>'},];
     // Display initial messages
     msgList.forEach(msg => {
         addMessage(msg.role, msg.content);
@@ -46,29 +43,8 @@
 
     // 在页面加载时从本地存储加载历史消息
     window.onload = function() {
-        //页面加载
-        // var loader = document.querySelector('.loader-container');
-        // loader.style.display = 'none';
 
-        const savedMsgList = JSON.parse(localStorage.getItem('msgList'));
-        if (savedMsgList) {
-            msgList = savedMsgList;
-            msgList.forEach(msg => {
-                addMessage(msg.role, msg.content);
-            });
-            addMessage('','以上为历史消息');
-        }
-        //每次重新进入对话，则显示当前日期和时间
-        const currentDate = new Date().toLocaleString();
-        addMessage('',currentDate);
-        addMessage('assistant','欢迎使用注礼记，我是您的AI智能客服助手，您可以咨询我公司信息及传统节日的相关内容。');
-        newmsgList=[];//窗口消息
     };
-
-    // 在发送消息时保存消息列表到本地存储
-    function saveMessagesToLocalStorage() {
-        localStorage.setItem('msgList', JSON.stringify(msgList));
-    }
 
     function addMessage(role, content) {
         const chatContainer = document.getElementById('chat-container');
@@ -82,6 +58,7 @@
         } else {
             //消息
             messageDiv.classList.add('message', role);
+            content = content.replace(/\n/g, '<br>');
             messageDiv.innerHTML = `<img src="${role === 'user' ? 'https://piggyyuzai.github.io/KleeWeb/img/welcome.gif' : 'https://piggyyuzai.github.io/zhuliji/images/zhuliji.jpg'}">
                                     ${content}`;
                                     // <strong>${role}: </strong>${content}`;
@@ -103,7 +80,6 @@
             const newMsg = { role: 'user', content: messageContent };
             addMessage('user', messageContent);
             msgList.push(newMsg);//确认消息不违规，加入列表
-            newmsgList.push(newMsg);//确认消息不违规，加入列表
             messageInput.value = '';
             //思考提示
             const thinking = addMessage('assistant', '注礼记AI智能客服助手在思考，请稍等...');//思考提示
@@ -115,7 +91,7 @@
                     Authorization: 'Bearer Link_D0p6K71X31nSGnsqoBJvuNE0zSALVDeY2N00cvLKWs'
                 },
                 //body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: messageContent }] })
-                body: JSON.stringify({ app_code: 'eEQIbrKe', messages: newmsgList.slice(-10) })//取最后10项，联系上下文
+                body: JSON.stringify({ app_code: 'eEQIbrKe', messages: msgList.slice(-10) })//取最后10项，联系上下文
             };
             fetch('https://api.link-ai.chat/v1/chat/completions', options)
                 .then(response => response.json())
@@ -124,18 +100,11 @@
                     const replyMsg = { role: 'assistant', content: replyContent };
                     hideMessage(thinking); // 隐藏思考提示
                     msgList.push(replyMsg);
-                    newmsgList.push(replyMsg);
                     addMessage('assistant', replyContent);
-                    saveMessagesToLocalStorage(); // 在接收到回复后保存消息到本地存储
                 })
                 .catch(error => {
-                    // console.error('Error sending message:', error);
-                    // addMessage('reply','Error sending message:'+errorString);
                     hideMessage(thinking); // 隐藏思考提示
                     addMessage('assistant','消息发送失败或涉及违规、敏感等信息');
-                    // const errMsg = { role: 'assistant', content: '消息发送失败或涉及违规、敏感等信息' };
-                    // msgList.push(errMsg)
-                    // saveMessagesToLocalStorage();
                 });
         }
     }
