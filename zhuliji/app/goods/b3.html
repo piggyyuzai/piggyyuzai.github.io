@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <title>注礼记</title>
+    <link rel="shortcut icon" href="../image/zhuliji.jpg">
+    <link rel="apple-touch-icon" href="../image/zhuliji.jpg">
+    <link rel="stylesheet" href="../common.css">
+    <link rel="stylesheet" href="./goods.css">
+    <script src="../common.js"></script>
+    <script src="./goods.js"></script>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+<div class="top-bar">
+    <div class="back-button" onclick="javascript:history.back()">
+        <img src="../image/back.png" alt="返回">
+    </div>
+    <div>商品详情</div>
+</div>
+
+<div class="container">
+    <div class="head">
+        <img src="./image/b3.jpg" style="width: 60%;">
+        <div class="butt">
+            <div>数量</div>
+            <div onclick="decreaseQuantity()" style="margin: 0 10px 0;cursor: pointer;">-</div>
+            <div id="quantity">1</div>
+            <div onclick="increaseQuantity()" style="margin: 0 20px 0 10px;cursor: pointer;">+</div>
+            <div onclick="addToCart()" style="cursor: pointer;">加入购物车</div>
+            <img src="../image/cart1.png" style="width:1.5em;height:1.5em;margin-left:10px;">
+            <img src="../image/cart2.png" style="position:absolute;right:20px;top:60px;width:40px;height:40px;">
+            <div id="cartCount"></div>
+        </div>
+        <div style="font-size: 12px;">货量充足</div>
+        <div style="font-weight: bold;margin: 5px 0 5px 0 ;">一本上海礼盒</div>
+        <div>198￥</div>
+    </div>
+    <div style="background-color: #fafafa;">
+        <div class="info" style="border-top: 1px solid #cccccc;border-bottom: none;">
+            <img src="../image/deliver.png">
+            <div style="color: #07379C;">48小时内发货</div>
+        </div>
+        <div class="info" style="margin-top: -10px;">
+            <div style="color: #868686;margin-left:40px;font-size:14px;">浙江杭州 快递:免运费</div>
+        </div>
+        <div class="info">
+            <img src="../image/like.png">
+            <div style="color: #868686;">7天无理由</div><p>&#10095;</p>
+        </div>
+        <div class="info">
+            <img src="../image/cust.png">
+            <div style="color: #868686;">定制选配</div><p>&#10095;</p>
+        </div>
+    </div>
+    <div class="detail">
+        <div class="title">商品详情</div>
+        <img src="./image/b31.jpg">
+        <img src="./image/b32.jpg">
+        <img src="./image/b33.jpg">
+        <p>
+            海派文化 中西交会｜原创上海文创礼盒<br>
+            展现上海的城市魅力<br>
+            我们推出了这款文创上海礼盒<br>
+            内搭产品<br>
+            ❶茶叶1盒<br>❷上海主题糕点<br>❸上海主题手绘本<br>❹上海市花白玉兰茶宠<br>
+        </p>
+    </div>
+
+</div>
+
+
+</body>
+<script>
+
+</script>
+</html>
