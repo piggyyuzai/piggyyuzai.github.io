@@ -131,4 +131,19 @@
     showCategory('festival');
   };
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var goodDivs = document.querySelectorAll(".good");
+
+    goodDivs.forEach(function(goodDiv) {
+      if (goodDiv.children.length === 0) {
+        // var placeholder = document.createElement("div");
+        // placeholder.textContent = "敬请期待";
+        // goodDiv.appendChild(placeholder);
+        // placeholder.style.color = "#999";
+        goodDiv.innerHTML += '<div style="color:#999;">敬请期待</div>';
+      }
+    });
+  });
+</script>
 </html>
