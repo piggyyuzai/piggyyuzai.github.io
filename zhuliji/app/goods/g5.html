@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="../common.css">
   <link rel="stylesheet" href="./goods.css">
   <script src="../common.js"></script>
+  <script src="./goods.js"></script>
 </head>
 <body>
 <!-- 顶部导航栏 -->
@@ -20,44 +21,45 @@
 </div>
 
 <div class="container">
-  <div style="display: flex; flex-direction: column; align-items: center;margin: 20px 0 20px 0;">
-    <img src="../image/g5.jpg" style="width: 60%;">
-    <div style="width: 80%;height: 40px;background-color: #07379C;border-radius: 20px;border: none;display: flex;align-items: center;justify-content: center;margin: 10px;color: white;font-size: 14px;">
+  <div class="head">
+    <img src="./image/g5.jpg" style="width: 60%;">
+    <div class="butt">
       <div>数量</div>
-      <div style="margin: 0 10px 0;">-</div>
-      <div>1351</div>
-      <div style="margin: 0 20px 0 10px;">+</div>
-      <div>加入购物车</div>
-      <img src="../image/cart1.png" style="width: 1.5em;height: 1.5em;margin-left:10px;">
-      <img src="../image/cart2.png" style="position: absolute;right:20px;top:60px;width:40px;height:40px;">
+      <div onclick="decreaseQuantity()" style="margin: 0 10px 0;cursor: pointer;">-</div>
+      <div id="quantity">1</div>
+      <div onclick="increaseQuantity()" style="margin: 0 20px 0 10px;cursor: pointer;">+</div>
+      <div onclick="addToCart()" style="cursor: pointer;">加入购物车</div>
+      <img src="../image/cart1.png" style="width:1.5em;height:1.5em;margin-left:10px;">
+      <img src="../image/cart2.png" style="position:absolute;right:20px;top:60px;width:40px;height:40px;">
+      <div id="cartCount"></div>
     </div>
     <div style="font-size: 12px;">货量充足</div>
     <div style="font-weight: bold;margin: 5px 0 5px 0 ;">百業興旺礼盒</div>
     <div>198￥</div>
   </div>
-  <div>
-    <div style="width: 100%;height: 30px;padding: 2px 20px; display: flex; align-items: center;">
-      <img src="../image/deliver.png" style="width: 20px;height: 20px;margin: 10px;">
-      <div>48小时内发货</div>
-      <p style="position: absolute;right: 20px;">&#10095;</p>
+  <div style="background-color: #fafafa;">
+    <div class="info" style="border-top: 1px solid #cccccc;border-bottom: none;">
+      <img src="../image/deliver.png">
+      <div style="color: #07379C;">48小时内发货</div>
     </div>
-    <div style="width: 100%;height: 30px;padding: 2px 20px; display: flex; align-items: center;">
-      <img src="../image/like.png" style="width: 20px;height: 20px;margin: 10px;">
-      <div>7天无理由</div>
-      <p style="position: absolute;right: 20px;">&#10095;</p>
+    <div class="info" style="margin-top: -10px;">
+      <div style="color: #868686;margin-left:40px;font-size:14px;">浙江杭州 快递:免运费</div>
     </div>
-    <div style="width: 100%;height: 30px;padding: 2px 20px; display: flex; align-items: center;">
-      <img src="../image/cust.png" style="width: 20px;height: 20px;margin: 10px;">
-      <div>定制选配</div>
-      <p style="position: absolute;right: 20px;">&#10095;</p>
+    <div class="info">
+      <img src="../image/like.png">
+      <div style="color: #868686;">7天无理由</div><p>&#10095;</p>
+    </div>
+    <div class="info">
+      <img src="../image/cust.png">
+      <div style="color: #868686;">定制选配</div><p>&#10095;</p>
     </div>
   </div>
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <div style="color: #07379C;font-weight: bold;font-size: 20px;margin-bottom: 10px;">商品详情</div>
-    <img src="./image/g51.jpg" style="width: 100%;">
-    <img src="./image/g52.jpg" style="width: 100%;">
-    <img src="./image/g53.jpg" style="width: 100%;">
-    <img src="./image/g54.jpg" style="width: 100%;">
+  <div class="detail">
+    <div class="title">商品详情</div>
+    <img src="./image/g51.jpg">
+    <img src="./image/g52.jpg">
+    <img src="./image/g53.jpg">
+    <img src="./image/g54.jpg">
     <p>
       万物复苏 百业兴旺｜原创新年文创礼盒<br>
       带着对新一年的憧憬和希望<br>
