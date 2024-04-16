@@ -1,37 +1,37 @@
-li{
-    float: left;
-    list-style: none;
-}
-.box{
-    width: 700px;
-    overflow: hidden;
-    position: relative;
-    height: 360px;
-    margin-left: 300px;
-}
-.box img{
-    width: 700px;
-    height: 360px;
-}
-ul{
-    width: 2100px;
-    height: 360px;
-    position: absolute;
-    left: 0;
-    top: 0;
-    animation: myanimation 8s infinite;
-}
-@keyframes myanimation {
-    0%,25%{
-        left: 0;
-    }
-    35%,60%{
-        left: -700px;
-    }
-    70%,90%{
-        left: -1400px;
-    }
-}
+/*li{*/
+/*    float: left;*/
+/*    list-style: none;*/
+/*}*/
+/*.box{*/
+/*    width: 700px;*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*    height: 360px;*/
+/*    margin-left: 300px;*/
+/*}*/
+/*.box img{*/
+/*    width: 700px;*/
+/*    height: 360px;*/
+/*}*/
+/*ul{*/
+/*    width: 2100px;*/
+/*    height: 360px;*/
+/*    position: absolute;*/
+/*    left: 0;*/
+/*    top: 0;*/
+/*    animation: myanimation 8s infinite;*/
+/*}*/
+/*@keyframes myanimation {*/
+/*    0%,25%{*/
+/*        left: 0;*/
+/*    }*/
+/*    35%,60%{*/
+/*        left: -700px;*/
+/*    }*/
+/*    70%,90%{*/
+/*        left: -1400px;*/
+/*    }*/
+/*}*/
 
 .slideshow-container {
     position: relative;

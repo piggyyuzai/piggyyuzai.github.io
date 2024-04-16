@@ -1,5 +1,3 @@
-// JavaScript File: shopping.js
-
 // 初始化商品数量
 var quantity = 1;
 // 初始化购物车数量

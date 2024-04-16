@@ -1,97 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>轮播图</title>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-        }
-        li{
-            float: left;
-            list-style: none;
-        }
-        .box{
-            width: 700px;
-            overflow: hidden;
-            position: relative;
-            height: 360px;
-            margin-left: 300px;
-        }
-        .box img{
-            width: 700px;
-            height: 360px;
-        }
-        ul{
-            width: 2100px;
-            height: 360px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            animation: myanimation 8s infinite;
-        }
-        @keyframes myanimation {
-            0%,25%{
-                left: 0;
-            }
-            35%,60%{
-                left: -700px;
-            }
-            70%,90%{
-                left: -1400px;
-            }
-        }
-
-        .prev, .next {
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            width: auto;
-            padding: 16px;
-            margin-top: -22px;
-            color: #888;
-            font-weight: bold;
-            font-size: 18px;
-            transition: 0.6s ease;
-            border-radius: 0 3px 3px 0;
-        }
-        .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-        .prev:hover, .next:hover {
-            background-color: rgba(0, 0, 0, 0.6);
-            color:white;
-        }
-
-        .fade {
-            animation-name: fade;
-            animation-duration: 1.5s;
-        }
-        @keyframes fade {
-            from {opacity: .4}
-            to {opacity: 1}
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>注礼记</title>
+    <link rel="shortcut icon" href="./image/zhuliji.jpg">
+    <link rel="apple-touch-icon" href="./image/zhuliji.jpg">
+    <link rel="stylesheet" href="./common.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./goods/goods.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="./common.js" defer></script>
 </head>
 <body>
-<div class="box">
-    <ul>
-        <li>
-            <img src="./image/b1.jpg" alt="">
-        </li>
-        <li>
-            <img src="./image/b2.jpg" alt="">
-        </li>
-        <li>
-            <img src="./image/b3.jpg" alt="">
-        </li>
-    </ul>
 
-</div>
-    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+<div class="goods-list"></div>
+
+
 </body>
 </html>

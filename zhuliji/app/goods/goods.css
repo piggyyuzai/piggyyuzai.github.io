@@ -67,6 +67,12 @@
     width: 100%;
     max-width: 500px;
 }
+.cart1{
+    width:1.5em;height:1.5em;margin-left:10px;
+}
+.cart2{
+    position:absolute;right:20px;top:60px;width:40px;height:40px;
+}
 .title{
     color: #07379C;
     font-weight: bold;

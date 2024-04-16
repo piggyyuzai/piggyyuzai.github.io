@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+  <title>注礼记</title>
+  <link rel="shortcut icon" href="../image/zhuliji.jpg">
+  <link rel="apple-touch-icon" href="../image/zhuliji.jpg">
+  <link rel="stylesheet" href="../common.css">
+  <link rel="stylesheet" href="./goods.css">
+  <script src="../common.js"></script>
+  <script src="./goods.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+<div class="top-bar">
+  <div class="back-button" onclick="javascript:history.back()">
+    <img src="../image/back.png" alt="返回">
+  </div>
+  <div>商品详情</div>
+</div>
+
+<div class="container">
+  <div class="head">
+    <img src="./image/a1.jpg" style="width: 60%;">
+    <div class="goods-img"></div>
+    <div class="goods-detail"></div>
+    <div class="butt">
+      <div>数量</div>
+      <div onclick="decreaseQuantity()" style="margin: 0 10px 0;cursor: pointer;">-</div>
+      <div id="quantity">1</div>
+      <div onclick="increaseQuantity()" style="margin: 0 20px 0 10px;cursor: pointer;">+</div>
+      <div onclick="addToCart()" style="cursor: pointer;">加入购物车</div>
+      <img src="../image/cart1.png" class="cart1">
+      <img src="../image/cart2.png" class="cart2">
+      <div id="cartCount"></div>
+    </div>
+    <div style="font-size: 12px;">货量充足</div>
+    <div style="font-weight: bold;margin: 5px 0 5px 0 ;">粽横四海礼盒</div>
+    <div>158￥</div>
+  </div>
+  <div style="background-color: #fafafa;">
+    <div class="info" style="border-top: 1px solid #cccccc;border-bottom: none;">
+      <img src="../image/deliver.png">
+      <div style="color: #07379C;">48小时内发货</div>
+    </div>
+    <div class="info" style="margin-top: -10px;">
+      <div style="margin-left:30px;font-size:14px;">浙江杭州 快递:免运费</div>
+    </div>
+    <div class="info">
+      <img src="../image/like.png">
+      <div>7天无理由</div><p>&#10095;</p>
+    </div>
+    <a class="info" href="../chat.html">
+      <img src="../image/cust.png">
+      <div>定制选配</div><p>&#10095;</p>
+    </a>
+  </div>
+  <div class="detail">
+    <div class="title">商品详情</div>
+    <img src="./image/a11.jpg">
+    <img src="./image/a12.jpg">
+    <img src="./image/a13.jpg">
+    <p>
+      龍粽登场 粽横四海｜原创端午文创礼盒<br>
+      端午历处草木繁盛的时节<br>
+      挂艾叶趋吉避凶择箬叶以粽为礼文化为媒<br>
+      层叠交错的绿不规则的植物纹样<br>
+      甄心之赠与重要的人<br>
+      ❶粽子<br>❷咸鸭蛋<br>❸黄酒<br>❹艾叶<br>
+    </p>
+  </div>
+
+</div>
+
+
+</body>
+<script>
+
+</script>
+</html>
