@@ -73,8 +73,11 @@ function addMessage(role, content) {
         messageDiv.classList.add('message', role);
         content = content.replace(/\n/g, '<br>');
         let processedContent = content.replace(/```([\s\S]+?)```/g, function(match, p1) {
-            return '<code>' + p1.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</code>';
+            let codeBlock = p1.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            codeBlock = codeBlock.replace(/&lt;br&gt;/g, '\n'); // 将 <br> 替换为换行符
+            return '<code>' + codeBlock + '</code>';
         });
+
         messageDiv.innerHTML = `<img src="${role === 'user' ? avatar : 'https://piggyyuzai.github.io/piggy.jpg'}">
                                 ${processedContent}`;
         chatContainer.appendChild(messageDiv);
