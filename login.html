@@ -6,11 +6,8 @@
   <title>Login Page</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
   <link rel="stylesheet" href="./styles/login.css">
-  <script src="./scripts/login.js"></script>
-
 </head>
 <body>
-<!-- partial:index.partial.html -->
 <form class="form" onsubmit="return false" autocomplete="off">
   <div class="form-inner">
     <h2>User Login</h2>
@@ -25,6 +22,7 @@
         <input type="text" id="login-username" data-lpignore="true"/>
       </div>
     </div>
+
     <div class="input-wrapper">
       <label for="login-password">Password</label>
       <div class="input-group">
@@ -36,13 +34,34 @@
         <input type="password" id="login-password" data-lpignore="true"/>
       </div>
     </div>
+
     <div class="btn-group">
       <button class="btn btn--primary">Sign in</button>
       <a class="btn--text" href="#0" onclick="alert('你忘了就忘了呗，管我什么事'); return false;">Forgot password?</a>
     </div>
   </div>
 </form>
-<!-- partial -->
-
 </body>
+<script>
+  window.onload = function() {
+    var form = document.querySelector('.form');
+    var usernameInput = document.getElementById('login-username');
+    var passwordInput = document.getElementById('login-password');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // 阻止表单提交
+      var username = usernameInput.value;
+      var password = passwordInput.value;
+      // 进行验证
+      if (username === 'piggyyuzai' && password === 'piggyyuzai') {
+        window.location.href = './book/index.html'; // 验证通过，跳转到index.html页面
+      }
+      else {
+        alert('账号或密码错误'); // 验证失败，弹出提示框
+        //清空输入框
+        usernameInput.value = '';
+        passwordInput.value = '';
+      }
+    });
+  }
+</script>
 </html>
