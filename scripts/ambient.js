@@ -59,12 +59,7 @@ function init() {
   ];
 
   const imagesThree = [
-    {file: "catblob.png",width: 250,height: 250,speed: 24,zIndex: 2,},
-    {file: "down.gif",width: 50,height: 50,speed: 16,zIndex: 3,},
-    {file: "invincible2.gif",width: 200 * (359 / 582),height: 200,speed: 23,zIndex: 2,},
-    {file: "collect_star.gif",width: 150 * (647 / 346),height: 150,speed: 20,zIndex: 2,},
-    {file: "game_play_3.png",width: 250,height: 250 * (640 / 647),speed: 28,zIndex: 1,},
-    {file: "sleep.gif",width: 50,height: 50,speed: 12,zIndex: 3,},
+
   ];
 
   const imagesFour = [

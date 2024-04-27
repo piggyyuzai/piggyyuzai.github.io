@@ -10,14 +10,32 @@
   <link rel="stylesheet" href="../index.css">
   <link rel="stylesheet" href="../goods/goods.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
-  <script src="../common.js" defer></script>
+  <script src="../common.js"></script>
   <script src="../goods/goods.js"></script>
 </head>
 <body>
 
-<div class="goods-list"></div>
+<div class="goods-list">
+  <script id="product-template" type="text/x-handlebars-template">
+    {{#each goods}}
+    <div class="goods">
+      <a href="{{href}}" data-id="{{id}}">
+        <img src="{{image}}" alt="{{name}}">
+        <div>{{{name}}}</div>
+        <div>{{#if price}}{{price}}￥{{else}}{{price}}{{/if}}</div>
+      </a>
+    </div>
+    {{/each}}
+    <div class="goods">
+      <div><a href="../chat.html"><img src="../image/zhuliji.jpg"><div>联系我们</div><div>专属定制</div></a></div>
+    </div>
+  </script>
+</div>
 <div class="goods-detail"></div>
 
 
 </body>
+<script>
+
+</script>
 </html>
