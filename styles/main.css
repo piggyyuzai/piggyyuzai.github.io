@@ -655,18 +655,17 @@ li > a:hover {
 }
 .skill_divs_wrapper {
   height: 50px;
-  width: auto;
-  margin: 10px 17px 0 0;
+  width: 50px;
+  margin: 10px 10px 10px 10px;
   /* border: blue 1px solid; */
 }
 .skill_divs {
   opacity: 0;
   display: flex;
-  display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  /* border: yellow 1px solid; */
+   /*border: yellow 1px solid;*/
 }
 .skill_divs.animate {
   animation: slide_in ease forwards 0.5s;
