@@ -38,8 +38,6 @@
             from { transform: translateY(-2px); }
             to { transform: translateY(2px); }
         }
-        #head{background-image: url('1head.png');display:block;}
-        #meow{background-image: url('1meow.png');display: none;}
         #body {
             z-index: 0;
             width: 150px;
@@ -100,7 +98,6 @@
 
 <div id="cat" onclick="changeHead()">
     <div id="head" class="part"></div>
-    <div id="meow" class="part"></div>
     <div id="body" class="part"></div>
     <div id="tail" class="part"></div>
     <div id="leg-front-left" class="part leg"></div>
@@ -141,11 +138,9 @@
     }
 
     function changeHead() {
-        head.style.display = "none";
-        meow.style.display = "block";
+        head.style.backgroundImage = "url('"+id+"meow.png')";
         setTimeout(function() {
-            head.style.display = "block";
-            meow.style.display = "none";
+            head.style.backgroundImage = "url('"+id+"head.png')";
         }, 500); // 0.5 秒后恢复原来的头部图片
     }
 
