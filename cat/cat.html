@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walking Cat</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #cat {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s ease-in-out;
+        }
+        #head, #body, .leg, #tail {
+            position: absolute;
+        }
+        #head {
+            top: -30px;
+            left: 65px;
+            width:100px;
+            height:auto;
+        }
+        #body {
+            width:150px;
+            height:auto;
+        }
+        #front-left-leg {
+            top: 90px;
+            left: 95px;
+            width:40px;
+            height:auto;
+        }
+        #front-right-leg {
+            top: 100px;
+            left: 80px;
+            width:40px;
+            height:auto;
+        }
+        #back-left-leg {
+            top: 90px;
+            left: 45px;
+            width:40px;
+            height:auto;
+        }
+        #back-right-leg {
+            top: 100px;
+            left: 30px;
+            width:40px;
+            height:auto;
+        }
+        .leg {
+            transform-origin: top center;
+            animation: legSwing 0.5s infinite alternate ease-in-out;
+        }
+        @keyframes legSwing {
+            from { transform: rotate(-20deg); }
+            to { transform: rotate(20deg); }
+        }
+        #tail {
+            top: -30px;
+            left: 0px;
+            width:auto;
+            height:80px;
+            transform-origin: bottom center;
+            animation: tailSwing 1s infinite alternate ease-in-out;
+        }
+        @keyframes tailSwing {
+            from { transform: rotate(-10deg); }
+            to { transform: rotate(-30deg); }
+        }
+    </style>
+</head>
+<body background="ribbon.png">
+<div id="cat">
+    <img id="tail" src="1tail.png" alt="tail">
+    <img id="front-left-leg" class="leg" src="1leg.png" alt="front-left-leg">
+    <img id="back-left-leg" class="leg" src="1leg.png" alt="back-left-leg">
+    <img id="body" src="1body.png" alt="body">
+    <img id="head" src="1head.png" alt="head">
+    <img id="front-right-leg" class="leg" src="1leg.png" alt="front-right-leg">
+    <img id="back-right-leg" class="leg" src="1leg.png" alt="back-right-leg">
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var cat = document.getElementById("cat");
+        var legs = document.querySelectorAll(".leg");
+        var tail = document.getElementById("tail");
+
+        document.addEventListener("click", function(event) {
+            var x = event.clientX;
+            var y = event.clientY;
+
+            // Calculate distance to move
+            var currentX = parseFloat(cat.style.left || "0");
+            var currentY = parseFloat(cat.style.top || "0");
+            var dx = x - currentX;
+            var dy = y - currentY;
+            var distance = Math.sqrt(dx * dx + dy * dy);
+
+            // Calculate duration based on distance
+            var speed = 100; // pixels per second
+            var duration = distance / speed * 1000;
+
+            // Move cat to clicked position
+            cat.style.transitionDuration = duration + "ms";
+            cat.style.left = x + "px";
+            cat.style.top = y + "px";
+
+            // Add swing animation to legs and tail
+            legs.forEach(function(leg, index) {
+                leg.style.animationDelay = ((index===1||index===2) ? "0s" : "0.5s"); // stagger delay for left and right legs
+            });
+            tail.style.animationDelay = "0.25s"; // delay tail swing to sync with legs
+        });
+    });
+</script>
+</body>
+</html>

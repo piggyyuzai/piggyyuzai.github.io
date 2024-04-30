@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cat Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #cat {
+            position: relative;
+            border: 1px solid red;
+        }
+        .part {
+            position: absolute; /* 绝对定位，相对于#cat */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #head,#meow{
+            top: -50px;
+            left: 40px;
+            z-index: 1;
+            width: 100px;
+            height: 100px;
+            background-size: cover; /* 让背景图像自适应大小 */
+            border: 1px solid red;
+        }
+        #head{background-image: url('1head.png');display:block;}
+        #meow{background-image: url('1meow.png');display: none;}
+        #body {
+            z-index: 0;
+            width: 150px;
+            height: 150px;
+            background-image: url('1body.png');
+            background-size: cover; /* 让背景图像自适应大小 */
+            border: 1px solid red;
+        }
+        #tail {
+            top: -70px;
+            left:-60px;
+            z-index: -1;
+            width: 50px;
+            height: 100px;
+            background-image: url('1tail.png');
+            background-repeat: no-repeat;
+            background-size: contain; /* 让背景图像自适应大小 */
+            background-position: right bottom;
+            border: 1px solid red;
+        }
+        .leg {
+            width: 50px;
+            height: 50px;
+            background-image: url('1leg.png');
+            background-size: cover; /* 让背景图像自适应大小 */
+            border: 1px solid red;
+        }
+        #leg-front-left{top: 45px;left: 40px;z-index: -1;}
+        #leg-front-right{top: 50px;left: 30px;z-index: 2;}
+        #leg-back-left{top: 45px;left: -20px;z-index: -1;}
+        #leg-back-right{top: 50px;left: -30px;z-index: 2;}
+    </style>
+</head>
+<body background="ribbon.png">
+<div style="position: absolute; top: 50%; left: 0; width: 100%; border-top: 1px solid red;"></div>
+<div style="position: absolute; top: 0; left: 50%; height: 100%; border-left: 1px solid red;"></div>
+
+<div id="cat" onclick="changeHead()">
+    <div id="head" class="part"></div>
+    <div id="meow" class="part"></div>
+    <div id="body" class="part"></div>
+    <div id="tail" class="part"></div>
+    <div id="leg-front-left" class="part leg"></div>
+    <div id="leg-front-right" class="part leg"></div>
+    <div id="leg-back-left" class="part leg"></div>
+    <div id="leg-back-right" class="part leg"></div>
+</div>
+<button onclick="mirrorCat()" style="position: absolute;top: 10px;right: 10px;">Mirror Cat</button>
+<button onclick="changeCat()" style="position: absolute;top: 50px;right: 10px;">Change Cat</button>
+<div style="position: absolute;top: 70px;right: 10px;" id="test1"></div>
+<script>
+    window.onload = function() {
+        cat();
+    }
+    var id=1;
+    function cat(){
+        head.style.backgroundImage = "url('" + id + "head.png')";
+        meow.style.backgroundImage = "url('" + id + "meow.png')";
+        body.style.backgroundImage = "url('" + id + "body.png')";
+        tail.style.backgroundImage = "url('" + id + "tail.png')";
+        const legFrontLeft = document.getElementById("leg-front-left");
+        const legFrontRight = document.getElementById("leg-front-right");
+        const legBackLeft = document.getElementById("leg-back-left");
+        const legBackRight = document.getElementById("leg-back-right");
+        legFrontLeft.style.backgroundImage = "url('" + id + "leg.png')";
+        legFrontRight.style.backgroundImage = "url('" + id + "leg.png')";
+        legBackLeft.style.backgroundImage = "url('" + id + "leg.png')";
+        legBackRight.style.backgroundImage = "url('" + id + "leg.png')";
+    }
+
+    var testtext=document.getElementById("test1");
+    testtext.innerText="Hello World";
+    function changeCat() {
+        // 生成 1 到 3 之间的随机整数
+        var randomNum = Math.floor(Math.random() * 6) + 1;
+        // var elements = document.querySelectorAll('.part'); // 选择所有带有类名"part"的元素
+        // elements.forEach(function(element) {
+        //     imgs=imgs+element.style.backgroundImage;
+        //     element.style.backgroundImage =  "url('" + randomNum + "head.png')";
+        // });
+        // testtext.innerText=imgs;
+        id=randomNum;
+        cat();
+    }
+
+
+
+
+    function changeHead() {
+        var head = document.getElementById('head');
+        head.style.display = "none";
+        meow.style.display = "block";
+        setTimeout(function() {
+            head.style.display = "block";
+            meow.style.display = "none";
+        }, 500); // 0.5 秒后恢复原来的头部图片
+    }
+
+    var mirrored = false;
+    function mirrorCat() {
+        var cat = document.getElementById('cat');
+        mirrored = !mirrored; // toggle
+        cat.style.transform = mirrored ? "scaleX(-1)" : "none";
+    }
+
+</script>
+</body>
+</html>
