@@ -1,6 +1,6 @@
 *{
     cursor: url('./asset/cursor.png'), auto;
-    border: 1px solid red;
+    /*border: 1px solid red;*/
 }
 body {
     margin: 0;
