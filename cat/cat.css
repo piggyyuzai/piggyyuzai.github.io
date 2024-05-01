@@ -12,8 +12,10 @@ body {
 }
 #cat {
     position: absolute;
-    top: calc(50% - 75px);
-    left: calc(50% - 75px);
+    top: 50%;
+    left: 50%;
+    /*top: calc(50% - 75px);*/
+    /*left: calc(50% - 75px);*/
 }
 .part {
     position: absolute; /* 绝对定位，相对于#cat */
@@ -41,7 +43,7 @@ body {
     width: 50px;
     height: 80px;
     background-repeat: no-repeat;
-    background-size: cover; /* 让背景图像自适应大小 */
+    background-size: contain; /* 让背景图像自适应大小 */
     background-position: right bottom;
     transform-origin: bottom right;
     animation: tailSwing 1s infinite alternate ease-in-out;
