@@ -6,7 +6,7 @@
     <title>Cat Animation</title>
     <style>
         *{
-            cursor: url('cursor.png'), auto;
+            cursor: url('./asset/cursor.png'), auto;
         }
         body {
             margin: 0;
@@ -35,13 +35,13 @@
             background-size: cover; /* 让背景图像自适应大小 */
             border: 1px solid red;
         }
-        #head{background-image: url('asset/1head.png');display:block;}
-        #meow{background-image: url('asset/1meow.png');display: none;}
+        #head{background-image: url('asset/cat/1head.png');display:block;}
+        #meow{background-image: url('asset/cat/1meow.png');display: none;}
         #body {
             z-index: 0;
             width: 150px;
             height: 150px;
-            background-image: url('asset/1body.png');
+            background-image: url('asset/cat/1body.png');
             background-size: cover; /* 让背景图像自适应大小 */
             border: 1px solid red;
         }
@@ -51,7 +51,7 @@
             z-index: -1;
             width: 50px;
             height: 80px;
-            background-image: url('asset/1tail.png');
+            background-image: url('asset/cat/1tail.png');
             background-repeat: no-repeat;
             background-size: contain; /* 让背景图像自适应大小 */
             background-position: right bottom;
@@ -60,7 +60,7 @@
         .leg {
             width: 50px;
             height: 50px;
-            background-image: url('asset/1leg.png');
+            background-image: url('asset/cat/1leg.png');
             background-size: cover; /* 让背景图像自适应大小 */
             border: 1px solid red;
         }
@@ -70,7 +70,7 @@
         #leg-back-right{top: 50px;left: -30px;z-index: 2;}
     </style>
 </head>
-<body background="ribbon.png">
+<body background="./asset/ribbon.png">
 <div style="position: absolute; top: 50%; left: 0; width: 100%; border-top: 1px solid red;"></div>
 <div style="position: absolute; top: 0; left: 50%; height: 100%; border-left: 1px solid red;"></div>
 
@@ -103,7 +103,7 @@
         parts.forEach(function(partId) {
             const part = document.getElementById(partId);
             if (partId.startsWith("leg")) { partId = "leg"; }
-            part.style.backgroundImage = "url('" + id + partId + ".png')";
+            part.style.backgroundImage = "url('./asset/cat/" + id + partId + ".png')";
         });
     }
 

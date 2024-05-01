@@ -1,0 +1,16 @@
+@keyframes headSwing {
+    from { transform: translateY(-2px); }
+    to { transform: translateY(2px); }
+}
+@keyframes bodySwing {
+    from { transform: translateY(-1px); }
+    to { transform: translateY(1px); }
+}
+@keyframes tailSwing {
+    from { transform: rotate(-10deg); }
+    to { transform: rotate(-30deg); }
+}
+@keyframes legSwing {
+    from { transform: rotate(-20deg); }
+    to { transform: rotate(20deg); }
+}

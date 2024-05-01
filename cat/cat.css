@@ -27,20 +27,12 @@ body {
     background-size: cover;
     animation: headSwing 0.5s infinite alternate ease-in-out;
 }
-@keyframes headSwing {
-    from { transform: translateY(-2px); }
-    to { transform: translateY(2px); }
-}
 #body {
     z-index: 0;
     width: 150px;
     height: 150px;
     background-size: cover;
     animation: bodySwing 0.5s infinite alternate ease-in-out;
-}
-@keyframes bodySwing {
-    from { transform: translateY(-1px); }
-    to { transform: translateY(1px); }
 }
 #tail {
     top: -25px;
@@ -49,24 +41,16 @@ body {
     width: 50px;
     height: 80px;
     background-repeat: no-repeat;
-    background-size: contain; /* 让背景图像自适应大小 */
+    background-size: cover; /* 让背景图像自适应大小 */
     background-position: right bottom;
     transform-origin: bottom right;
     animation: tailSwing 1s infinite alternate ease-in-out;
 }
-@keyframes tailSwing {
-    from { transform: rotate(-10deg); }
-    to { transform: rotate(-30deg); }
-}
 .leg {
     width: 50px;
     height: 50px;
-    background-size: cover;
+    background-size: 100% 100%;
     transform-origin: top center;
-}
-@keyframes legSwing {
-    from { transform: rotate(-20deg); }
-    to { transform: rotate(20deg); }
 }
 #leg-front-left{top: 95px;left: 90px;z-index: -1;}
 #leg-front-right{top: 100px;left: 80px;z-index: 2;}
