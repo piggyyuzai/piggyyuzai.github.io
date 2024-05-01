@@ -25,7 +25,7 @@
         .part {
             position: absolute; /* 绝对定位，相对于#cat */
         }
-        #head,#meow{
+        #head {
             top: -30px;
             left: 50px;
             z-index: 1;
@@ -124,7 +124,7 @@
 
     }
     function cat(){
-        const parts = ["head", "meow", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
+        const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
         parts.forEach(function(partId) {
             const part = document.getElementById(partId);
             if (partId.startsWith("leg")) { partId = "leg"; }
