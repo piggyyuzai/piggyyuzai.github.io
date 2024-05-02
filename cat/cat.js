@@ -57,7 +57,7 @@ document.addEventListener('click', function(event) {
     var cat = document.getElementById('cat');
     offsetX = event.clientX - catx;
     offsetY = event.clientY - caty;
-    cat.style.transform = (offsetX < 0) ? "scaleX(-1) translateX(-150px)" : "none";
+    // cat.style.transform = (offsetX < 0) ? "scaleX(-1) translateX(-150px)" : "none";
 
     console.log('向右'+ offsetX + ', 向下'+ offsetY);
     catx = event.clientX;
@@ -73,6 +73,7 @@ document.addEventListener('click', function(event) {
     setTimeout(function() {
         legsAnimation();
     }, duration*0.8);
+
 });
 function cat(){
     const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
