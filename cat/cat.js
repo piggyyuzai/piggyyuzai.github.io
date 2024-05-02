@@ -13,35 +13,6 @@ window.onload = function() {
     catPosition();
 }
 id=1;
-// let catx = 100;
-// let caty = 100;
-// catx = Math.max(-window.innerWidth / 2 + 75, Math.min(window.innerWidth / 2 - 75, catx));
-// caty = Math.max(-window.innerHeight / 2 + 75, Math.min(window.innerHeight / 2 - 75, caty));
-// function catPosition() {
-//     var cat = document.getElementById('cat');
-//     catTop = window.innerHeight / 2 - 75 + caty;
-//     catLeft = window.innerWidth / 2 - 75 + catx;
-//     cat.style.top = catTop + 'px';
-//     cat.style.left = catLeft + 'px';
-// }
-// document.addEventListener('click', function(event) {
-//     var mouseX = event.clientX; // 获取鼠标点击位置相对于浏览器窗口的水平坐标
-//     var mouseY = event.clientY; // 获取鼠标点击位置相对于浏览器窗口的垂直坐标
-//     console.log('catx:'+ catx + ', caty:'+ caty);
-//     console.log('点击位置的坐标：(' + mouseX + ', ' + mouseY + ')');
-//     catx = mouseX - window.innerWidth / 2;
-//     caty = mouseY - window.innerHeight / 2;
-//     console.log('catx:'+ catx + ', caty:'+ caty);
-//
-//     var speed = 100;
-//     var distance = Math.sqrt(catx * catx + caty * caty);
-//     var duration = distance / speed * 1000;
-//
-//     var cat = document.getElementById('cat');
-//     // Move cat to clicked position
-//     cat.style.transitionDuration = duration + "ms";
-//     catPosition();
-// });
 let catx = window.innerWidth / 2 + 0;
 let caty = window.innerHeight / 2 + 0;
 function catPosition() {
