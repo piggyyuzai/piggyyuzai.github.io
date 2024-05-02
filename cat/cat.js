@@ -56,21 +56,21 @@ function catPosition() {
 document.addEventListener('click', function(event) {
     offsetX = event.clientX - catx;
     offsetY = event.clientY - caty;
-    a=1;
-    if(offsetX<0){
-        b=-1;
-        if(a!=b){
-            mirrorCat();
-        }
-        a=b;
-    }
-    if(offsetX>0){
-        b=1;
-        if(a!=b){
-            mirrorCat();
-        }
-        a=b;
-    }
+    // a=1;
+    // if(offsetX<0){
+    //     b=-1;
+    //     if(a!=b){
+    //         mirrorCat();
+    //     }
+    //     a=b;
+    // }
+    // if(offsetX>0){
+    //     b=1;
+    //     if(a!=b){
+    //         mirrorCat();
+    //     }
+    //     a=b;
+    // }
     console.log('offsetX:'+ offsetX + ', offsetY:'+ offsetY);
     catx = event.clientX;
     caty = event.clientY;
