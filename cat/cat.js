@@ -44,10 +44,10 @@ id=1;
 // });
 let catx = window.innerWidth / 2 + 0;
 let caty = window.innerHeight / 2 + 0;
-catx = Math.max(75, Math.min(window.innerWidth - 75, catx));
-caty = Math.max(75, Math.min(window.innerHeight - 75, caty));
 function catPosition() {
     var cat = document.getElementById('cat');
+    catx = Math.max(75, Math.min(window.innerWidth - 75, catx));
+    caty = Math.max(75, Math.min(window.innerHeight - 75, caty));
     catTop = caty - 75;
     catLeft = catx - 75;
     cat.style.top = catTop + 'px';
@@ -118,8 +118,8 @@ function legsAnimation() {
     legs.forEach(function(legId,index) {
         const leg = document.getElementById(legId);
         if (leg.style.animation==='') {
-            leg.style.animation = 'legSwing 1s infinite alternate ease-in-out'; // 开始动画
-            if (index===1||index===2) { leg.style.animationDelay = "-1s"; } //错开
+            leg.style.animation = 'legSwing 0.5s infinite alternate ease-in-out'; // 开始动画
+            if (index===1||index===2) { leg.style.animationDelay = "-0.5s"; } //错开
         } else {
             leg.style.animation = ''; // 停止动画
         }
