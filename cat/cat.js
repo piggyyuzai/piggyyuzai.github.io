@@ -54,24 +54,12 @@ function catPosition() {
     cat.style.left = catLeft + 'px';
 }
 document.addEventListener('click', function(event) {
+    var cat = document.getElementById('cat');
     offsetX = event.clientX - catx;
     offsetY = event.clientY - caty;
-    // a=1;
-    // if(offsetX<0){
-    //     b=-1;
-    //     if(a!=b){
-    //         mirrorCat();
-    //     }
-    //     a=b;
-    // }
-    // if(offsetX>0){
-    //     b=1;
-    //     if(a!=b){
-    //         mirrorCat();
-    //     }
-    //     a=b;
-    // }
-    console.log('offsetX:'+ offsetX + ', offsetY:'+ offsetY);
+    cat.style.transform = (offsetX < 0) ? "scaleX(-1) translateX(-150px)" : "none";
+
+    console.log('向右'+ offsetX + ', 向下'+ offsetY);
     catx = event.clientX;
     caty = event.clientY;
 
@@ -79,8 +67,6 @@ document.addEventListener('click', function(event) {
     distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
     var duration = distance / speed * 1000;
 
-    var cat = document.getElementById('cat');
-    // Move cat to clicked position
     cat.style.transitionDuration = duration + "ms";
     catPosition();
     legsAnimation();
