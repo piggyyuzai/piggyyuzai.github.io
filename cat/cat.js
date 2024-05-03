@@ -24,7 +24,9 @@ function catPosition() {
     cat.style.top = catTop + 'px';
     cat.style.left = catLeft + 'px';
 }
-document.addEventListener('click', function(event) {
+document.addEventListener('click',moveto);
+function moveto(event) {
+    document.removeEventListener('click',moveto);
     var cat = document.getElementById('cat');
     offsetX = event.clientX - catx;
     offsetY = event.clientY - caty;
@@ -43,9 +45,30 @@ document.addEventListener('click', function(event) {
     legsAnimation();
     setTimeout(function() {
         legsAnimation();
+        document.addEventListener('click',moveto);
     }, duration*0.8);
-
-});
+}
+// document.addEventListener('click', function(event) {
+//     var cat = document.getElementById('cat');
+//     offsetX = event.clientX - catx;
+//     offsetY = event.clientY - caty;
+//     // cat.style.transform = (offsetX < 0) ? "scaleX(-1) translateX(-150px)" : "none";
+//
+//     console.log('向右'+ offsetX + ', 向下'+ offsetY);
+//     catx = event.clientX;
+//     caty = event.clientY;
+//
+//     var speed = 100;
+//     distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
+//     var duration = distance / speed * 1000;
+//
+//     cat.style.transitionDuration = duration + "ms";
+//     catPosition();
+//     legsAnimation();
+//     setTimeout(function() {
+//         legsAnimation();
+//     }, duration*0.8);
+// });
 function cat(){
     const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
     parts.forEach(function(partId) {
@@ -55,6 +78,8 @@ function cat(){
     });
 }
 function changeHead() {
+    var meow=new Audio('audio/meow.wav')
+    meow.play();
     head.style.backgroundImage = "url('asset/cat/"+id+"meow.png')";
     setTimeout(function() {
         head.style.backgroundImage = "url('asset/cat/"+id+"head.png')";
