@@ -67,3 +67,5 @@ const productData = {
         image:"",price:"",name:"",infoimg:[],info:""
     }]
 };
+export {productData};
+// import { productData } from './common.js'

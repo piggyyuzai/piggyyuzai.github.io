@@ -51,15 +51,19 @@ function init() {
   ];
 
   const imagesTwo = [
+    {file: "cat.png",width: 150,height: 150,speed: 20,zIndex: 3,},
+    {file: "icon.png",width: 80,height: 80,speed: 25,zIndex: 2,},
+    {file: "cursor.png",width: 30,height: 30,speed: 10,zIndex: 5,},
+    {file: "2meow.png",width: 60,height: 60,speed: 17,zIndex: 1,},
+    {file: "paw.png",width: 40,height: 40,speed: 14,zIndex: 4,},
+  ];
+
+  const imagesThree = [
     {file: "welcome.gif",width: 250,height: 250,speed: 20,zIndex: 2,},
     {file: "klee1.gif",width: 100,height: 100,speed: 30,zIndex: 3,},
     {file: "card_cn.jpg",width: 250,height: 100,speed: 12,zIndex: 1,},
     {file: "1.gif",width: 150,height: 150,speed: 24,zIndex: 2,},
     {file: "5.gif",width: 200,height: 200,speed: 16,zIndex: 3,},
-  ];
-
-  const imagesThree = [
-
   ];
 
   const imagesFour = [
