@@ -1,15 +1,10 @@
 function redBorder() {
-    var elements = document.querySelectorAll('*');
-    for (var i = 0; i < elements.length; i++) {
-        if (elements[i].style.border==='none') {
-            elements[i].style.border = '1px solid red';
-        } else {
-            elements[i].style.border = 'none';
-        }
-    }
+    document.querySelectorAll('*').forEach(function(element) {
+        element.style.border = element.style.border === 'none' ? '1px solid red' : 'none';
+    });
 }
 window.onload = function() {
-    cat();
+    catpart();
     catPosition();
 }
 id=1;
@@ -25,13 +20,18 @@ function catPosition() {
     cat.style.left = catLeft + 'px';
 }
 document.addEventListener('click',moveto);
+dire=1; //方向，1为右，-1为左
 function moveto(event) {
     document.removeEventListener('click',moveto);
     var cat = document.getElementById('cat');
     offsetX = event.clientX - catx;
     offsetY = event.clientY - caty;
-    // cat.style.transform = (offsetX < 0) ? "scaleX(-1) translateX(-150px)" : "none";
-
+    // console.log('前'+ dire);
+    if (dire*offsetX<0) {
+        dire*=-1;
+        mirrorCat();
+    }
+    // console.log('后'+ dire);
     console.log('向右'+ offsetX + ', 向下'+ offsetY);
     catx = event.clientX;
     caty = event.clientY;
@@ -39,37 +39,18 @@ function moveto(event) {
     var speed = 100;
     distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
     var duration = distance / speed * 1000;
-
-    cat.style.transitionDuration = duration + "ms";
-    catPosition();
-    legsAnimation();
     setTimeout(function() {
+        cat.style.transitionDuration = duration + "ms";
+        catPosition();
         legsAnimation();
-        document.addEventListener('click',moveto);
-    }, duration*0.8);
+        setTimeout(function() {
+            legsAnimation();
+            document.addEventListener('click',moveto);
+        }, duration*0.8);
+    },1);
+    cat.style.transitionDuration = 0+"ms";
 }
-// document.addEventListener('click', function(event) {
-//     var cat = document.getElementById('cat');
-//     offsetX = event.clientX - catx;
-//     offsetY = event.clientY - caty;
-//     // cat.style.transform = (offsetX < 0) ? "scaleX(-1) translateX(-150px)" : "none";
-//
-//     console.log('向右'+ offsetX + ', 向下'+ offsetY);
-//     catx = event.clientX;
-//     caty = event.clientY;
-//
-//     var speed = 100;
-//     distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
-//     var duration = distance / speed * 1000;
-//
-//     cat.style.transitionDuration = duration + "ms";
-//     catPosition();
-//     legsAnimation();
-//     setTimeout(function() {
-//         legsAnimation();
-//     }, duration*0.8);
-// });
-function cat(){
+function catpart(){
     const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
     parts.forEach(function(partId) {
         const part = document.getElementById(partId);
@@ -87,7 +68,7 @@ function changeHead() {
 }
 function changeCat() {
     id = Math.floor(Math.random() * 6) + 1;
-    cat();
+    catpart();
 }
 var mirrored = false;
 function mirrorCat() {
@@ -100,11 +81,7 @@ function legsAnimation() {
     const legs = ["leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
     legs.forEach(function(legId,index) {
         const leg = document.getElementById(legId);
-        if (leg.style.animation==='') {
-            leg.style.animation = 'legSwing 0.5s infinite alternate ease-in-out'; // 开始动画
-            if (index===1||index===2) { leg.style.animationDelay = "-0.5s"; } //错开
-        } else {
-            leg.style.animation = ''; // 停止动画
-        }
+        leg.style.animation = leg.style.animation === '' ? 'legSwing 0.5s infinite alternate ease-in-out' : '';
+        if (index === 1 || index === 2) { leg.style.animationDelay = "-0.5s"; }
     });
 }

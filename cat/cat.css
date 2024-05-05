@@ -2,6 +2,9 @@
     cursor: url('./asset/cursor.png'), auto;
     border: 1px solid red;
 }
+#background {
+
+}
 body {
     margin: 0;
     overflow: hidden;
