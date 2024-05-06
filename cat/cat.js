@@ -92,7 +92,7 @@ function selectCats() {
 }
 //随机猫猫
 function randomCat() {
-    id = Math.floor(Math.random() * 6) + 1;
+    id = Math.floor(Math.random() * 8) + 1;
     catpart();
     document.getElementById("select_cat").selectedIndex = 0; // 重置 select cat 选择框
 }
