@@ -11,26 +11,26 @@
     <script src="./cat.js"></script>
 </head>
 <body background="./asset/ribbon.png">
-<div class="sparkle_wrapper"><div class="wrapper">
-<!--<div id="background" style="z-index:-20;width:100%;height:100%;background-image: url('./asset/bear3.png');"></div>-->
-<div style="position: absolute; top: 50%; left: 0; width: 100%;"></div>
-<div style="position: absolute; top: 0; left: 50%; height: 100%;"></div>
+<div class="spark">
+    <!--<div id="background" style="z-index:-20;width:100%;height:100%;background-image: url('./asset/bear3.png');"></div>-->
+    <div style="position: absolute; top: 50%; left: 0; width: 100%;"></div>
+    <div style="position: absolute; top: 0; left: 50%; height: 100%;"></div>
 
-<div id="cat" onclick="changeHead()">
-    <div id="head" class="part"></div>
-    <div id="body" class="part"></div>
-    <div id="tail" class="part"></div>
-    <div id="leg-front-left" class="part leg"></div>
-    <div id="leg-front-right" class="part leg"></div>
-    <div id="leg-back-left" class="part leg"></div>
-    <div id="leg-back-right" class="part leg"></div>
+    <div id="cat" onclick="changeHead()">
+        <div id="head" class="part"></div>
+        <div id="body" class="part"></div>
+        <div id="tail" class="part"></div>
+        <div id="leg-front-left" class="part leg"></div>
+        <div id="leg-front-right" class="part leg"></div>
+        <div id="leg-back-left" class="part leg"></div>
+        <div id="leg-back-right" class="part leg"></div>
+    </div>
+    <button onclick="changeCat()" style="position: absolute;top: 10px;right: 10px;">Change Cat</button>
+    <button onclick="redBorder()" style="position: absolute;top: 50px;right: 10px;">Red Border</button>
+    <!--<button onclick="mirrorCat()" style="position: absolute;top: 10px;right: 10px;">Mirror Cat</button>-->
+    <!--<button onclick="legsAnimation()" style="position: absolute;top: 90px;right: 10px;">Legs Animation</button>-->
+    <!--<div style="position: absolute;top: 90px;right: 10px;" id="test1"></div>-->
 </div>
-<button onclick="changeCat()" style="position: absolute;top: 10px;right: 10px;">Change Cat</button>
-<button onclick="redBorder()" style="position: absolute;top: 50px;right: 10px;">Red Border</button>
-<!--<button onclick="mirrorCat()" style="position: absolute;top: 10px;right: 10px;">Mirror Cat</button>-->
-<!--<button onclick="legsAnimation()" style="position: absolute;top: 90px;right: 10px;">Legs Animation</button>-->
-<!--<div style="position: absolute;top: 90px;right: 10px;" id="test1"></div>-->
-</div></div>
 <script>
     // var testtext=document.getElementById("test1");
     // testtext.innerText="Hello World";

@@ -99,9 +99,8 @@ button:hover::after {
 
 
 
-.sparkle_wrapper{
-}
-.wrapper {
+
+.spark {
     position: absolute;
     top: 0px;
     left: 0px;

@@ -7,7 +7,7 @@ function redBorder() {
 
 //鼠标拖尾
 function spark() {
-    const wrapper = document.querySelector(".sparkle_wrapper");
+    const spark = document.querySelector(".spark");
     const sparkle = (e) => {
         if (Math.random() > 1 / 2) return; // making the sparkle appear 1/2 time
         const randomX = e.clientX + Math.ceil(Math.random() * 40 - 20);
@@ -23,13 +23,13 @@ function spark() {
         newDiv.style.left = `${randomX}px`;
         newDiv.style.top = `${randomY}px`;
         newDiv.style.opacity = `${Math.ceil(Math.random() * 50) * 0.03}`; // 透明度
-        wrapper.appendChild(newDiv);
+        spark.appendChild(newDiv);
 
         setTimeout(() => {
-            wrapper.removeChild(newDiv);
+            spark.removeChild(newDiv);
         }, Math.ceil(Math.random() * 500));
     };
-    ['mousemove', 'touchmove'].forEach(event => wrapper.addEventListener(event, sparkle))
+    ['mousemove', 'touchmove'].forEach(event => spark.addEventListener(event, sparkle))
     // wrapper.addEventListener("mousemove", sparkle);
     // wrapper.addEventListener("touchmove", sparkle);
 }
@@ -85,8 +85,8 @@ function catPosition() {
 document.addEventListener('click',moveto);
 dire=1; //方向，1为右，-1为左
 function moveto(event) {
-    if (!event.target.classList.contains('wrapper')) {
-        return; // 如果点击事件的目标不是 class=wrapper 的元素，则不执行后续操作
+    if (!event.target.classList.contains('spark')) {
+        return; // 如果点击事件的目标不是 class=spark 的元素，则不执行后续操作
     }
     // if (event.target.tagName.toLowerCase() !== 'body') {
     //     return; // 如果点击事件的目标不是 body 元素 背景，则不执行后续操作
