@@ -134,19 +134,23 @@ function moveto(event) {
     var cat = document.getElementById('cat');
     offsetX = event.clientX - catx;
     offsetY = event.clientY - caty;
-    // console.log('前'+ dire);
     if (dire*offsetX<0) {
         dire*=-1;
         mirrorCat();
     }
-    // console.log('后'+ dire);
     console.log('向右'+ offsetX + ', 向下'+ offsetY);
     catx = event.clientX;
     caty = event.clientY;
 
     var speed = 100;
     distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
-    var duration = distance / speed * 1000;
+    var duration = distance / speed * 1000; // 运动时间
+
+    const destination = document.getElementById('destination'); // 显示目的地标点
+    destination.style.display = 'block';
+    destination.style.left = event.clientX - 25 + 'px';
+    destination.style.top = event.clientY - 50 + 'px';
+
     setTimeout(function() {
         cat.style.transitionDuration = duration + "ms";
         catPosition();
@@ -154,6 +158,7 @@ function moveto(event) {
         setTimeout(function() {
             legsAnimation();
             document.addEventListener('click',moveto);
+            destination.style.display = 'none';
         }, duration*0.8);
     },1);
     cat.style.transitionDuration = 0+"ms";
