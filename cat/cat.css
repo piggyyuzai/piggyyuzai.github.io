@@ -62,7 +62,7 @@ body {
 #leg-back-left{top: 95px;left: 30px;z-index: -11;}
 #leg-back-right{top: 100px;left: 20px;z-index: -9;}
 
-/*按钮*/
+/* 按钮 */
 button {
     height: 30px;
     width: 100px;
@@ -95,7 +95,7 @@ button:hover::after {
     animation: buttonshake2 0.3s infinite alternate;
 }
 
-/*鼠标拖尾*/
+/* 鼠标拖尾 */
 .spark {
     position: absolute;
     top: 0px;
@@ -127,21 +127,52 @@ button:hover::after {
     animation: fadeoutgreen 0.5s forwards;
 }
 
-/*下拉框*/
-select {
+/* 下拉框 */
+.select {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 100px;
+    width: 150px;
+}
+.selected {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 30px;
-    color: white;
     background-color: black;
-    border: 1px solid black;
+    color: white;
     border-radius: 0px;
 }
+.select-items {
+    display: none;
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.select-items div {
+    line-height: 30px;
+    text-align: center;
+}
+.select-items div:hover {
+    background-color: #ccc;
+}
+.selected img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+}
+#preview {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 200px;
+    width: 100px;
+    height: 100px;
+}
 
-
-/* 底部选项卡样式 */
+/* 底部选项卡 */
 .tab {
     position: fixed;
     bottom: 10px;

@@ -39,7 +39,7 @@ window.onload = function() {
     catpart();
     catPosition();
     spark();
-    selectCat();
+    selectCats();
 }
 
 
@@ -54,12 +54,40 @@ function catpart(){
     });
 }
 // 选择猫猫
-function selectCat() {
-    document.getElementById("select_cat").addEventListener("change", function () {
-        if (this.value === "select") return;
-        id = this.value;
-        console.log("选择了" + this.options[id].text);
+function selectCats() {
+    var select = document.querySelector('.select');
+    var selectItems = document.querySelector('.select-items');
+
+    select.addEventListener('click', function () {
+        selectItems.style.display = selectItems.style.display === 'none' ? 'block' : 'none';
+    });
+    select.addEventListener('mouseover', function () {
+        selectItems.style.display = 'block';
+    });
+    select.addEventListener('mouseout', function (event) {
+        if (!select.contains(event.relatedTarget)) {
+            selectItems.style.display = 'none';
+        }
+    });
+    selectItems.addEventListener('click', function (event) {
+        var selectedDiv = select.querySelector('.selected');
+        selectedDiv.textContent = event.target.textContent;
+        var img = document.createElement('img');
+        img.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
+        selectedDiv.appendChild(img);
+
+        console.log('选择了' + event.target.textContent + '猫猫');
+        id = event.target.getAttribute('data-value');
         catpart();
+        selectItems.style.display = 'none';
+    });
+    selectItems.addEventListener('mouseover', function (event) {
+        var cat_select = document.getElementById('preview');
+        cat_select.style.display = 'block';
+        cat_select.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
+    });
+    selectItems.addEventListener('mouseout', function (event) {
+        document.getElementById('preview').style.display = 'none';
     });
 }
 //随机猫猫

@@ -36,14 +36,6 @@
         .select-items div:hover {
             background-color: #ccc;
         }
-        .select-items div:hover::after {
-            content: url("./asset/cat/1head.png");
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            width: 20%;
-            height: 20%;
-        }
         .selected img {
             width: 20px;
             height: 20px;
@@ -64,9 +56,10 @@
         <div data-value="3">Cat(?)</div>
         <div data-value="4">Artist</div>
         <div data-value="5">Rainbow</div>
-        <div data-value="5">Sleepy</div>
+        <div data-value="6">Sleepy</div>
     </div>
 </div>
+<img src="" id="cat_select" style="display: none;width: 100px;height: 100px;position: absolute;top: 100px;left: 200px;">
 <script>
     var select = document.querySelector('.select');
     var selectItems = document.querySelector('.select-items');
@@ -83,17 +76,20 @@
         }
     });
     selectItems.addEventListener('click', function(event) {
-        if (event.target.tagName === 'DIV') {
-            var selectedText = event.target.textContent;
-            var selectedValue = event.target.getAttribute('data-value');
-            var selectedDiv = select.querySelector('.selected');
-            selectedDiv.textContent = selectedText;
-
-            var img = document.createElement('img');
-            img.src = './asset/cat/' + selectedValue + 'head.png';
-            selectedDiv.appendChild(img);
-            selectItems.style.display = 'none';
-        }
+        var selectedDiv = select.querySelector('.selected');
+        selectedDiv.textContent = event.target.textContent;
+        var img = document.createElement('img');
+        img.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
+        selectedDiv.appendChild(img);
+        selectItems.style.display = 'none';
+    });
+    selectItems.addEventListener('mouseover', function(event) {
+        var cat_select = document.getElementById('cat_select');
+        cat_select.style.display = 'block';
+        cat_select.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
+    });
+    selectItems.addEventListener('mouseout', function(event) {
+        document.getElementById('cat_select').style.display = 'none';
     });
 </script>
 
