@@ -22,7 +22,7 @@ function spark() {
         // newDiv.classList.add(randomClass[Math.floor(Math.random() * randomClass.length)]);
         newDiv.style.left = `${randomX}px`;
         newDiv.style.top = `${randomY}px`;
-        newDiv.style.opacity = `${Math.ceil(Math.random() * 50) * 0.03}`; // 透明度
+        newDiv.style.opacity = `${Math.ceil(Math.random() * 50) * 0.02}`; // 透明度
         spark.appendChild(newDiv);
 
         setTimeout(() => {
@@ -39,11 +39,12 @@ window.onload = function() {
     catpart();
     catPosition();
     spark();
+    selectCat();
 }
 
 
 //渲染猫猫的各个部分
-id=1;
+id=5;
 function catpart(){
     const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
     parts.forEach(function(partId) {
@@ -52,10 +53,20 @@ function catpart(){
         part.style.backgroundImage = "url('asset/cat/" + id + partId + ".png')";
     });
 }
-//切换猫猫
-function changeCat() {
+// 选择猫猫
+function selectCat() {
+    document.getElementById("select_cat").addEventListener("change", function () {
+        if (this.value === "select") return;
+        id = this.value;
+        console.log("选择了" + this.options[id].text);
+        catpart();
+    });
+}
+//随机猫猫
+function randomCat() {
     id = Math.floor(Math.random() * 6) + 1;
     catpart();
+    document.getElementById("select_cat").selectedIndex = 0; // 重置 select cat 选择框
 }
 //抚摸猫猫，播放喵喵声
 function changeHead() {
@@ -135,3 +146,4 @@ function legsAnimation() {
         if (index === 1 || index === 2) { leg.style.animationDelay = "-0.5s"; }
     });
 }
+
