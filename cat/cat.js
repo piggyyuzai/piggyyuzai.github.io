@@ -1,14 +1,45 @@
-//红边测试
+//测试红边
 function redBorder() {
     document.querySelectorAll('*').forEach(function(element) {
         element.style.border = element.style.border === '1px solid red' ? 'none' : '1px solid red';
     });
 }
+
+//鼠标拖尾
+function spark() {
+    const wrapper = document.querySelector(".sparkle_wrapper");
+    const sparkle = (e) => {
+        if (Math.random() > 1 / 2) return; // making the sparkle appear 1/2 time
+        const randomX = e.clientX + Math.ceil(Math.random() * 40 - 20);
+        const randomY = e.clientY + Math.ceil(Math.random() * 40 - 20);
+        const randomClass = ["frame","fadeout","frame","fadeout","fadeout","fadeout_green",];
+
+        const newDiv = document.createElement("div");
+        ['sparkle_box', randomClass[Math.floor(Math.random() * randomClass.length)]].forEach(className => {
+            newDiv.classList.add(className)
+        })
+        // newDiv.classList.add("ten");
+        // newDiv.classList.add(randomClass[Math.floor(Math.random() * randomClass.length)]);
+        newDiv.style.left = `${randomX}px`;
+        newDiv.style.top = `${randomY}px`;
+        newDiv.style.opacity = `${Math.ceil(Math.random() * 50) * 0.03}`; // 透明度
+        wrapper.appendChild(newDiv);
+
+        setTimeout(() => {
+            wrapper.removeChild(newDiv);
+        }, Math.ceil(Math.random() * 500));
+    };
+    ['mousemove', 'touchmove'].forEach(event => wrapper.addEventListener(event, sparkle))
+    // wrapper.addEventListener("mousemove", sparkle);
+    // wrapper.addEventListener("touchmove", sparkle);
+}
+
+
 window.onload = function() {
     catpart();
     catPosition();
+    spark();
 }
-
 
 
 //渲染猫猫的各个部分
@@ -54,9 +85,12 @@ function catPosition() {
 document.addEventListener('click',moveto);
 dire=1; //方向，1为右，-1为左
 function moveto(event) {
-    if (event.target.tagName.toLowerCase() !== 'body') {
-        return; // 如果点击事件的目标不是 body 元素 背景，则不执行后续操作
+    if (!event.target.classList.contains('wrapper')) {
+        return; // 如果点击事件的目标不是 class=wrapper 的元素，则不执行后续操作
     }
+    // if (event.target.tagName.toLowerCase() !== 'body') {
+    //     return; // 如果点击事件的目标不是 body 元素 背景，则不执行后续操作
+    // }
     document.removeEventListener('click',moveto);
     var cat = document.getElementById('cat');
     offsetX = event.clientX - catx;
