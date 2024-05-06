@@ -55,7 +55,7 @@ function init() {
     {file: "icon.png",width: 80,height: 80,speed: 25,zIndex: 2,},
     {file: "cursor.png",width: 30,height: 30,speed: 10,zIndex: 5,},
     {file: "2meow.png",width: 60,height: 60,speed: 17,zIndex: 1,},
-    {file: "paw.png",width: 40,height: 40,speed: 14,zIndex: 4,},
+    {file: "destination.png",width: 60,height: 60,speed: 14,zIndex: 4,},
   ];
 
   const imagesThree = [
