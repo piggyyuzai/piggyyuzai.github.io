@@ -3,130 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Animation</title>
+    <title>Custom Select with ul and li</title>
     <style>
-        *{
-            cursor: url('./asset/cursor.png'), auto;
+        /* 样式化模拟的 select */
+        .select {
+            position: absolute;
+            top: 50px;
+            left: 10px;
+            width: 150px;
         }
-        body {
-            margin: 0;
-            overflow: hidden;
+        .selected {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 30px;
+            background-color: black;
+            color: white;
+            border-radius: 0px;
         }
-        #cat {
-            position: relative;
-            border: 1px solid red;
+        .select-items {
+            display: none;
+            background-color: white;
+            border: 1px solid #ccc;
+            width: 100%;
+            max-height: 200px;
+            overflow-y: auto;
         }
-        .part {
-            position: absolute; /* 绝对定位，相对于#cat */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+        .select-items div {
+            line-height: 30px;
+            text-align: center;
         }
-        #head,#meow{
-            top: -50px;
-            left: 35px;
-            z-index: 1;
-            width: 100px;
-            height: 100px;
-            background-size: cover; /* 让背景图像自适应大小 */
-            border: 1px solid red;
+        .select-items div:hover {
+            background-color: #ccc;
         }
-        #head{background-image: url('asset/cat/1head.png');display:block;}
-        #meow{background-image: url('asset/cat/1meow.png');display: none;}
-        #body {
-            z-index: 0;
-            width: 150px;
-            height: 150px;
-            background-image: url('asset/cat/1body.png');
-            background-size: cover; /* 让背景图像自适应大小 */
-            border: 1px solid red;
+        .select-items div:hover::after {
+            content: url("./asset/cat/1head.png");
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 20%;
+            height: 20%;
         }
-        #tail {
-            top: -50px;
-            left:-65px;
-            z-index: -1;
-            width: 50px;
-            height: 80px;
-            background-image: url('asset/cat/1tail.png');
-            background-repeat: no-repeat;
-            background-size: contain; /* 让背景图像自适应大小 */
-            background-position: right bottom;
-            border: 1px solid red;
+        .selected img {
+            width: 20px;
+            height: 20px;
+            margin-left: 5px;
         }
-        .leg {
-            width: 50px;
-            height: 50px;
-            background-image: url('asset/cat/1leg.png');
-            background-size: cover; /* 让背景图像自适应大小 */
-            border: 1px solid red;
-        }
-        #leg-front-left{top: 45px;left: 40px;z-index: -1;}
-        #leg-front-right{top: 50px;left: 30px;z-index: 2;}
-        #leg-back-left{top: 45px;left: -20px;z-index: -1;}
-        #leg-back-right{top: 50px;left: -30px;z-index: 2;}
     </style>
 </head>
-<body background="./asset/ribbon.png">
-<div style="position: absolute; top: 50%; left: 0; width: 100%; border-top: 1px solid red;"></div>
-<div style="position: absolute; top: 0; left: 50%; height: 100%; border-left: 1px solid red;"></div>
+<body>
 
-<div id="cat" onclick="changeHead()">
-    <div id="head" class="part"></div>
-    <div id="meow" class="part"></div>
-    <div id="body" class="part"></div>
-    <div id="tail" class="part"></div>
-    <div id="leg-front-left" class="part leg"></div>
-    <div id="leg-front-right" class="part leg"></div>
-    <div id="leg-back-left" class="part leg"></div>
-    <div id="leg-back-right" class="part leg"></div>
+<div class="select">
+    <div class="selected">
+        Select a Cat
+        <img src="./asset/fish.png">
+    </div>
+    <div class="select-items">
+        <div data-value="1">Cloud</div>
+        <div data-value="2">Nerd</div>
+        <div data-value="3">Cat(?)</div>
+        <div data-value="4">Artist</div>
+        <div data-value="5">Rainbow</div>
+        <div data-value="5">Sleepy</div>
+    </div>
 </div>
-<button onclick="mirrorCat()" style="position: absolute;top: 10px;right: 10px;">Mirror Cat</button>
-<button onclick="changeCat()" style="position: absolute;top: 50px;right: 10px;">Change Cat</button>
-<!--<div style="position: absolute;top: 90px;right: 10px;" id="test1"></div>-->
 <script>
-    // var testtext=document.getElementById("test1");
-    // testtext.innerText="Hello World";
-    window.onload = function() {
-        cat();
-    }
-    var id=1;
-    var mirrored = false;
-    var catinfo={
+    var select = document.querySelector('.select');
+    var selectItems = document.querySelector('.select-items');
 
-    }
-    function cat(){
-        const parts = ["head", "meow", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
-        parts.forEach(function(partId) {
-            const part = document.getElementById(partId);
-            if (partId.startsWith("leg")) { partId = "leg"; }
-            part.style.backgroundImage = "url('./asset/cat/" + id + partId + ".png')";
-        });
-    }
+    select.addEventListener('click', function() {
+        selectItems.style.display = selectItems.style.display === 'none' ? 'block' : 'none';
+    });
+    select.addEventListener('mouseover', function() {
+        selectItems.style.display = 'block';
+    });
+    select.addEventListener('mouseout', function(event) {
+        if (!select.contains(event.relatedTarget)) {
+            selectItems.style.display = 'none';
+        }
+    });
+    selectItems.addEventListener('click', function(event) {
+        if (event.target.tagName === 'DIV') {
+            var selectedText = event.target.textContent;
+            var selectedValue = event.target.getAttribute('data-value');
+            var selectedDiv = select.querySelector('.selected');
+            selectedDiv.textContent = selectedText;
 
-    function changeCat() {
-        id = Math.floor(Math.random() * 6) + 1;
-        cat();
-    }
-
-    function changeHead() {
-        head.style.display = "none";
-        meow.style.display = "block";
-        setTimeout(function() {
-            head.style.display = "block";
-            meow.style.display = "none";
-        }, 500); // 0.5 秒后恢复原来的头部图片
-    }
-
-    function mirrorCat() {
-        var cat = document.getElementById('cat');
-        mirrored = !mirrored; // toggle
-        cat.style.transform = mirrored ? "scaleX(-1)" : "none";
-    }
-
+            var img = document.createElement('img');
+            img.src = './asset/cat/' + selectedValue + 'head.png';
+            selectedDiv.appendChild(img);
+            selectItems.style.display = 'none';
+        }
+    });
 </script>
+
+
+
 </body>
 </html>

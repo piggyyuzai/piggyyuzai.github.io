@@ -139,11 +139,34 @@ select {
     border: 1px solid black;
     border-radius: 0px;
 }
-option {
-    /*background-color: #f7f7f7;*/
-    /*color: #333;*/
+
+
+/* 底部选项卡样式 */
+.tab {
+    position: fixed;
+    bottom: 10px;
+    left: calc(50% - 100px);
+    width: 200px;
+    height: 60px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
 }
-option:hover {
-    /*background-color: #ccc;*/
-    /*color: #fff;*/
+.tab-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width:25%;
+    color: white;
+    font-size: 12px;
+    text-decoration: none;
+}
+.tab-item.active {
+    color: #f92d58;
+}
+.tab-item img {
+    width: 24px;
+    height: 24px;
 }

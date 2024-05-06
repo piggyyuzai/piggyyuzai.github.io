@@ -44,7 +44,7 @@ window.onload = function() {
 
 
 //渲染猫猫的各个部分
-id=5;
+id=2;
 function catpart(){
     const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
     parts.forEach(function(partId) {
