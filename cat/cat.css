@@ -1,5 +1,6 @@
 *{
     cursor: url('./asset/cursor.png'), auto;
+    font-family: Arial;
     /*border: 1px solid red;*/
 }
 #background {
@@ -141,7 +142,6 @@ body {
     top: 10px;
     left: 10px;
     width: 100px;
-    font-family: Arial;
     font-size: 13px;
     font-weight: bold;
 }
@@ -213,6 +213,7 @@ body {
     height: 24px;
 }
 
+/* Tip弹出框 */
 #tip {
 }
 .popup-tip{
