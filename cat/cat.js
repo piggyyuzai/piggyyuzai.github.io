@@ -151,10 +151,10 @@ function moveto(x,y,duration) {
     }
     catx = x; caty = y; // 猫猫移动终点
     if (Math.sqrt(offsetX * offsetX + offsetY * offsetY) !== permove) { // 长按鼠标不出现目的地标点
-        destination.style.cssText = `
-        display : block;
-        left : ${x - 25}px;
-        top : ${y - 50}px;`; // 显示目的地 标点
+        destination.style.display = 'block'; // 显示目的地 标点
+        destination.style.top = y - 50 + 'px';
+        destination.style.left = x - 25 + 'px';
+        // destination.style.cssText = `display : block;left : ${x - 25}px;top : ${y - 50}px;`;
     }
 
     setTimeout(function() {
