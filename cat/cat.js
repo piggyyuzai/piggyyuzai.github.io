@@ -41,8 +41,22 @@ function togglePopup() {
 
 // 随机背景
 function randomBg() {
-    img = Math.floor(Math.random() * 6) + 1;
-    document.body.background = "./asset/background/" + img + ".png";
+    random = Math.floor(Math.random() * 16) + 1;
+    var img = new Image();
+    img.src = "./asset/background/" + random + ".png";
+    img.onload = function() {
+        if (this.width < 256) {
+            background2.style.backgroundImage = "url('"+this.src+"')";
+            background2.style.display = 'block';
+            background3.style.display = 'none';
+        } else {
+            background3.src = this.src;
+            background2.style.display = 'none';
+            background3.style.display = 'block';
+        }
+        console.log('随机背景：' + random);
+    }
+    // document.body.background = "./asset/background/" + random + ".png";
 }
 
 window.onload = function() {
