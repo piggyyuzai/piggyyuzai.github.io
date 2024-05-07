@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./action.css">
     <script src="./cat.js"></script>
 </head>
-<body background="./asset/ribbon.png">
+<body background="./asset/background/1.png">
 <div class="spark">
     <!--<div id="background" style="z-index:-20;width:100%;height:100%;background-image: url('./asset/bear3.png');"></div>-->
     <div style="position: absolute; top: 50%; left: 0; width: 100%;"></div>
@@ -26,8 +26,8 @@
         <div id="leg-back-right" class="part leg"></div>
     </div>
     <img id="destination" src="./asset/destination.png">
-    <button onclick="redBorder()" style="position: absolute;top: 10px;right: 10px;">Red Border</button>
-    <button onclick="moveto(window.innerWidth/2,window.innerHeight/2,null)" style="position: absolute;top: 50px;right: 10px;">Reset Cat</button>
+    <button class="button1" onclick="redBorder()" style="position: absolute;top: 10px;right: 10px;">Red Border</button>
+    <button class="button1" onclick="moveto(window.innerWidth/2,window.innerHeight/2,null)" style="position: absolute;top: 50px;right: 10px;">Reset Cat</button>
     <!--<button onclick="mirrorCat()" style="position: absolute;top: 10px;right: 10px;">Mirror Cat</button>-->
     <!--<button onclick="legsAnimation()" style="position: absolute;top: 90px;right: 10px;">Legs Animation</button>-->
     <!--<div style="position: absolute;top: 90px;right: 10px;" id="test1"></div>-->
@@ -66,9 +66,29 @@
         <div class="tab-item">
             <img src="./asset/cat/3head.png"><span>占</span>
         </div>
-        <div class="tab-item">
-            <img src="./asset/cat/4head.png"><span>位</span>
+        <div class="tab-item" onclick="togglePopup()">
+            <img src="./asset/cat/4head.png"><span>Tip</span>
         </div>
+    </div>
+
+    <!-- Tip弹出窗口 -->
+    <div id="tip" style="display:none;">
+        <div class="popup-tip" style="padding:20px;">
+            <span class="close" onclick="togglePopup()" style="position:absolute;top:8px;right:15px;font-size:30px;">&times;</span>
+            <!-- Tip内容 -->
+            <div style="text-align:center;margin-bottom:10px;font-size:20px;font-weight:bold;">Tip</div>
+<!--            <div class="row" style="">-->
+<!--                <img src="./asset/pointer.png" style="width:20px;height:20px;">-->
+<!--                <span>点击屏幕,猫猫会走过去哦</span>-->
+<!--            </div>-->
+<!--            <div class="row" style="">-->
+<!--                <img src="./asset/wasd.png" style="width:40px;height:40px;">-->
+<!--                <span>使用wasd控制猫猫移动</span>-->
+<!--            </div>-->
+            <a href="https://piggyyuzai.github.io" target="_blank" style="position:absolute;bottom:5px;white-space: nowrap;left:50%;transform:translateX(-50%);color:#1d9bf0;font-size:12px;"> &copy; piggyyuzai. All Rights Reserved. </a>
+        </div>
+        <!-- 弹出窗口下方遮罩 -->
+        <div class="overlay" onclick="togglePopup()"></div>
     </div>
 </div>
 </body>

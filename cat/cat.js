@@ -30,8 +30,23 @@ function spark() {
     ['mousemove', 'touchmove'].forEach(event => spark.addEventListener(event, sparkle))
 }
 
+// Tip窗口显示状态
+function togglePopup() {
+    var popup = document.getElementById('tip');
+    var overlay = document.querySelector('.overlay');
+    var isVisible = popup.style.display === 'block';
+    popup.style.display = isVisible ? 'none' : 'block';
+    overlay.style.display = isVisible ? 'none' : 'block';
+}
+
+// 随机背景
+function randomBg() {
+    img = Math.floor(Math.random() * 3) + 1;
+    document.body.background = "./asset/background/" + img + ".png";
+}
 
 window.onload = function() {
+    randomBg();
     catpart();
     catPosition();
     spark();
