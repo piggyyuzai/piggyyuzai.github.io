@@ -41,7 +41,7 @@ function togglePopup() {
 
 // 随机背景
 function randomBg() {
-    random = Math.floor(Math.random() * 16) + 1;
+    random = Math.floor(Math.random() * 19) + 1;
     var img = new Image();
     img.src = "./asset/background/" + random + ".png";
     img.onload = function() {
