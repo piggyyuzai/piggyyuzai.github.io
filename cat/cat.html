@@ -26,8 +26,8 @@
         <div id="leg-back-right" class="part leg"></div>
     </div>
     <img id="destination" src="./asset/destination.png">
-    <button onclick="randomCat()" style="position: absolute;top: 10px;right: 10px;">Random Cat</button>
-    <button onclick="redBorder()" style="position: absolute;top: 50px;right: 10px;">Red Border</button>
+    <button onclick="redBorder()" style="position: absolute;top: 10px;right: 10px;">Red Border</button>
+    <button onclick="moveto(window.innerWidth/2,window.innerHeight/2,null)" style="position: absolute;top: 50px;right: 10px;">Reset Cat</button>
     <!--<button onclick="mirrorCat()" style="position: absolute;top: 10px;right: 10px;">Mirror Cat</button>-->
     <!--<button onclick="legsAnimation()" style="position: absolute;top: 90px;right: 10px;">Legs Animation</button>-->
     <!--<div style="position: absolute;top: 90px;right: 10px;" id="test1"></div>-->
@@ -40,9 +40,10 @@
             <img src="./asset/fish.png">
         </div>
         <div class="select-items">
+            <div>Random</div>
             <div data-value="1">Cloud</div>
             <div data-value="2">Nerd</div>
-            <div data-value="3">Cat(?)</div>
+            <div data-value="3">Corgi</div>
             <div data-value="4">Artist</div>
             <div data-value="5">Rainbow</div>
             <div data-value="6">Sleepy</div>

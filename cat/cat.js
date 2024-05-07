@@ -1,11 +1,11 @@
-//测试红边
+// 测试红边
 function redBorder() {
     document.querySelectorAll('*').forEach(function(element) {
         element.style.border = element.style.border === '1px solid red' ? 'none' : '1px solid red';
     });
 }
 
-//鼠标拖尾
+// 鼠标拖尾
 function spark() {
     const spark = document.querySelector(".spark");
     const sparkle = (e) => {
@@ -13,13 +13,11 @@ function spark() {
         const randomX = e.clientX + Math.ceil(Math.random() * 40 - 20);
         const randomY = e.clientY + Math.ceil(Math.random() * 40 - 20);
         const randomClass = ["frame","fadeout","frame","fadeout","fadeout","fadeout_green",];
-
+        // 随机方块
         const newDiv = document.createElement("div");
         ['sparkle_box', randomClass[Math.floor(Math.random() * randomClass.length)]].forEach(className => {
             newDiv.classList.add(className)
         })
-        // newDiv.classList.add("ten");
-        // newDiv.classList.add(randomClass[Math.floor(Math.random() * randomClass.length)]);
         newDiv.style.left = `${randomX}px`;
         newDiv.style.top = `${randomY}px`;
         newDiv.style.opacity = `${Math.ceil(Math.random() * 50) * 0.02}`; // 透明度
@@ -30,8 +28,6 @@ function spark() {
         }, Math.ceil(Math.random() * 500));
     };
     ['mousemove', 'touchmove'].forEach(event => spark.addEventListener(event, sparkle))
-    // wrapper.addEventListener("mousemove", sparkle);
-    // wrapper.addEventListener("touchmove", sparkle);
 }
 
 
@@ -43,7 +39,7 @@ window.onload = function() {
 }
 
 
-//渲染猫猫的各个部分
+// 渲染猫猫身体各个部分
 id=2;
 function catpart(){
     const parts = ["head", "body", "tail", "leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
@@ -70,33 +66,34 @@ function selectCats() {
         }
     });
     selectItems.addEventListener('click', function (event) {
-        var selectedDiv = select.querySelector('.selected');
-        selectedDiv.textContent = event.target.textContent;
+        id = event.target.getAttribute('data-value'); //更新id
+        var catname = event.target.textContent;
+        console.log('选择了 ' + catname + ' 猫猫');
+
+        var selectedDiv = select.querySelector('.selected'); // 选中项
+        selectedDiv.textContent = catname;
+        if (event.target.textContent === 'Random') { randomCat(); }
         var img = document.createElement('img');
         img.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
         selectedDiv.appendChild(img);
 
-        console.log('选择了' + event.target.textContent + '猫猫');
-        id = event.target.getAttribute('data-value');
         catpart();
         selectItems.style.display = 'none';
     });
     selectItems.addEventListener('mouseover', function (event) {
-        var cat_select = document.getElementById('preview');
-        cat_select.style.display = 'block';
-        cat_select.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
+        preview.style.display = 'block'; // 预览图片
+        preview.src = './asset/cat/' + event.target.getAttribute('data-value') + 'head.png';
     });
     selectItems.addEventListener('mouseout', function (event) {
         document.getElementById('preview').style.display = 'none';
     });
 }
-//随机猫猫
+// 随机猫猫
 function randomCat() {
     id = Math.floor(Math.random() * 10) + 1;
     catpart();
-    document.getElementById("select_cat").selectedIndex = 0; // 重置 select cat 选择框
 }
-//抚摸猫猫，播放喵喵声
+// 抚摸猫猫，播放喵喵声
 function changeHead() {
     var meow=new Audio('audio/meow.wav')
     meow.play();
@@ -108,7 +105,7 @@ function changeHead() {
 
 
 
-//定位猫猫
+// 定位猫猫
 let catx = window.innerWidth / 2 + 0;
 let caty = window.innerHeight / 2 + 0;
 function catPosition() {
@@ -120,63 +117,100 @@ function catPosition() {
     cat.style.top = catTop + 'px';
     cat.style.left = catLeft + 'px';
 }
-//移动
-document.addEventListener('click',moveto);
-dire=1; //方向，1为右，-1为左
-function moveto(event) {
+// 移动
+dire=1; // 方向，1为右，-1为左
+speed = 100; // 移动速度
+moving = false; // 移动状态
+animation = 1; // 腿部动画计数
+function moveto(x,y,duration) {
+    if (moving) { return; }
+    moving = true; // 开始移动
+    offsetX = x - catx; offsetY = y - caty; // 移动距离
+    console.log('向右'+ offsetX + ', 向下'+ offsetY);
+    if (dire*offsetX<0) {
+        dire*=-1;
+        mirrorCat(); // 换向
+    }
+    if (duration === null) {
+        duration = Math.sqrt(offsetX * offsetX + offsetY * offsetY) / speed * 1000; // 运动时间
+    }
+    catx = x; caty = y; // 猫猫移动终点
+    if (Math.sqrt(offsetX * offsetX + offsetY * offsetY) !== permove) { // 长按鼠标不出现目的地标点
+        destination.style.cssText = `
+        display : block;
+        left : ${x - 25}px;
+        top : ${y - 50}px;`; // 显示目的地 标点
+    }
+
+    setTimeout(function() {
+        cat.style.transitionDuration = duration + "ms"; // 运动时间
+        catPosition(); // 更新猫猫位置
+        legsAnimation();
+        mouselegsAnimation(); // 鼠标长按时，设置腿部动画
+        setTimeout(function() { // 到达终点后
+            document.addEventListener('click',click);
+            destination.style.display = 'none';
+            legsAnimation();
+            moving = false; // 移动结束
+        }, duration*0.8);
+    },1);
+    cat.style.transitionDuration = 0+"ms"; // 重置变换时间为0，避免影响下一次运动
+
+    // 键盘长按时，设置腿部动画
+    // 补间动画
+    function mouselegsAnimation() {
+        const legs = ["leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
+        legs.forEach(function(legId,index) {
+            const leg = document.getElementById(legId);
+            if (index === 1 || index === 2) { leg.style.animationDelay = animation * (-0.1)+"s"; } // 错开腿部动画
+            if (index === 0 || index === 3) { leg.style.animationDelay = (animation - 5) * (-0.1)+"s"; } // 错开腿部动画
+        });
+        animation++;
+    }
+}
+// 猫猫换向
+var mirrored = false;
+function mirrorCat() {
+    var cat = document.getElementById('cat');
+    mirrored = !mirrored; // toggle
+    cat.style.transform = mirrored ? "scaleX(-1) translateX(-150px)" : "none"; // 翻转
+}
+// 四肢动作
+function legsAnimation() {
+    const legs = ["leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
+    legs.forEach(function(legId,index) {
+        const leg = document.getElementById(legId);
+        leg.style.animation = leg.style.animation === '' ? 'legSwing 0.5s infinite alternate ease-in-out' : '';
+        if (index === 1 || index === 2) { leg.style.animationDelay = "-0.5s"; } // 错开腿部动画
+    });
+}
+
+
+// 鼠标点击移动
+document.addEventListener('click',click);
+function click(event) {
     if (!event.target.classList.contains('spark')) {
         return; // 如果点击事件的目标不是 class=spark 的元素，则不执行后续操作
     }
     // if (event.target.tagName.toLowerCase() !== 'body') {
     //     return; // 如果点击事件的目标不是 body 元素 背景，则不执行后续操作
     // }
-    document.removeEventListener('click',moveto);
-    var cat = document.getElementById('cat');
-    offsetX = event.clientX - catx;
-    offsetY = event.clientY - caty;
-    if (dire*offsetX<0) {
-        dire*=-1;
-        mirrorCat();
+
+    // legsAnimation();
+    // setTimeout(function() {
+    //     legsAnimation();
+    // }, Math.sqrt((event.clientX-catx) * (event.clientX-catx) + (event.clientY-caty) * (event.clientY-caty)) / speed * 1000 * 0.8);
+    moveto(event.clientX,event.clientY,null);
+}
+// 键盘控制移动
+permove = 10; // 移动距离
+document.addEventListener("keydown", function (event) { //判断按下的键
+    x = catx; y = caty;
+    switch (event.key) {
+        case "w": y -=permove; break;
+        case "a": x -=permove; break;
+        case "d": x +=permove; break;
+        case "s": y +=permove; break;
     }
-    console.log('向右'+ offsetX + ', 向下'+ offsetY);
-    catx = event.clientX;
-    caty = event.clientY;
-
-    var speed = 100;
-    distance = Math.sqrt(offsetX * offsetX + offsetY * offsetY);
-    var duration = distance / speed * 1000; // 运动时间
-
-    const destination = document.getElementById('destination'); // 显示目的地标点
-    destination.style.display = 'block';
-    destination.style.left = event.clientX - 25 + 'px';
-    destination.style.top = event.clientY - 50 + 'px';
-
-    setTimeout(function() {
-        cat.style.transitionDuration = duration + "ms";
-        catPosition();
-        legsAnimation();
-        setTimeout(function() {
-            legsAnimation();
-            document.addEventListener('click',moveto);
-            destination.style.display = 'none';
-        }, duration*0.8);
-    },1);
-    cat.style.transitionDuration = 0+"ms";
-}
-//猫猫换向
-var mirrored = false;
-function mirrorCat() {
-    var cat = document.getElementById('cat');
-    mirrored = !mirrored; // toggle
-    cat.style.transform = mirrored ? "scaleX(-1) translateX(-150px)" : "none";
-}
-//四肢动作
-function legsAnimation() {
-    const legs = ["leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
-    legs.forEach(function(legId,index) {
-        const leg = document.getElementById(legId);
-        leg.style.animation = leg.style.animation === '' ? 'legSwing 0.5s infinite alternate ease-in-out' : '';
-        if (index === 1 || index === 2) { leg.style.animationDelay = "-0.5s"; }
-    });
-}
-
+    moveto(x, y, null);
+});
