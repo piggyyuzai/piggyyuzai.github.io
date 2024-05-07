@@ -239,7 +239,7 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 .tip-button{
     height:25px;
