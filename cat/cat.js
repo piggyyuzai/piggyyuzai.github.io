@@ -73,7 +73,7 @@ function cattalk(){
         fetch('https://api.link-ai.chat/v1/chat/completions', options)
             .then(response => response.json())
             .then(response => {
-                const replymsg = response.choices[0].message.content;
+                const replymsg = response.choices[0].message.content.replace(/\n/g, '<br>'); // 换行符转义
                 msgList.push({ role: 'assistant', content: replymsg });
                 reply.innerHTML = replymsg;
                 paw.style.top = -(reply.clientHeight + 60)+'px'; // 关闭消息按钮位置
