@@ -227,6 +227,7 @@ function mirrorCat() {
     mirrored = !mirrored; // toggle
     cat.style.transform = mirrored ? "scaleX(-1) translateX(-150px)" : "none"; // 翻转
     reply.style.transform = mirrored ? "scaleX(-1)" : "none"; // 翻转
+    paw.style.transform = mirrored ? "scaleX(-1) translateX(328px)" : "none"; // 翻转
 }
 // 四肢动作
 function legsAnimation() {
