@@ -3,6 +3,10 @@
     font-family: Arial;
     /*border: 1px solid red;*/
 }
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+    display: none;
+}
 #background {
 
 }
@@ -62,6 +66,44 @@ body {
 #leg-front-right{top: 100px;left: 80px;z-index: -9;}
 #leg-back-left{top: 95px;left: 30px;z-index: -11;}
 #leg-back-right{top: 100px;left: 20px;z-index: -9;}
+
+/* 消息框 */
+#reply {
+    display:none;
+    width:300px;
+    max-height:100px;
+    position:absolute;
+    bottom:70px;
+    left:-89px;
+    padding:10px;
+    border:4px solid #f92d58;
+    border-radius:10px;
+    color:black;
+    background-color:white;
+    /*background-image:url('./asset/background/6.png');*/
+    overflow-y:scroll;
+}
+#input {
+    display:none;
+    position:absolute;
+    width:300px;
+    height:20px;
+    left:50%;
+    transform:translateX(-50%);
+    bottom:80px;
+    padding:10px;
+    border:4px solid #f92d58;
+    border-radius:10px;
+    color:black;
+    /*background-image:url('./asset/background/6.png');*/
+}
+#paw {
+    display:none;
+    position:relative;
+    left:223px;
+    width:30px;
+    height:30px;
+}
 
 /* 终点 */
 #destination {
@@ -207,6 +249,7 @@ body {
 }
 .tab-item.active {
     color: #f92d58;
+    font-weight: bold;
 }
 .tab-item img {
     width: 24px;

@@ -26,7 +26,11 @@
         <div id="leg-front-right" class="part leg"></div>
         <div id="leg-back-left" class="part leg"></div>
         <div id="leg-back-right" class="part leg"></div>
+        <div id="reply"></div>
+        <img src="./asset/paw.png" id="paw" onclick="reply.style.display='none';paw.style.display='none';">
     </div>
+    <input type="text" id="input" placeholder="向小猫提问..."  onkeypress="if(event.key === 'Enter') {cattalk();}"
+           style="">
     <img id="destination" src="./asset/destination.png">
     <button class="button1" onclick="randomBg()" style="position: absolute;top: 50px;left: 10px;">Random Background</button>
 <!--    <button class="button1" onclick="moveto(window.innerWidth/2,window.innerHeight/2,null)" style="position: absolute;top: 50px;right: 10px;">Reset Cat</button>-->
@@ -56,19 +60,18 @@
         </div>
     </div>
     <img src="" id="preview">
-
     <!-- 底部选项卡 -->
     <div class="tab">
-        <div class="tab-item active">
-            <img src="./asset/cat/1head.png"><span>暂</span>
+        <div class="tab-item">
+            <img src="./asset/cat/1head.png"><span>占</span>
         </div>
         <div class="tab-item">
-            <img src="./asset/cat/2head.png"><span>时</span>
+            <img src="./asset/cat/2head.png"><span>位</span>
         </div>
-        <div class="tab-item">
-            <img src="./asset/cat/3head.png"><span>占</span>
+        <div class="tab-item" onclick="toggleTalk()" id="talk">
+            <img src="./asset/cat/3head.png"><span>Talk</span>
         </div>
-        <div class="tab-item" onclick="togglePopup()">
+        <div class="tab-item" onclick="toggleTip()">
             <img src="./asset/cat/4head.png"><span>Tip</span>
         </div>
     </div>
@@ -76,7 +79,7 @@
     <!-- Tip弹出窗口 -->
     <div id="tip" style="display:none;">
         <div class="popup-tip" style="padding:20px;">
-            <span class="close" onclick="togglePopup()" style="position:absolute;top:8px;right:15px;font-size:30px;">&times;</span>
+            <span class="close" onclick="toggleTip()" style="position:absolute;top:8px;right:15px;font-size:30px;">&times;</span>
             <!-- Tip内容 -->
             <div style="text-align:center;margin-bottom:10px;font-size:20px;font-weight:bold;">Tip</div>
             <div class="row">
@@ -101,7 +104,7 @@
             <a href="https://piggyyuzai.github.io" target="_blank" style="position:absolute;bottom:5px;white-space: nowrap;left:50%;transform:translateX(-50%);color:#1d9bf0;font-size:12px;"> &copy; piggyyuzai. All Rights Reserved. </a>
         </div>
         <!-- 弹出窗口下方遮罩 -->
-        <div class="overlay" onclick="togglePopup()"></div>
+        <div class="overlay" onclick="toggleTip()"></div>
     </div>
 </div>
 </body>

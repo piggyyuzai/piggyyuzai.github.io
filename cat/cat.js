@@ -30,15 +30,6 @@ function spark() {
     ['mousemove', 'touchmove'].forEach(event => spark.addEventListener(event, sparkle))
 }
 
-// Tip窗口显示状态
-function togglePopup() {
-    var popup = document.getElementById('tip');
-    var overlay = document.querySelector('.overlay');
-    var isVisible = popup.style.display === 'block';
-    popup.style.display = isVisible ? 'none' : 'block';
-    overlay.style.display = isVisible ? 'none' : 'block';
-}
-
 // 随机背景
 function randomBg() {
     random = Math.floor(Math.random() * 19) + 1;
@@ -57,6 +48,41 @@ function randomBg() {
         console.log('随机背景：' + random);
     }
     // document.body.background = "./asset/background/" + random + ".png";
+}
+
+// 猫猫对话
+msgList = [];
+function cattalk(){
+    var inputmsg = document.getElementById("input").value;
+    if(input!== "") {
+        input.value = "";
+        reply.style.display = "block";
+        paw.style.display = "block";
+        reply.innerHTML = "kitten is thinking..."
+        paw.style.top = -(reply.clientHeight + 60)+'px'; // 关闭消息按钮位置
+        msgList.push({ role: 'user', content: inputmsg });
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer Link_D0p6K71X31nSGnsqoBJvuNE0zSALVDeY2N00cvLKWs'
+            },
+            // body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: inputmsg }] }),
+            body: JSON.stringify({ app_code: 'XZ1s42iz', messages: msgList.slice(-10) }),//取最后10项，联系上下文
+        };
+        fetch('https://api.link-ai.chat/v1/chat/completions', options)
+            .then(response => response.json())
+            .then(response => {
+                const replymsg = response.choices[0].message.content;
+                msgList.push({ role: 'assistant', content: replymsg });
+                reply.innerHTML = replymsg;
+                paw.style.top = -(reply.clientHeight + 60)+'px'; // 关闭消息按钮位置
+            })
+            .catch(error => {
+                reply.innerHTML = "消息发送失败或违规！"
+                paw.style.top = -(reply.clientHeight + 60)+'px'; // 关闭消息按钮位置
+            });
+    }
 }
 
 window.onload = function() {
@@ -152,8 +178,6 @@ speed = 100; // 移动速度
 moving = false; // 移动状态
 animation = 1; // 腿部动画计数
 function moveto(x,y,duration) {
-    if (moving) { return; }
-    moving = true; // 开始移动
     offsetX = x - catx; offsetY = y - caty; // 移动距离
     console.log('向右'+ offsetX + ', 向下'+ offsetY);
     if (dire*offsetX<0) {
@@ -174,20 +198,19 @@ function moveto(x,y,duration) {
     setTimeout(function() {
         cat.style.transitionDuration = duration + "ms"; // 运动时间
         catPosition(); // 更新猫猫位置
-        legsAnimation();
-        mouselegsAnimation(); // 鼠标长按时，设置腿部动画
+        // legsAnimation();
+        // keyboardlegsAnimation(); // 鼠标长按时，设置腿部动画
         setTimeout(function() { // 到达终点后
             document.addEventListener('click',click);
             destination.style.display = 'none';
-            legsAnimation();
-            moving = false; // 移动结束
+            // legsAnimation();
         }, duration*0.8);
     },1);
     cat.style.transitionDuration = 0+"ms"; // 重置变换时间为0，避免影响下一次运动
 
     // 键盘长按时，设置腿部动画
-    // 补间动画
-    function mouselegsAnimation() {
+    // 相当于补间动画
+    function keyboardlegsAnimation() {
         const legs = ["leg-front-left", "leg-front-right", "leg-back-left", "leg-back-right"];
         legs.forEach(function(legId,index) {
             const leg = document.getElementById(legId);
@@ -203,6 +226,7 @@ function mirrorCat() {
     var cat = document.getElementById('cat');
     mirrored = !mirrored; // toggle
     cat.style.transform = mirrored ? "scaleX(-1) translateX(-150px)" : "none"; // 翻转
+    reply.style.transform = mirrored ? "scaleX(-1)" : "none"; // 翻转
 }
 // 四肢动作
 function legsAnimation() {
@@ -224,22 +248,58 @@ function click(event) {
     // if (event.target.tagName.toLowerCase() !== 'body') {
     //     return; // 如果点击事件的目标不是 body 元素 背景，则不执行后续操作
     // }
+    if (moving) { return; }
+    moving = true; // 开始移动
 
-    // legsAnimation();
-    // setTimeout(function() {
-    //     legsAnimation();
-    // }, Math.sqrt((event.clientX-catx) * (event.clientX-catx) + (event.clientY-caty) * (event.clientY-caty)) / speed * 1000 * 0.8);
+    legsAnimation();
+    setTimeout(function() {
+        legsAnimation();
+        moving = false; // 移动结束
+    }, Math.sqrt((event.clientX-catx) * (event.clientX-catx) + (event.clientY-caty) * (event.clientY-caty)) / speed * 1000 * 0.8);
     moveto(event.clientX,event.clientY,null);
 }
 // 键盘控制移动
 permove = 10; // 移动距离
+isKeyDown = false;
+talkk = false; // 输入框状态
 document.addEventListener("keydown", function (event) { //判断按下的键
     x = catx; y = caty;
+    // if (!isKeyDown) { legsAnimation(); } // 开始移动时，设置腿部动画
+    if (talkk) {
+        return; // 输入框状态下，不响应键盘事件
+    }
     switch (event.key) {
-        case "w": y -=permove; break;
-        case "a": x -=permove; break;
-        case "d": x +=permove; break;
-        case "s": y +=permove; break;
+        case "w": y -=permove; if (!isKeyDown) { legsAnimation(); }isKeyDown = true; break;
+        case "a": x -=permove; if (!isKeyDown) { legsAnimation(); }isKeyDown = true; break;
+        case "d": x +=permove; if (!isKeyDown) { legsAnimation(); }isKeyDown = true; break;
+        case "s": y +=permove; if (!isKeyDown) { legsAnimation(); }isKeyDown = true; break;
     }
     moveto(x, y, null);
 });
+document.addEventListener("keyup", function (event) { //判断松开的键
+    isKeyDown = false;
+    if (talkk) {
+        return; // 输入框状态下，不响应键盘事件
+    }
+    switch (event.key) {
+        case "w":case "a":case "d":case "s":
+            legsAnimation(); // 停止移动时，设置腿部动画
+    }
+});
+
+
+// Tip窗口显示状态
+function toggleTip() {
+    var overlay = document.querySelector('.overlay');
+    var isVisible = tip.style.display === 'block';
+    tip.style.display = isVisible ? 'none' : 'block';
+    overlay.style.display = isVisible ? 'none' : 'block';
+}
+// talk输入框显示状态
+function toggleTalk() {
+    input.style.display = input.style.display === 'block' ? 'none' : 'block';
+    talk.classList.toggle('active');
+    talkk=!talkk;
+    reply.style.display = 'none';
+    paw.style.display = 'none';
+}
