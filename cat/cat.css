@@ -266,12 +266,16 @@ body {
 
 /* Tip弹出框 */
 #tip {
+    display:none;
 }
 .popup-tip{
     position:fixed;
-    top:50%;left:50%;
+    top:50%;
+    left:50%;
     transform:translate(-50%,-50%);
-    width:300px;height:400px;
+    width:300px;
+    height:420px;
+    padding:20px;
     background-color:white;
     border: 3px solid black;
     /*border-radius:10px;*/
@@ -292,42 +296,78 @@ body {
     justify-content: center;
     margin-bottom: 5px;
 }
-.tip-button{
-    height:25px;
-    display: flex; align-items: center;justify-content: center;background-color:white;border:1px solid #000000;border-radius:0;box-shadow:3px 3px 0 black;
-}
 
 /* box */
 #box {
-    background-image:url('./asset/box/box.png');width:250px;height:176px;background-size:100% 100%;
-    position:absolute;left:0px;top:27px;
+    background-image:url('./asset/box/box.png');
+    background-size:100% 100%;
+    width:250px;
+    height:176px;
+    position:absolute;
+    left:0px;
+    top:27px;
 }
 #boxbackBack {
-    background-image:url('./asset/box/boxbackBack.png');width:240px;height:27px;background-size:100% 100%;
-    position:absolute;left:5px;top:0px;
+    background-image:url('./asset/box/boxbackBack.png');
+    background-size:100% 100%;
+    width:240px;
+    height:27px;
+    position:absolute;
+    left:5px;
+    top:0px;
 }
 #boxback {
-    background-image:url('./asset/box/boxback.png');width:240px;height:27px;background-size:100% 100%;
-    position:absolute;left:5px;top:0px;
+    background-image:url('./asset/box/boxback.png');
+    background-size:100% 100%;
+    width:240px;
+    height:27px;
+    position:absolute;
+    left:5px;
+    top:0px;
     transform-origin: top;
     /*animation: boxback 2s infinite;*/
 }
 #boxcat {
-    background-image:url('./asset/box/cat.png');width:104px;height:104px;background-size:100% 100%;
-    position:absolute;left:73px;top:37px;
+    background-image:url('./asset/box/cat.png');
+    background-size:100% 100%;
+    width:104px;
+    height:104px;
+    position:absolute;
+    left:73px;
+    top:37px;
     /*animation: cat 2s infinite;*/
 }
 #boxpaw {
-    background-image:url('./asset/box/paw.png');width:52px;height:52px;background-size:100% 100%;
-    position:absolute;left:170px;top:67px;
+    background-image:url('./asset/box/paw.png');
+    background-size:100% 100%;
+    width:52px;
+    height:52px;
+    position:absolute;
+    left:170px;
+    top:67px;
     /*animation: paw 2s infinite;*/
 }
 #coin {
-    display:none;background-image:url('./asset/box/coin.png');width:35px;height:35px;background-size:100% 100%;
-    position:absolute;left:187px;top:22px;
+    display:none;
+    background-image:url('./asset/box/coin.png');
+    background-size:100% 100%;
+    width:35px;
+    height:35px;
+    position:absolute;
+    left:187px;
+    top:22px;
 }
 #coinBtn {
-    position:absolute;left:50%;transform:translateX(-50%);top:117px;
-    width:100px;height:40px;background-color:goldenrod;color:black;border:3px solid black;border-radius:5px;
-    font-size:16px;font-weight:bold;
+    position:absolute;
+    top:117px;
+    left:50%;
+    transform:translateX(-50%);
+    width:100px;
+    height:40px;
+    background-color:goldenrod;
+    color:black;
+    border:3px solid black;
+    border-radius:5px;
+    font-size:16px;
+    font-weight:bold;
 }
