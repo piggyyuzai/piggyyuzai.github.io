@@ -85,6 +85,17 @@ function cattalk(){
     }
 }
 
+// 喂食
+function Feed() {
+    foodimg = document.createElement('img');
+    foodimg.src = `./asset/food/${Math.floor(Math.random() * 10) + 1}.png`;
+    foodimg.id = "food";
+    foodimg.style.top = caty+"px";
+    foodimg.style.left = mirrored ? catx - 65 + "px" : catx + "px";
+    feed.appendChild(foodimg);
+    // setTimeout(changeHead, 2000);
+}
+
 window.onload = function() {
     randomBg();
     catpart();

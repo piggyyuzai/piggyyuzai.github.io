@@ -256,6 +256,14 @@ body {
     height: 24px;
 }
 
+/* 投喂 */
+#food {
+    position: absolute;
+    width:50px;
+    height:50px;
+    animation: feedfood 3s forwards;
+}
+
 /* Tip弹出框 */
 #tip {
 }
