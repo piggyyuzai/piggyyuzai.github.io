@@ -96,6 +96,28 @@ function Feed() {
     // setTimeout(changeHead, 2000);
 }
 
+// 摇摇乐
+function shake() {
+    coin.style.display="block";
+    coin.style.animation="coin 1s infinite";
+    setTimeout(function(){
+        coin.style.animation="none";
+    },1000);
+    setTimeout(function(){
+        coin.style.display="none";
+    },2500);
+    setTimeout(function(){
+        boxback.style.animation="boxback 2s infinite";
+        boxcat.style.animation="cat 2s infinite";
+        boxpaw.style.animation="paw 2s infinite";
+        setTimeout(function(){
+            boxback.style.animation="none";
+            boxcat.style.animation="none";
+            boxpaw.style.animation="none";
+        },2000);
+    },1000);
+}
+
 window.onload = function() {
     randomBg();
     catpart();
