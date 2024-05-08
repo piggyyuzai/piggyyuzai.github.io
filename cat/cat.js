@@ -97,7 +97,10 @@ function Feed() {
 }
 
 // 摇摇乐
+coined=false;
 function shake() {
+    if(coined) return;
+    coined=true;
     coin.style.display="block";
     coin.style.animation="coin 1s infinite";
     setTimeout(function(){
@@ -114,6 +117,7 @@ function shake() {
             boxback.style.animation="none";
             boxcat.style.animation="none";
             boxpaw.style.animation="none";
+            coined=false;
         },2000);
     },1000);
 }
