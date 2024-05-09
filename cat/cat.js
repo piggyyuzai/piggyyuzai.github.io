@@ -1,3 +1,10 @@
+window.onload = function() {
+    randomBg();
+    randomCat();
+    spark();
+    selectCats();
+}
+
 // 测试红边
 function redBorder() {
     document.querySelectorAll('*').forEach(function(element) {
@@ -122,15 +129,6 @@ function shake() {
     },1000);
 }
 
-window.onload = function() {
-    randomBg();
-    catpart();
-    catPosition();
-    spark();
-    selectCats();
-}
-
-
 // 渲染猫猫身体各个部分
 id=2;
 function catpart(){
@@ -194,9 +192,6 @@ function changeHead() {
         head.style.backgroundImage = "url('asset/cat/"+id+"head.png')";
     }, 500); // 0.5 秒后恢复原来的头部图片
 }
-
-
-
 // 定位猫猫
 let catx = window.innerWidth / 2 + 0;
 let caty = window.innerHeight / 2 + 0;
