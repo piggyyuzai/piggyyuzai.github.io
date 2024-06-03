@@ -43,19 +43,19 @@ function init() {
   // },
 
   const imagesOne = [
-    {file: "hello.png",width: 120,height: 60,speed: 24,zIndex: 3,},
-    {file: "chat.png",width: 300,height: 200,speed: 12,zIndex: 1,},
-    {file: "piggy.jpg",width: 50,height: 50,speed: 15,zIndex: 4,},
-    {file: "morning.png",width: 160,height: 40,speed: 18,zIndex: 2,},
-    {file: "del.png",width: 65,height: 30,speed: 10,zIndex: 5,},
-  ];
-
-  const imagesTwo = [
     {file: "cat.png",width: 150,height: 150,speed: 20,zIndex: 3,},
     {file: "icon.png",width: 80,height: 80,speed: 25,zIndex: 2,},
     {file: "cursor.png",width: 30,height: 30,speed: 10,zIndex: 5,},
     {file: "2meow.png",width: 60,height: 60,speed: 17,zIndex: 1,},
     {file: "destination.png",width: 60,height: 60,speed: 14,zIndex: 4,},
+  ];
+
+  const imagesTwo = [
+    {file: "hello.png",width: 120,height: 60,speed: 24,zIndex: 3,},
+    {file: "chat.png",width: 300,height: 200,speed: 12,zIndex: 1,},
+    {file: "piggy.jpg",width: 50,height: 50,speed: 15,zIndex: 4,},
+    {file: "morning.png",width: 160,height: 40,speed: 18,zIndex: 2,},
+    {file: "del.png",width: 65,height: 30,speed: 10,zIndex: 5,},
   ];
 
   const imagesThree = [
