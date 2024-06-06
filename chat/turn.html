@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word 文件解析</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+</head>
+<body>
+<h1>上传文件夹并解析 Word 文件内容</h1>
+<input type="file" id="fileInput" webkitdirectory directory multiple>
+<button id="downloadButton">下载解析结果</button>
+<div id="results"></div>
+
+<script>
+  let globalResults = [];
+
+  document.getElementById('fileInput').addEventListener('change', function(event) {
+    var files = event.target.files;
+    if (!files.length) return;
+
+    var resultsDiv = document.getElementById('results');
+    resultsDiv.innerHTML = ''; // 清空上次的结果
+
+    var fileMap = {};
+
+    // 构建文件路径映射
+    for (var i = 0; i < files.length; i++) {
+      var file = files[i];
+      var pathParts = file.webkitRelativePath.split('/');
+      var folder = pathParts.slice(0, -1).join('/');
+      if (!fileMap[folder]) {
+        fileMap[folder] = [];
+      }
+      fileMap[folder].push(file);
+    }
+
+    var promises = [];
+
+    for (var folder in fileMap) {
+      var folderFiles
+              = fileMap[folder];
+      var cnFile, otherFile;
+      folderFiles.forEach(function(file) {
+        if (file.name.startsWith('CN')) {
+          cnFile = file;
+        } else {
+          otherFile = file;
+        }
+      });
+      if (cnFile && otherFile) {
+        promises.push(parseAndCombineFiles(cnFile, otherFile));
+      }
+    }
+
+    Promise.all(promises).then(function(results) {
+      globalResults = results;
+      displayResults(results);
+      generateAndDownloadJsonl(results);
+    }).catch(function(err) {
+      console.error('Error processing files:', err);
+    });
+  });
+
+  function parseAndCombineFiles(cnFile, otherFile) {
+    return Promise.all([parseWordFile(cnFile), parseWordFile(otherFile)]).then(function(contents) {
+      var cnContent = contents[1].replace(/\n+/g, '\n').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+      var otherContent = contents[0].replace(/\n+/g, '\n').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+      return {
+        messages: [
+          {role: "system", content: "你是一个专利代理人，负责帮用户撰写专利申请文件"},
+          {role: "user", content: otherContent},
+          {role: "assistant", content: cnContent}
+        ]
+      };
+    });
+  }
+
+  function parseWordFile(file) {
+    return new Promise(function(resolve, reject) {
+      var reader = new FileReader();
+      reader.onloadend = function(event) {
+        var arrayBuffer = reader.result;
+        mammoth.extractRawText({arrayBuffer: arrayBuffer}).then(function(result) {
+          resolve(result.value);
+        }).catch(function(err) {
+          reject(err);
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    });
+  }
+
+  function displayResults(results) {
+    var resultsDiv = document.getElementById('results');
+    results.forEach(function(result, index) {
+      var resultDiv = document.createElement('div');
+      resultDiv.className = 'result';
+      resultDiv.innerHTML = '<h3>Result ' + (index + 1) + '</h3><pre>' + JSON.stringify(result, null, 2) + '</pre>';
+      resultsDiv.appendChild(resultDiv);
+    });
+  }
+
+  function generateAndDownloadJsonl(results) {
+    var jsonlContent = results.map(result => JSON.stringify(result)).join('\n');
+    var blob = new Blob([jsonlContent], { type: 'application/json' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'results.jsonl';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  document.getElementById('downloadButton').addEventListener('click', function() {
+    generateAndDownloadJsonl(globalResults);
+  });
+</script>
+</body>
+</html>
