@@ -64,8 +64,28 @@
 
   function parseAndCombineFiles(cnFile, otherFile) {
     return Promise.all([parseWordFile(cnFile), parseWordFile(otherFile)]).then(function(contents) {
-      var cnContent = contents[1].replace(/\n+/g, '\n').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
-      var otherContent = contents[0].replace(/\n+/g, '\n').replace(/\s+/g, ' ').replace(/^\s+|\s+$/g, '');
+      var cnContent = contents[0].replace(/\n+/g, '\n').replace(/\s+/g, '');
+      var otherContent = contents[1].replace(/\n+/g, '\n').replace(/\s+/g, '');
+
+      // var cnMatch = cnContent.match(/权利要求书([\s\S]*)说明书一种/);
+      var cnMatch = cnContent.match(/权利要求书([\s\S]*?)说明书/);
+
+      // 检查匹配是否成功并包含预期的组
+      if (cnMatch && cnMatch[1]) {
+        cnContent = cnMatch[1];
+      } else {
+        // 记录错误或处理未找到预期内容的情况
+        console.error("未能提取到权利要求书和说明书之间的内容");
+        cnContent = "";
+      }
+
+      // 提取智力成果方案说明和主要完成人情况之间的内容
+      var otherMatch = otherContent.match(/智力成果方案说明([\s\S]*?)主要完成人情况/);
+
+      if (otherMatch && otherMatch[1]) {
+        otherContent = otherMatch[1];
+      } // 否则保持otherContent原样
+
       return {
         messages: [
           {role: "system", content: "你是一个专利代理人，负责帮用户撰写专利申请文件"},
@@ -75,6 +95,7 @@
       };
     });
   }
+
 
   function parseWordFile(file) {
     return new Promise(function(resolve, reject) {

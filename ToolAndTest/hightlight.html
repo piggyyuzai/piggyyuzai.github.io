@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/panda-syntax-dark.min.css">
+<!--  https://highlightjs.org/demo-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</head>
+<body text='#000000'>
+        <pre><code>
+              //消息列表
+              let msgList = [];
+              // Display initial messages
+              msgList.forEach(msg => {
+                  addMessage(msg.role, msg.content);
+              });
+
+              // 在页面加载时从本地存储加载历史消息
+              window.onload = function() {
+                  //页面加载
+                  // var loader = document.querySelector('.loader-container');
+                  // loader.style.display = 'none';
+
+                  const savedMsgList = JSON.parse(localStorage.getItem('msgList'));
+                  if (savedMsgList) {
+                      msgList = savedMsgList;
+                      msgList.forEach(msg => {
+                          addMessage(msg.role, msg.content);
+                      });
+                      addMessage('','以上为历史消息');
+                  }
+                  //每次重新进入对话，则显示当前日期和时间
+                  const currentDate = new Date().toLocaleString();
+                  addMessage('',currentDate);
+                  addMessage('assistant','你好，我是小猪雨崽，请问有什么可以帮助你的吗？' +
+                      '<code style="">' +
+                      'My website: <a href="https://piggyyuzai.github.io" style="color:#ff75b5;">https://piggyyuzai.github.io</a>' +
+                      '</code>');
+                  newmsgList=[];//窗口消息
+              };
+
+              // 在发送消息时保存消息列表到本地存储
+              function saveMessagesToLocalStorage() {
+                  localStorage.setItem('msgList', JSON.stringify(msgList));
+              }
+        </code></pre>
+</body>
+</html>
