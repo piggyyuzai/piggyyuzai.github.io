@@ -64,8 +64,8 @@
 
   function parseAndCombineFiles(cnFile, otherFile) {
     return Promise.all([parseWordFile(cnFile), parseWordFile(otherFile)]).then(function(contents) {
-      var cnContent = contents[0].replace(/\n+/g, '\n').replace(/\s+/g, '');
-      var otherContent = contents[1].replace(/\n+/g, '\n').replace(/\s+/g, '');
+      var cnContent = contents[0].replace(/\n+/g, '\n').replace(/[ ]+/g, '');
+      var otherContent = contents[1].replace(/\n+/g, '\n').replace(/[ ]+/g, '');
 
       // var cnMatch = cnContent.match(/权利要求书([\s\S]*)说明书一种/);
       var cnMatch = cnContent.match(/权利要求书([\s\S]*?)说明书/);
