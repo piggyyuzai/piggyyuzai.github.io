@@ -7,16 +7,17 @@ function init() {
   const wrapper = document.querySelector(".wrapper");
   const development = [
     "Java",
-    "MySQL",
-    "HTML",
-    "CSS",
+    "MySql",
+    "Html",
+    "Css",
     "JavaScript",
     "Git",
     "Python",
     "VS Code",
     "Mini Program",
-    "Node.js",
-    "npm"
+    "Nodejs",
+    "Npm",
+    "Vue"
     //npm,nodejs,yarn,sass,react,django,express,mongodb
   ];
 
