@@ -136,7 +136,7 @@ function sendMessage() {
                 Authorization: 'Bearer d5f581e7db1b37d41a6ec1abba85e6ac.I6ejKOILU4qukVO5'
             },
             //body: JSON.stringify({ app_code: 'XZ1s42iz', messages: [{ role: 'user', content: messageContent }] })
-            body: JSON.stringify({ model: 'glm-4', messages: newmsgList.slice(-10) })//取最后10项，联系上下文
+            body: JSON.stringify({ model: 'chatglm3-6b-8688591983778652314-yjl', messages: newmsgList.slice(-10) })//取最后10项，联系上下文
         };
         fetch('https://open.bigmodel.cn/api/paas/v4/chat/completions', options)
             .then(response => response.json())
