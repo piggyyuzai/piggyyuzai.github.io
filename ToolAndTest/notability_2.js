@@ -30,13 +30,13 @@ chxm1023 = {
          "refundedDate" : null,
          "refundedReason" : null,
          "isInBillingRetryPeriod" : false,
-         "expirationDate" : "2024-09-01T09:09:09.000Z",
+         "expirationDate" : "2094-09-01T09:09:09.000Z",
          "gracePeriodExpiresAt" : null,
          "overDeviceLimit" : false,
          "expirationIntent" : null,
          "__typename" : "AppStoreSubscription",
          "user" : null,
-         "status" : "canceled",
+         "status" : "active",
          //canceled/active
          "originalPurchaseDate" : "2024-08-09T09:09:09.000Z"
        },
